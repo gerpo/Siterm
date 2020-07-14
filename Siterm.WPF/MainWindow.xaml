@@ -1,0 +1,33 @@
+﻿<mah:MetroWindow
+    x:Class="Siterm.WPF.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Siterm.WPF"
+    xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:selectors="clr-namespace:Siterm.WPF.State.Selectors"
+    xmlns:vm="clr-namespace:Siterm.WPF.ViewModels"
+    Title="{x:Static local:UiStrings.MainWindowTitle}"
+    Width="800"
+    Height="450"
+    d:DataContext="{d:DesignInstance vm:MainViewModel}"
+    mc:Ignorable="d">
+    <mah:MetroWindow.Resources>
+        <selectors:ViewTemplateSelector x:Key="TabTemplateSelector" />
+    </mah:MetroWindow.Resources>
+    <Grid>
+        <TabControl ContentTemplateSelector="{StaticResource TabTemplateSelector}" ItemsSource="{Binding TabItems}">
+            <TabControl.ItemContainerStyle>
+                <Style BasedOn="{StaticResource MahApps.Styles.TabItem}" TargetType="{x:Type TabItem}">
+                    <Setter Property="Header" Value="{Binding Header}" />
+                </Style>
+            </TabControl.ItemContainerStyle>
+            <!--<TabControl.Resources>
+                <DataTemplate DataType="{x:Type vm:GeneralViewModel}">
+                    <TextBlock Text="Jop" />
+                </DataTemplate>
+            </TabControl.Resources>-->
+        </TabControl>
+    </Grid>
+</mah:MetroWindow>
