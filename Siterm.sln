@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siterm.Domain", "Siterm.Domain\Siterm.Domain.csproj", "{FC26E6AD-FA36-4C96-B236-133334F92E44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siterm.Domain", "Siterm.Domain\Siterm.Domain.csproj", "{FC26E6AD-FA36-4C96-B236-133334F92E44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siterm.EntityFramework", "Siterm.EntityFramework\Siterm.EntityFramework.csproj", "{FFCDA88F-935A-4BBF-9C35-9F747BD074A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siterm.EntityFramework", "Siterm.EntityFramework\Siterm.EntityFramework.csproj", "{FFCDA88F-935A-4BBF-9C35-9F747BD074A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siterm.WPF", "Siterm.WPF\Siterm.WPF.csproj", "{FF307F26-F998-4615-9DB3-128F67188422}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siterm.WPF", "Siterm.WPF\Siterm.WPF.csproj", "{FF307F26-F998-4615-9DB3-128F67188422}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siterm.Support", "Siterm.Support\Siterm.Support.csproj", "{E55EBC0D-E1EE-4C62-BCC2-6F510EB9BB41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siterm.Settings", "Siterm.Settings\Siterm.Settings.csproj", "{A0D8F72E-56EB-4C35-A104-D27129C89B7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{FF307F26-F998-4615-9DB3-128F67188422}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF307F26-F998-4615-9DB3-128F67188422}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF307F26-F998-4615-9DB3-128F67188422}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E55EBC0D-E1EE-4C62-BCC2-6F510EB9BB41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E55EBC0D-E1EE-4C62-BCC2-6F510EB9BB41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E55EBC0D-E1EE-4C62-BCC2-6F510EB9BB41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E55EBC0D-E1EE-4C62-BCC2-6F510EB9BB41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0D8F72E-56EB-4C35-A104-D27129C89B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0D8F72E-56EB-4C35-A104-D27129C89B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0D8F72E-56EB-4C35-A104-D27129C89B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0D8F72E-56EB-4C35-A104-D27129C89B7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

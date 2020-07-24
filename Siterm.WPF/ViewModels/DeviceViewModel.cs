@@ -1,4 +1,6 @@
-﻿namespace Siterm.WPF.ViewModels
+﻿using Siterm.Support.Misc;
+
+namespace Siterm.WPF.ViewModels
 {
     public class DeviceViewModel : BaseViewModel, ITabItemViewModel
     {

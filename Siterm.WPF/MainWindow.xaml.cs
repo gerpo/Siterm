@@ -7,6 +7,7 @@ namespace Siterm.WPF
         public MainWindow()
         {
             InitializeComponent();
+            MainTabControl.SelectedIndex = 0;
         }
     }
 }

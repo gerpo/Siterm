@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Siterm.Domain.Models;
 
 namespace Siterm.EntityFramework
 {
-    public class SitermDbContext: DbContext
+    public class SitermDbContext : DbContext
     {
+        public SitermDbContext(DbContextOptions options) : base(options)
+        {
+        }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Device> Devices { get; set; }
         public DbSet<Instruction> Instructions { get; set; }
         public DbSet<ServiceReport> ServiceReports { get; set; }
         public DbSet<Substance> Substances { get; set; }
-
-        public SitermDbContext(DbContextOptions options) : base(options)
-        {
-
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

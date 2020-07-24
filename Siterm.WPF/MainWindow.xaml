@@ -16,18 +16,21 @@
     <mah:MetroWindow.Resources>
         <selectors:ViewTemplateSelector x:Key="TabTemplateSelector" />
     </mah:MetroWindow.Resources>
+    <mah:MetroWindow.ContextMenu>
+        <ContextMenu>
+            <MenuItem Command="{Binding OpenSettingsCommand}" Header="Settings" />
+        </ContextMenu>
+    </mah:MetroWindow.ContextMenu>
     <Grid>
-        <TabControl ContentTemplateSelector="{StaticResource TabTemplateSelector}" ItemsSource="{Binding TabItems}">
+        <TabControl
+            x:Name="MainTabControl"
+            ContentTemplateSelector="{StaticResource TabTemplateSelector}"
+            ItemsSource="{Binding TabItems}">
             <TabControl.ItemContainerStyle>
                 <Style BasedOn="{StaticResource MahApps.Styles.TabItem}" TargetType="{x:Type TabItem}">
                     <Setter Property="Header" Value="{Binding Header}" />
                 </Style>
             </TabControl.ItemContainerStyle>
-            <!--<TabControl.Resources>
-                <DataTemplate DataType="{x:Type vm:GeneralViewModel}">
-                    <TextBlock Text="Jop" />
-                </DataTemplate>
-            </TabControl.Resources>-->
         </TabControl>
     </Grid>
 </mah:MetroWindow>

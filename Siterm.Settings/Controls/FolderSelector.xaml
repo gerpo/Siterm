@@ -1,0 +1,42 @@
+﻿<UserControl
+    x:Class="Siterm.Settings.Controls.FolderSelector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Siterm.Settings.Controls"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBox
+            Grid.Column="0"
+            Margin="0,0,5,0"
+            mah:TextBoxHelper.Watermark="{Binding Path=Placeholder, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FolderSelector}}}"
+            Text="{Binding Path=Path, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FolderSelector}}}" />
+
+        <Button
+            Grid.Column="1"
+            Padding="10,0"
+            Background="{StaticResource MahApps.Brushes.Accent}"
+            Click="SelectFolderBtn_OnClick"
+            Content="{Binding Path=ButtonText, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FolderSelector}}}" />
+    </Grid>
+</UserControl>

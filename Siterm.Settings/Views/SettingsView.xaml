@@ -1,0 +1,109 @@
+﻿<mah:MetroWindow
+    x:Class="Siterm.Settings.Views.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Siterm.Settings.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Siterm.Settings.Views"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:Siterm.Settings.Models"
+    xmlns:resources="clr-namespace:Siterm.Settings.Resources"
+    xmlns:viewModels="clr-namespace:Siterm.Settings.ViewModels"
+    Title="{x:Static resources:SettingUiStrings.SettingsWindowHeader}"
+    MinWidth="500"
+    d:DataContext="{d:DesignInstance viewModels:SettingsViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    SizeToContent="WidthAndHeight"
+    mc:Ignorable="d">
+    <mah:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </mah:MetroWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ItemsControl Padding="10,5" ItemsSource="{Binding Settings}">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder />
+                        <StackPanel Background="{StaticResource MahApps.Brushes.Gray5}" Orientation="Horizontal">
+                            <TextBlock Margin="0,0,5,0" Text="{Binding ErrorContent.Setting.Name}" />
+                            <TextBlock Foreground="Red" Text="{Binding ErrorContent.Message}" />
+                        </StackPanel>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate DataType="{x:Type models:Setting}">
+                                <TextBox mah:TextBoxHelper.Watermark="{Binding Path=Name}" Text="{Binding Path=Value}" />
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Type}" Value="{x:Static models:SettingType.Folder}">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate DataType="{x:Type models:Setting}">
+                                        <controls:FolderSelector Path="{Binding Path=Value}" Placeholder="{Binding Path=Name}" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Type}" Value="{x:Static models:SettingType.File}">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate DataType="{x:Type models:Setting}">
+                                        <controls:FileSelector Path="{Binding Path=Value}" Placeholder="{Binding Path=Name}" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+        <Border
+            Grid.Row="1"
+            Margin="10,5"
+            mah:VisibilityHelper.IsVisible="{Binding HasErrors, FallbackValue=false}"
+            BorderBrush="{StaticResource MahApps.Brushes.SemiTransparent}"
+            BorderThickness="1"
+            CornerRadius="4">
+            <ItemsControl
+                Padding="5"
+                Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}"
+                ItemsSource="{Binding ValidationErrors}">
+                <ItemsControl.ItemTemplate>
+                    <ItemContainerTemplate DataType="{x:Type models:SettingValidationError}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="0,0,5,0" Text="{Binding Path=Setting.Name}" />
+                            <TextBlock Foreground="Red" Text="{Binding Path=Message}" />
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Button
+            Grid.Row="2"
+            Margin="10,5"
+            Command="{Binding SaveSettingsCommand}"
+            Content="{x:Static resources:SettingUiStrings.SaveBtnText}"
+            Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+
+
+    </Grid>
+</mah:MetroWindow>

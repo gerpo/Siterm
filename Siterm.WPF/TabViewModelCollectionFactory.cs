@@ -10,12 +10,6 @@ namespace Siterm.WPF
     public class TabViewModelCollectionFactory
     {
         public ObservableCollection<ITabItemViewModel> TabItemViewModelCollection { get; } = new ObservableCollection<ITabItemViewModel>();
-        //public TabViewModelCollectionFactory(GeneralViewModel generalViewModel, FirstAidViewModel firstAidViewModel, DeviceViewModel deviceViewModel)
-        //{
-        //    TabItemViewModelCollection.Add(generalViewModel);
-        //    TabItemViewModelCollection.Add(firstAidViewModel);
-        //    TabItemViewModelCollection.Add(deviceViewModel);
-        //}
 
         public TabViewModelCollectionFactory(IEnumerable<ITabItemViewModel> tabItemViewModels)
         {

@@ -1,9 +1,17 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using Siterm.EntityFramework;
+using Siterm.Settings;
+using Siterm.Settings.Models;
+using Siterm.Settings.Services;
+using Siterm.Support.Misc;
+using Siterm.Support.Services;
 using Siterm.WPF.ViewModels;
 
 namespace Siterm.WPF
@@ -14,7 +22,7 @@ namespace Siterm.WPF
         {
             var serviceProvider = CreateServiceProvider();
 
-            var window = new MainWindow {DataContext = serviceProvider.GetService<MainViewModel>()};
+            var window = new MainWindow {DataContext = serviceProvider.GetRequiredService<MainViewModel>()};
             window.Show();
 
             base.OnStartup(e);
@@ -24,8 +32,14 @@ namespace Siterm.WPF
         {
             var services = new ServiceCollection();
 
+            RegisterLogger(services);
+            RegisterConfiguration(services);
+
+            SettingsServiceProvider.RegisterServices(services);
+
             services.AddSingleton<SitermDbContextFactory>();
             services.AddSingleton<TabViewModelCollectionFactory>();
+            services.AddTransient<RtfToFlowConverter>();
 
             RegisterViewModels(services);
             RegisterTabItemViewModels(services);
@@ -33,14 +47,27 @@ namespace Siterm.WPF
             return services.BuildServiceProvider();
         }
 
-        private static void RegisterViewModels(IServiceCollection services)
+        private static void RegisterConfiguration(IServiceCollection services)
         {
-            var viewModels = Assembly.GetAssembly(typeof(BaseViewModel))?.GetTypes()
-                .Where(t => t.IsClass && t.IsSubclassOf(typeof(BaseViewModel)));
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false, true)
+                .Build();
 
-            if (viewModels is null) return;
+            services.Configure<AppSettings>(x => configuration.GetSection(nameof(AppSettings)).Bind(x));
+        }
 
-            foreach (var viewModel in viewModels) services.AddScoped(viewModel);
+        private static void RegisterLogger(IServiceCollection services)
+        {
+            var logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.File(@"logs\siterm_log.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
+            services.AddSingleton<ILogger>(logger);
+
+            Log.Logger = logger;
         }
 
         private static void RegisterTabItemViewModels(IServiceCollection services)
@@ -50,7 +77,18 @@ namespace Siterm.WPF
 
             if (viewModels is null) return;
 
-            foreach (var viewModel in viewModels) services.Add(new ServiceDescriptor(typeof(ITabItemViewModel), viewModel, ServiceLifetime.Scoped));
+            foreach (var viewModel in viewModels)
+                services.Add(new ServiceDescriptor(typeof(ITabItemViewModel), viewModel, ServiceLifetime.Scoped));
+        }
+
+        private static void RegisterViewModels(IServiceCollection services)
+        {
+            var viewModels = Assembly.GetAssembly(typeof(MainViewModel))?.GetTypes()
+                .Where(t => t.IsClass && t.IsSubclassOf(typeof(BaseViewModel)));
+
+            if (viewModels is null) return;
+
+            foreach (var viewModel in viewModels) services.AddScoped(viewModel);
         }
     }
 }
