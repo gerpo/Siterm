@@ -70,6 +70,15 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bereich ähnelt.
+        /// </summary>
+        public static string Facility {
+            get {
+                return ResourceManager.GetString("Facility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Erste Hilfe ähnelt.
         /// </summary>
         public static string FirstAidTabHeader {
@@ -88,11 +97,56 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Letzte Schulung ähnelt.
+        /// </summary>
+        public static string LastTraining {
+            get {
+                return ResourceManager.GetString("LastTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die IBF - Sicherheitsterminal ähnelt.
         /// </summary>
         public static string MainWindowTitle {
             get {
                 return ResourceManager.GetString("MainWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nächste Schulung ähnelt.
+        /// </summary>
+        public static string NextTraining {
+            get {
+                return ResourceManager.GetString("NextTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Telefon ähnelt.
+        /// </summary>
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gefahrstoffe ähnelt.
+        /// </summary>
+        public static string SubstanceTabHeader {
+            get {
+                return ResourceManager.GetString("SubstanceTabHeader", resourceCulture);
             }
         }
     }

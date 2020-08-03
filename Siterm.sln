@@ -11,7 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siterm.WPF", "Siterm.WPF\Si
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siterm.Support", "Siterm.Support\Siterm.Support.csproj", "{E55EBC0D-E1EE-4C62-BCC2-6F510EB9BB41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siterm.Settings", "Siterm.Settings\Siterm.Settings.csproj", "{A0D8F72E-56EB-4C35-A104-D27129C89B7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siterm.Settings", "Siterm.Settings\Siterm.Settings.csproj", "{A0D8F72E-56EB-4C35-A104-D27129C89B7A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siterm.Excel", "Siterm.Excel\Siterm.Excel.csproj", "{77A98BDC-8530-4CF4-B0D3-6BB6F3AD3029}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siterm.Substance", "Siterm.Substance\Siterm.Substance.csproj", "{4B2083DD-3EDF-45B3-A909-EF3876D11E92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siterm.DatabaseInitialization", "Siterm.DatabaseInitialization\Siterm.DatabaseInitialization.csproj", "{3A13C873-1314-413D-AA6E-B6F389679CFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{A0D8F72E-56EB-4C35-A104-D27129C89B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0D8F72E-56EB-4C35-A104-D27129C89B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0D8F72E-56EB-4C35-A104-D27129C89B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A98BDC-8530-4CF4-B0D3-6BB6F3AD3029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A98BDC-8530-4CF4-B0D3-6BB6F3AD3029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A98BDC-8530-4CF4-B0D3-6BB6F3AD3029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A98BDC-8530-4CF4-B0D3-6BB6F3AD3029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B2083DD-3EDF-45B3-A909-EF3876D11E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B2083DD-3EDF-45B3-A909-EF3876D11E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B2083DD-3EDF-45B3-A909-EF3876D11E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B2083DD-3EDF-45B3-A909-EF3876D11E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A13C873-1314-413D-AA6E-B6F389679CFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A13C873-1314-413D-AA6E-B6F389679CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A13C873-1314-413D-AA6E-B6F389679CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A13C873-1314-413D-AA6E-B6F389679CFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

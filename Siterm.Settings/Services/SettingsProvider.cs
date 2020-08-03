@@ -14,7 +14,10 @@ namespace Siterm.Settings.Services
             new Dictionary<SettingName, SettingType>
             {
                 {SettingName.DatabaseConnectionString, SettingType.String},
-                {SettingName.MainPath, SettingType.Folder}
+                {SettingName.MainPath, SettingType.Folder},
+                {SettingName.FirstResponderExcelFile, SettingType.File},
+                {SettingName.FirstResponderInfoFile, SettingType.File},
+                {SettingName.SubstancePath, SettingType.Folder},
             };
 
         public SettingsProvider(IOptions<AppSettings> settings)

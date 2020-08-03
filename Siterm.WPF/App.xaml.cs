@@ -9,9 +9,9 @@ using Serilog;
 using Siterm.EntityFramework;
 using Siterm.Settings;
 using Siterm.Settings.Models;
-using Siterm.Settings.Services;
 using Siterm.Support.Misc;
 using Siterm.Support.Services;
+using Siterm.WPF.State.Navigators;
 using Siterm.WPF.ViewModels;
 
 namespace Siterm.WPF
@@ -22,7 +22,7 @@ namespace Siterm.WPF
         {
             var serviceProvider = CreateServiceProvider();
 
-            var window = new MainWindow {DataContext = serviceProvider.GetRequiredService<MainViewModel>()};
+            var window = serviceProvider.GetRequiredService<MainWindow>();
             window.Show();
 
             base.OnStartup(e);
@@ -34,6 +34,8 @@ namespace Siterm.WPF
 
             RegisterLogger(services);
             RegisterConfiguration(services);
+            services.AddScoped<SimpleNavigationService>();
+            services.AddTransient<MainWindow>();
 
             SettingsServiceProvider.RegisterServices(services);
 

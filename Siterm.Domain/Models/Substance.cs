@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Siterm.Domain.Models
+﻿namespace Siterm.Domain.Models
 {
-    public class Substance: DomainObject
+    public class Substance : DomainObject
     {
         public string Name { get; set; }
+        public string Path { get; set; }
     }
 }

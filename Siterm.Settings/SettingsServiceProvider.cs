@@ -16,10 +16,9 @@ namespace Siterm.Settings
             services.AddTransient<SettingsValidator>();
             services.AddTransient<SettingsWriter>();
 
-            services.AddTransient<SettingsViewModel>();
+            services.AddScoped<SettingsViewModel>();
 
-            services.AddTransient(serviceProvider => new SettingsView
-                {DataContext = serviceProvider.GetRequiredService(typeof(SettingsViewModel))});
+            services.AddTransient<SettingsView>();
         }
     }
 }

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using Siterm.Support.Misc;
+﻿using Siterm.Support.Misc;
 
 namespace Siterm.Settings.Models
 {
-    public class Setting: CanNotifyPropertyChanged
+    public class Setting : CanNotifyPropertyChanged
     {
         private SettingName _name;
-        private string _value;
         private SettingType _type;
+        private string _value;
 
         public Setting(SettingName settingName, string settingsValue, SettingType type)
         {
@@ -52,5 +48,8 @@ namespace Siterm.Settings.Models
     {
         DatabaseConnectionString,
         MainPath,
+        FirstResponderExcelFile,
+        FirstResponderInfoFile,
+        SubstancePath
     }
 }

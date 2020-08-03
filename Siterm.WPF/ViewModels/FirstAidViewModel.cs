@@ -1,32 +1,37 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Documents;
+using Siterm.Domain.Models;
+using Siterm.Excel.Services;
 using Siterm.Settings.Models;
 using Siterm.Settings.Services;
 using Siterm.Support.Misc;
+using Siterm.Support.Services;
 
 namespace Siterm.WPF.ViewModels
 {
     public class FirstAidViewModel : BaseViewModel, ITabItemViewModel
     {
-        private readonly SettingsWriter _settingsWriter;
+        private IReadOnlyList<Setting> _settings;
 
-        public FirstAidViewModel(SettingsProvider settingsProvider, SettingsWriter settingsWriter)
+        public FirstAidViewModel(SettingsProvider settingsProvider, RtfToFlowConverter rtfToFlowConverter)
         {
-            _settingsWriter = settingsWriter;
+            _settings = settingsProvider.GetAllSettings();
 
-            Settings = settingsProvider.GetAllSettings();
+            FirstAidInfoFile =
+                rtfToFlowConverter.CreateFlowDocument(settingsProvider.GetSetting(SettingName.FirstResponderInfoFile)
+                    .Value);
 
-            SaveSettingsCommand = new RelayCommand(SaveSettings);
+            FirstResponders =
+                ReadFirstAidExcelService.ReadFile(
+                    settingsProvider.GetSetting(SettingName.FirstResponderExcelFile).Value);
         }
 
-        public RelayCommand SaveSettingsCommand { get; }
+        public ObservableCollection<FirstResponder> FirstResponders { get; set; }
 
-        public IReadOnlyList<Setting> Settings { get; }
         public string Header => UiStrings.FirstAidTabHeader;
         public int Position => 2;
 
-        private async void SaveSettings(object o)
-        {
-            var t = await _settingsWriter.TrySavingSettings(Settings);
-        }
+        public FlowDocument FirstAidInfoFile { get; set; }
     }
 }

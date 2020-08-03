@@ -1,12 +1,21 @@
-﻿using MahApps.Metro.Controls;
+﻿using System.Threading.Tasks;
+using MahApps.Metro.Controls;
+using Siterm.Settings.ViewModels;
+using Siterm.Support.Misc;
 
 namespace Siterm.Settings.Views
 {
-    public partial class SettingsView : MetroWindow
+    public partial class SettingsView : MetroWindow, IActivable
     {
-        public SettingsView()
+        public SettingsView(SettingsViewModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
+        }
+
+        public Task ActivateAsync(object parameter)
+        {
+            return Task.CompletedTask;
         }
     }
 }

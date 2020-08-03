@@ -52,14 +52,14 @@ namespace Siterm.Settings.Controls
 
         private static void PathPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((FolderSelector) d).NotifyPropertyChanged("Path");
+            ((FileSelector) d).NotifyPropertyChanged("Path");
         }
 
         private void SelectFileBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            var folderBrowserDialog = new OpenFileDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                Path = folderBrowserDialog.FileName;
+            var fileDialog = new OpenFileDialog();
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+                Path = fileDialog.FileName;
         }
     }
 }

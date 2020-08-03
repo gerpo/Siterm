@@ -14,5 +14,19 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <FlowDocumentScrollViewer
+            Grid.Column="0"
+            Document="{Binding FirstAidInfoFile}"
+            VerticalScrollBarVisibility="Auto" />
+        <DataGrid
+            Grid.Column="1"
+            AutoGeneratingColumn="DataGrid_OnAutoGeneratingColumn"
+            IsReadOnly="True"
+            ItemsSource="{Binding FirstResponders}" />
+    </Grid>
 </UserControl>

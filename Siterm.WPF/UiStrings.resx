@@ -120,13 +120,31 @@
   <data name="DeviceTabHeader" xml:space="preserve">
     <value>Bereiche / Anlagen</value>
   </data>
+  <data name="Facility" xml:space="preserve">
+    <value>Bereich</value>
+  </data>
   <data name="FirstAidTabHeader" xml:space="preserve">
     <value>Erste Hilfe</value>
   </data>
   <data name="GeneralTabHeader" xml:space="preserve">
     <value>Allgemein</value>
   </data>
+  <data name="LastTraining" xml:space="preserve">
+    <value>Letzte Schulung</value>
+  </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>IBF - Sicherheitsterminal</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NextTraining" xml:space="preserve">
+    <value>Nächste Schulung</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="SubstanceTabHeader" xml:space="preserve">
+    <value>Gefahrstoffe</value>
   </data>
 </root>
