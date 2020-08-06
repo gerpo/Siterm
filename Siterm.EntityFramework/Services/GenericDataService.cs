@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Siterm.Domain.Models;
@@ -39,6 +42,14 @@ namespace Siterm.EntityFramework.Services
             return createdEntry.Entity;
         }
 
+        public async void CreateAll(IEnumerable<T> entities)
+        {
+            await using var context = _contextFactory.CreateDbContext();
+
+            await context.Set<T>().AddRangeAsync(entities);
+            await context.SaveChangesAsync();
+        }
+
         public async Task<T> Update(int id, T entity)
         {
             await using var context = _contextFactory.CreateDbContext();
@@ -59,6 +70,13 @@ namespace Siterm.EntityFramework.Services
             await context.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<IEnumerable<T>> Where(Expression<Func<T, bool>> predicate)
+        {
+            await using var context = _contextFactory.CreateDbContext();
+
+            return await context.Set<T>().Where(predicate).ToListAsync();
         }
     }
 }

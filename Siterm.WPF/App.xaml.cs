@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Siterm.EntityFramework;
+using Siterm.EntityFramework.Services;
 using Siterm.Settings;
 using Siterm.Settings.Models;
 using Siterm.Support.Misc;
@@ -38,8 +39,8 @@ namespace Siterm.WPF
             services.AddTransient<MainWindow>();
 
             SettingsServiceProvider.RegisterServices(services);
+            EntityServiceProvider.RegisterServices(services);
 
-            services.AddSingleton<SitermDbContextFactory>();
             services.AddSingleton<TabViewModelCollectionFactory>();
             services.AddTransient<RtfToFlowConverter>();
 

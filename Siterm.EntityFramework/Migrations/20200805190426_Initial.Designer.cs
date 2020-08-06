@@ -9,8 +9,8 @@ using Siterm.EntityFramework;
 namespace Siterm.EntityFramework.Migrations
 {
     [DbContext(typeof(SitermDbContext))]
-    [Migration("20200713173954_initial")]
-    partial class initial
+    [Migration("20200805190426_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,14 +31,42 @@ namespace Siterm.EntityFramework.Migrations
                     b.Property<int>("DeviceNumber")
                         .HasColumnType("int");
 
+                    b.Property<int>("FacilityId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Path")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ChiefId");
 
+                    b.HasIndex("FacilityId");
+
                     b.ToTable("Devices");
+                });
+
+            modelBuilder.Entity("Siterm.Domain.Models.Facility", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("OrderNr")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Facilities");
                 });
 
             modelBuilder.Entity("Siterm.Domain.Models.Instruction", b =>
@@ -53,7 +81,7 @@ namespace Siterm.EntityFramework.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime");
 
-                    b.Property<int?>("DeviceId")
+                    b.Property<int>("DeviceId")
                         .HasColumnType("int");
 
                     b.Property<string>("ForbiddenActivities")
@@ -64,6 +92,12 @@ namespace Siterm.EntityFramework.Migrations
 
                     b.Property<int?>("InstructorId")
                         .HasColumnType("int");
+
+                    b.Property<string>("OldInstructedString")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -85,8 +119,11 @@ namespace Siterm.EntityFramework.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime");
 
-                    b.Property<int?>("DeviceId")
+                    b.Property<int>("DeviceId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("text");
 
                     b.Property<int?>("PerformingUserId")
                         .HasColumnType("int");
@@ -137,6 +174,9 @@ namespace Siterm.EntityFramework.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<string>("Path")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("Substances");
@@ -167,13 +207,21 @@ namespace Siterm.EntityFramework.Migrations
                     b.HasOne("Siterm.Domain.Models.User", "Chief")
                         .WithMany()
                         .HasForeignKey("ChiefId");
+
+                    b.HasOne("Siterm.Domain.Models.Facility", "Facility")
+                        .WithMany("Devices")
+                        .HasForeignKey("FacilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Siterm.Domain.Models.Instruction", b =>
                 {
-                    b.HasOne("Siterm.Domain.Models.Device", null)
+                    b.HasOne("Siterm.Domain.Models.Device", "Device")
                         .WithMany("Instructions")
-                        .HasForeignKey("DeviceId");
+                        .HasForeignKey("DeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Siterm.Domain.Models.User", "Instructed")
                         .WithMany("Instructions")
@@ -186,9 +234,11 @@ namespace Siterm.EntityFramework.Migrations
 
             modelBuilder.Entity("Siterm.Domain.Models.ServiceReport", b =>
                 {
-                    b.HasOne("Siterm.Domain.Models.Device", null)
+                    b.HasOne("Siterm.Domain.Models.Device", "Device")
                         .WithMany("ServiceReports")
-                        .HasForeignKey("DeviceId");
+                        .HasForeignKey("DeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Siterm.Domain.Models.User", "PerformingUser")
                         .WithMany("ServiceReports")

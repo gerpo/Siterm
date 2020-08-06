@@ -50,6 +50,9 @@ namespace Siterm.Settings.Models
         MainPath,
         FirstResponderExcelFile,
         FirstResponderInfoFile,
-        SubstancePath
+        SubstancePath,
+        FacilityPath,
+        InstructionFolderName,
+        ServiceReportFolderName
     }
 }

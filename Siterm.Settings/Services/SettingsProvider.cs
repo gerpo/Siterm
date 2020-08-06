@@ -18,6 +18,9 @@ namespace Siterm.Settings.Services
                 {SettingName.FirstResponderExcelFile, SettingType.File},
                 {SettingName.FirstResponderInfoFile, SettingType.File},
                 {SettingName.SubstancePath, SettingType.Folder},
+                {SettingName.FacilityPath, SettingType.Folder},
+                {SettingName.InstructionFolderName, SettingType.String},
+                {SettingName.ServiceReportFolderName, SettingType.String},
             };
 
         public SettingsProvider(IOptions<AppSettings> settings)

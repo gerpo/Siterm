@@ -7,5 +7,8 @@
         public string FirstResponderExcelFile { get; set; }
         public string FirstResponderInfoFile { get; set; }
         public string SubstancePath { get; set; }
+        public string FacilityPath { get; set; }
+        public string InstructionFolderName { get; set; }
+        public string ServiceReportFolderName { get; set; }
     }
 }

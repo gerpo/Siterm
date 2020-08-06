@@ -4,17 +4,33 @@ using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace Siterm.EntityFramework.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Facilities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    Path = table.Column<string>(nullable: true),
+                    OrderNr = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Facilities", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Substances",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Path = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,7 +59,9 @@ namespace Siterm.EntityFramework.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
+                    Path = table.Column<string>(nullable: true),
                     DeviceNumber = table.Column<int>(nullable: false),
+                    FacilityId = table.Column<int>(nullable: false),
                     ChiefId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -55,6 +73,12 @@ namespace Siterm.EntityFramework.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Devices_Facilities_FacilityId",
+                        column: x => x.FacilityId,
+                        principalTable: "Facilities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,12 +87,14 @@ namespace Siterm.EntityFramework.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Path = table.Column<string>(nullable: true),
                     InstructorId = table.Column<int>(nullable: true),
                     InstructedId = table.Column<int>(nullable: true),
+                    DeviceId = table.Column<int>(nullable: false),
+                    OldInstructedString = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     AllowedActivities = table.Column<string>(nullable: true),
-                    ForbiddenActivities = table.Column<string>(nullable: true),
-                    DeviceId = table.Column<int>(nullable: true)
+                    ForbiddenActivities = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,7 +104,7 @@ namespace Siterm.EntityFramework.Migrations
                         column: x => x.DeviceId,
                         principalTable: "Devices",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Instructions_Users_InstructedId",
                         column: x => x.InstructedId,
@@ -99,10 +125,11 @@ namespace Siterm.EntityFramework.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Path = table.Column<string>(nullable: true),
                     PerformingUserId = table.Column<int>(nullable: true),
+                    DeviceId = table.Column<int>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    Validity = table.Column<int>(nullable: false),
-                    DeviceId = table.Column<int>(nullable: true)
+                    Validity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -112,7 +139,7 @@ namespace Siterm.EntityFramework.Migrations
                         column: x => x.DeviceId,
                         principalTable: "Devices",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ServiceReports_Users_PerformingUserId",
                         column: x => x.PerformingUserId,
@@ -147,6 +174,11 @@ namespace Siterm.EntityFramework.Migrations
                 name: "IX_Devices_ChiefId",
                 table: "Devices",
                 column: "ChiefId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Devices_FacilityId",
+                table: "Devices",
+                column: "FacilityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Instructions_DeviceId",
@@ -198,6 +230,9 @@ namespace Siterm.EntityFramework.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Facilities");
         }
     }
 }

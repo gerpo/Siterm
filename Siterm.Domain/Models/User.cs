@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Siterm.Domain.Models
 {
-    public class User: DomainObject
+    public class User : DomainObject
     {
         public string Email { get; set; }
         public string FirstName { get; set; }
