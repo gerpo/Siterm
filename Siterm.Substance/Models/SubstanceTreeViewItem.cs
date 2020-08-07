@@ -21,8 +21,9 @@ namespace Siterm.Substance.Models
 
             if (!substancePathInfo.Exists) return null;
 
-            var childrenList = substancePathInfo.GetDirectories().Select(directoryInfo => new Folder(directoryInfo)).Cast<FileSystemObject>().ToList();
-            childrenList.AddRange(substancePathInfo.GetFiles().Select(fileInfo => new File(fileInfo)).Cast<FileSystemObject>());
+            var childrenList = substancePathInfo.GetDirectories().Select(directoryInfo => new Folder(directoryInfo))
+                .Cast<FileSystemObject>().ToList();
+            childrenList.AddRange(substancePathInfo.GetFiles().Select(fileInfo => new File(fileInfo)));
 
             return childrenList;
         }

@@ -7,8 +7,8 @@ namespace Siterm.Domain.Models
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public IEnumerable<Instruction> Instructions { get; set; }
-        public IEnumerable<Instruction> PerformedInstructions { get; set; }
-        public IEnumerable<ServiceReport> ServiceReports { get; set; }
+        public virtual IEnumerable<Instruction> Instructions { get; set; }
+        public virtual IEnumerable<Instruction> PerformedInstructions { get; set; }
+        public virtual IEnumerable<ServiceReport> ServiceReports { get; set; }
     }
 }

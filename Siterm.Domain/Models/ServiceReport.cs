@@ -32,10 +32,10 @@ namespace Siterm.Domain.Models
             ValidityStringMap.ToDictionary(m => m.Value, m => m.Key);
 
         public string Path { get; set; }
-        public User PerformingUser { get; set; }
-        public Device Device { get; set; }
+        public virtual User PerformingUser { get; set; }
+        public virtual Device Device { get; set; }
         public DateTime CreatedAt { get; set; }
         public ValidityType Validity { get; set; }
-        public IEnumerable<ServiceTask> ServiceTasks { get; set; }
+        public virtual IEnumerable<ServiceTask> ServiceTasks { get; set; }
     }
 }

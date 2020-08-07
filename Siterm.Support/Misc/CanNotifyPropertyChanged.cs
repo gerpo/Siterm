@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using Siterm.Support.Annotations;
 
 namespace Siterm.Support.Misc
 {
-    public class CanNotifyPropertyChanged: INotifyPropertyChanged
+    public class CanNotifyPropertyChanged : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public void OnPropertyChanged(string? propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        public void OnPropertyChanged(string? propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
         {

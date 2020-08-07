@@ -9,9 +9,9 @@ namespace Siterm.Domain.Models
         public string Name { get; set; }
         public string Path { get; set; }
         public int DeviceNumber { get; set; }
-        public Facility Facility { get; set; }
-        public User Chief { get; set; }
-        public IEnumerable<Instruction> Instructions { get; set; }
-        public IEnumerable<ServiceReport> ServiceReports { get; set; }
+        public virtual Facility Facility { get; set; }
+        public virtual User Chief { get; set; }
+        public virtual IEnumerable<Instruction> Instructions { get; set; }
+        public virtual IEnumerable<ServiceReport> ServiceReports { get; set; }
     }
 }

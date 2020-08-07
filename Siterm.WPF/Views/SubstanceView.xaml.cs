@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Siterm.Substance.Models;
+using Siterm.WPF.ViewModels;
 
 namespace Siterm.WPF.Views
 {
     /// <summary>
-    /// Interaktionslogik für SubstanceView.xaml
+    ///     Interaktionslogik für SubstanceView.xaml
     /// </summary>
     public partial class SubstanceView : UserControl
     {
         public SubstanceView()
         {
             InitializeComponent();
+        }
+
+        private void SubstanceTreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            var selectedItem = SubstanceTreeView.SelectedItem;
+
+            if (selectedItem is SubstanceTreeViewItem substanceTreeViewItem)
+                ((SubstanceViewModel) DataContext).SelectedSubstanceChanged(substanceTreeViewItem.Model);
         }
     }
 }

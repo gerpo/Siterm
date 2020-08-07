@@ -1,9 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Data;
 using Siterm.EntityFramework.Services;
-using Siterm.Settings.Models;
-using Siterm.Settings.Services;
 using Siterm.Substance.Models;
+using Siterm.Support.ControlModels;
 using Siterm.Support.Misc;
 
 namespace Siterm.WPF.ViewModels
@@ -11,30 +17,100 @@ namespace Siterm.WPF.ViewModels
     public class SubstanceViewModel : BaseViewModel, ITabItemViewModel
     {
         private readonly SubstanceDataService _substanceDataService;
+        private bool _isLoadingSubstances;
+        private Domain.Models.Substance _selectedSubstance;
 
-        public SubstanceViewModel(SettingsProvider settingProvider, SubstanceDataService substanceDataService)
+        private ICollectionView _substanceCollectionView;
+        private IList<SubstanceTreeViewItem> _substances;
+        private string _substanceSearchTerm;
+
+        public SubstanceViewModel(SubstanceDataService substanceDataService)
         {
             _substanceDataService = substanceDataService;
-            var substancePath = settingProvider.GetSetting(SettingName.SubstancePath).Value;
-            SetSubstances(substancePath);
+            RefreshSubstancesCommand = new RelayCommand(RefetchSubstances);
+            OnItemMouseDoubleClickCommand = new RelayCommand(ItemWasDoubleClicked);
         }
 
-        public IList<SubstanceTreeViewItem> Substances { get; private set; }
+        public bool IsLoadingSubstances
+        {
+            get => _isLoadingSubstances;
+            private set => SetField(ref _isLoadingSubstances, value);
+        }
+
+        public ICollectionView SubstanceCollectionView
+        {
+            get
+            {
+                if (_substanceCollectionView is null) FetchSubstances();
+
+                return _substanceCollectionView;
+            }
+            private set
+            {
+                SetField(ref _substanceCollectionView, value);
+                OnPropertyChanged("SubstanceNames");
+            }
+        }
+
+        public IEnumerable<string> SubstanceNames => _substances?.Select(s => s.Model.Name);
+
+        public string SubstanceSearchTerm
+        {
+            get => _substanceSearchTerm;
+            set
+            {
+                SetField(ref _substanceSearchTerm, value);
+                _substanceCollectionView?.Refresh();
+            }
+        }
+
+        public RelayCommand RefreshSubstancesCommand { get; }
+
+        public Domain.Models.Substance SelectedSubstance
+        {
+            get => _selectedSubstance;
+            set => SetField(ref _selectedSubstance, value);
+        }
+
+        public RelayCommand OnItemMouseDoubleClickCommand { get; }
 
         public string Header => UiStrings.SubstanceTabHeader;
         public int Position => 3;
 
-        private async void SetSubstances(string substancePath)
+        public void SelectedSubstanceChanged(Domain.Models.Substance selectedSubstance)
         {
-            //if (string.IsNullOrEmpty(substancePath) || !Directory.Exists(substancePath)) return;
-
-            //var substances = new DirectoryInfo(substancePath);
-
-            //var substanceTreeViewItemList = substances.GetDirectories().Select(directoryInfo => new SubstanceTreeViewItem(new Domain.Models.Substance {Name = directoryInfo.Name, Path = directoryInfo.FullName})).ToList();
-
-            //Substances = substanceTreeViewItemList;
-
-            Substances = (await _substanceDataService.GetAll()).OrderBy(s => s.Name).Select(s => new SubstanceTreeViewItem(s)).ToList();
+            SelectedSubstance = selectedSubstance;
         }
+
+        private async Task FetchSubstances()
+        {
+            IsLoadingSubstances = true;
+
+            _substances = (await _substanceDataService.GetAll().ConfigureAwait(false))
+                .OrderBy(s => s.Name)
+                .Select(s => new SubstanceTreeViewItem(s)).ToList();
+
+            SubstanceCollectionView = CollectionViewSource.GetDefaultView(_substances);
+            SubstanceCollectionView.Filter = o =>
+                string.IsNullOrEmpty(SubstanceSearchTerm) ||
+                ((SubstanceTreeViewItem) o).Model.Name.Contains(SubstanceSearchTerm,
+                    StringComparison.CurrentCultureIgnoreCase);
+
+            IsLoadingSubstances = false;
+        }
+
+        private async void RefetchSubstances(object o)
+        {
+            await FetchSubstances();
+        }
+
+        private void ItemWasDoubleClicked(object obj)
+        {
+            if (!(obj is TreeView substanceTreeView)) return;
+            if (!(substanceTreeView.SelectedItem is File file)) return;
+
+            file.Open();
+        }
+
     }
 }

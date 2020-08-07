@@ -11,7 +11,9 @@ namespace Siterm.EntityFramework
         public SitermDbContext CreateDbContext(string[] args = null)
         {
             var optionsBuilder = new DbContextOptionsBuilder<SitermDbContext>();
-            optionsBuilder.UseMySQL("server=localhost;database=siterm;user=root;password=root");
+            optionsBuilder
+                .UseMySQL("server=localhost;database=siterm;user=root;password=root")
+                .UseLazyLoadingProxies();
 
             return new SitermDbContext(optionsBuilder.Options);
         }

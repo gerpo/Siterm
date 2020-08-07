@@ -11,30 +11,30 @@ namespace Siterm.EntityFramework.Services
 {
     public class GenericDataService<T> : IDataService<T> where T : DomainObject
     {
-        private readonly SitermDbContextFactory _contextFactory;
+        protected readonly SitermDbContextFactory ContextFactory;
 
         public GenericDataService(SitermDbContextFactory contextFactory)
         {
-            _contextFactory = contextFactory;
+            ContextFactory = contextFactory;
         }
 
         public async Task<IEnumerable<T>> GetAll()
         {
-            await using var context = _contextFactory.CreateDbContext();
+            await using var context = ContextFactory.CreateDbContext();
 
             return await context.Set<T>().ToListAsync();
         }
 
         public async Task<T> Get(int id)
         {
-            await using var context = _contextFactory.CreateDbContext();
+            await using var context = ContextFactory.CreateDbContext();
 
             return await context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task<T> Create(T entity)
         {
-            await using var context = _contextFactory.CreateDbContext();
+            await using var context = ContextFactory.CreateDbContext();
 
             var createdEntry = await context.Set<T>().AddAsync(entity);
             await context.SaveChangesAsync();
@@ -44,7 +44,7 @@ namespace Siterm.EntityFramework.Services
 
         public async void CreateAll(IEnumerable<T> entities)
         {
-            await using var context = _contextFactory.CreateDbContext();
+            await using var context = ContextFactory.CreateDbContext();
 
             await context.Set<T>().AddRangeAsync(entities);
             await context.SaveChangesAsync();
@@ -52,7 +52,7 @@ namespace Siterm.EntityFramework.Services
 
         public async Task<T> Update(int id, T entity)
         {
-            await using var context = _contextFactory.CreateDbContext();
+            await using var context = ContextFactory.CreateDbContext();
 
             entity.Id = id;
             context.Set<T>().Update(entity);
@@ -63,7 +63,7 @@ namespace Siterm.EntityFramework.Services
 
         public async Task<bool> Delete(int id)
         {
-            await using var context = _contextFactory.CreateDbContext();
+            await using var context = ContextFactory.CreateDbContext();
 
             var entity = await context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
             context.Set<T>().Remove(entity);
@@ -74,7 +74,7 @@ namespace Siterm.EntityFramework.Services
 
         public async Task<IEnumerable<T>> Where(Expression<Func<T, bool>> predicate)
         {
-            await using var context = _contextFactory.CreateDbContext();
+            await using var context = ContextFactory.CreateDbContext();
 
             return await context.Set<T>().Where(predicate).ToListAsync();
         }

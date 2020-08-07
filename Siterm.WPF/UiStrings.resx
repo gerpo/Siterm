@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DeviceTabHeader" xml:space="preserve">
+  <data name="FacilityTabHeader" xml:space="preserve">
     <value>Bereiche / Anlagen</value>
   </data>
   <data name="Facility" xml:space="preserve">
@@ -143,6 +143,15 @@
   </data>
   <data name="Phone" xml:space="preserve">
     <value>Telefon</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="SearchPlaceholder" xml:space="preserve">
+    <value>Suche</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
   <data name="SubstanceTabHeader" xml:space="preserve">
     <value>Gefahrstoffe</value>

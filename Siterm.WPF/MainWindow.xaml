@@ -18,14 +18,15 @@
     </mah:MetroWindow.Resources>
     <mah:MetroWindow.ContextMenu>
         <ContextMenu>
-            <MenuItem Command="{Binding OpenSettingsCommand}" Header="Settings" />
+            <MenuItem Command="{Binding OpenSettingsCommand}" Header="{x:Static local:UiStrings.Settings}" />
         </ContextMenu>
     </mah:MetroWindow.ContextMenu>
     <Grid>
         <TabControl
             x:Name="MainTabControl"
             ContentTemplateSelector="{StaticResource TabTemplateSelector}"
-            ItemsSource="{Binding TabItems}">
+            ItemsSource="{Binding TabItems}"
+            Style="{StaticResource MahApps.Styles.TabControl.Animated}">
             <TabControl.ItemContainerStyle>
                 <Style BasedOn="{StaticResource MahApps.Styles.TabItem}" TargetType="{x:Type TabItem}">
                     <Setter Property="Header" Value="{Binding Header}" />

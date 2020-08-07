@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 
 namespace Siterm.Support.ControlModels
 {
@@ -8,6 +9,12 @@ namespace Siterm.Support.ControlModels
         {
             Name = pathInfo.Name;
             Path = pathInfo.FullName;
+        }
+
+        public void Open()
+        {
+            if (string.IsNullOrEmpty(Path) || !System.IO.File.Exists(Path)) return;
+            Process.Start(new ProcessStartInfo(Path) { UseShellExecute = true });
         }
     }
 }

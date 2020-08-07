@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siterm.Excel", "Siterm.Exce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siterm.Substance", "Siterm.Substance\Siterm.Substance.csproj", "{4B2083DD-3EDF-45B3-A909-EF3876D11E92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siterm.DatabaseInitialization", "Siterm.DatabaseInitialization\Siterm.DatabaseInitialization.csproj", "{3A13C873-1314-413D-AA6E-B6F389679CFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siterm.DatabaseInitialization", "Siterm.DatabaseInitialization\Siterm.DatabaseInitialization.csproj", "{3A13C873-1314-413D-AA6E-B6F389679CFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siterm.Facility", "Siterm.Facility\Siterm.Facility.csproj", "{D35DB0B7-AEED-496E-ADE4-029DFF571C52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{3A13C873-1314-413D-AA6E-B6F389679CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A13C873-1314-413D-AA6E-B6F389679CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A13C873-1314-413D-AA6E-B6F389679CFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D35DB0B7-AEED-496E-ADE4-029DFF571C52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D35DB0B7-AEED-496E-ADE4-029DFF571C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D35DB0B7-AEED-496E-ADE4-029DFF571C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D35DB0B7-AEED-496E-ADE4-029DFF571C52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

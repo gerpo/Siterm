@@ -8,17 +8,15 @@ namespace Siterm.WPF.ViewModels
     public class MainViewModel : BaseViewModel
     {
         private readonly SimpleNavigationService _navigationService;
-        private readonly SettingsView _settingsView;
 
-        public MainViewModel(TabViewModelCollectionFactory tabViewModelCollectionFactory, SimpleNavigationService navigationService)
+        public MainViewModel(TabViewModelCollectionFactory tabViewModelCollectionFactory,
+            SimpleNavigationService navigationService)
         {
             _navigationService = navigationService;
             TabItems = tabViewModelCollectionFactory.TabItemViewModelCollection;
 
             OpenSettingsCommand = new RelayCommand(OpenSettings);
         }
-
-        public INavigator Navigator { get; set; } = new Navigator();
 
         public ObservableCollection<ITabItemViewModel> TabItems { get; }
 

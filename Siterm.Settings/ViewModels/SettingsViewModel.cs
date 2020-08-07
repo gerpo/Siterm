@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Controls;
+﻿using System.Collections.Generic;
 using Siterm.Settings.Models;
 using Siterm.Settings.Resources;
 using Siterm.Settings.Services;
@@ -27,7 +23,8 @@ namespace Siterm.Settings.ViewModels
         public IReadOnlyList<SettingValidationError> ValidationErrors
         {
             get => _validationErrors;
-            private set { 
+            private set
+            {
                 SetField(ref _validationErrors, value);
                 OnPropertyChanged("HasErrors");
             }
@@ -37,7 +34,7 @@ namespace Siterm.Settings.ViewModels
 
         public IReadOnlyList<Setting> Settings { get; }
         public string Header => SettingUiStrings.SettingsWindowHeader;
-        
+
         public bool HasErrors => ValidationErrors != null && ValidationErrors.Count > 0;
 
         private async void SaveSettings(object o)

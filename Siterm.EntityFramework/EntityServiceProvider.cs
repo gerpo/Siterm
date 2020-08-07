@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Siterm.Domain.Models;
 using Siterm.EntityFramework.Services;
 
 namespace Siterm.EntityFramework
@@ -9,12 +11,12 @@ namespace Siterm.EntityFramework
         {
             services.AddSingleton<SitermDbContextFactory>();
             services.AddDbContext<SitermDbContext>();
-            services.AddTransient<SubstanceDataService>();
-            services.AddTransient<FacilityDataService>();
-            services.AddTransient<DeviceDataService>();
-            services.AddTransient<InstructionDataService>();
-            services.AddTransient<ServiceReportDataService>();
-            services.AddTransient<UserDataService>();
+            services.AddScoped<SubstanceDataService>();
+            services.AddScoped<FacilityDataService>();
+            services.AddScoped<DeviceDataService>();
+            services.AddScoped<InstructionDataService>();
+            services.AddScoped<ServiceReportDataService>();
+            services.AddScoped<UserDataService>();
         }
     }
 }

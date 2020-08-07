@@ -61,20 +61,20 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Bereiche / Anlagen ähnelt.
-        /// </summary>
-        public static string DeviceTabHeader {
-            get {
-                return ResourceManager.GetString("DeviceTabHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Bereich ähnelt.
         /// </summary>
         public static string Facility {
             get {
                 return ResourceManager.GetString("Facility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bereiche / Anlagen ähnelt.
+        /// </summary>
+        public static string FacilityTabHeader {
+            get {
+                return ResourceManager.GetString("FacilityTabHeader", resourceCulture);
             }
         }
         
@@ -138,6 +138,33 @@ namespace Siterm.WPF {
         public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Aktualisieren ähnelt.
+        /// </summary>
+        public static string Refresh {
+            get {
+                return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suche ähnelt.
+        /// </summary>
+        public static string SearchPlaceholder {
+            get {
+                return ResourceManager.GetString("SearchPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Einstellungen ähnelt.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         
