@@ -15,8 +15,8 @@ namespace Siterm.WPF.ViewModels
 {
     public class FacilityViewModel : BaseViewModel, ITabItemViewModel
     {
-        private readonly FacilityDataService _facilityDataService;
         private readonly DeviceDataService _deviceDataService;
+        private readonly FacilityDataService _facilityDataService;
         private string _deviceSearchTerm;
         private List<FacilityTreeViewItem> _facilities;
         private ICollectionView _facilityCollectionView;

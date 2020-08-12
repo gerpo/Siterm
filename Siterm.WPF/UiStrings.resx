@@ -156,4 +156,55 @@
   <data name="SubstanceTabHeader" xml:space="preserve">
     <value>Gefahrstoffe</value>
   </data>
+  <data name="Biweekly" xml:space="preserve">
+    <value>Zweiwöchig</value>
+  </data>
+  <data name="Biyearly" xml:space="preserve">
+    <value>Zweijährig</value>
+  </data>
+  <data name="CreatedAt" xml:space="preserve">
+    <value>Angelegt am</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Vorname</value>
+  </data>
+  <data name="HalfYearly" xml:space="preserve">
+    <value>Halbjährlich</value>
+  </data>
+  <data name="Instructions" xml:space="preserve">
+    <value>Unterweisungen</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Nachname</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>Monatlich</value>
+  </data>
+  <data name="NoInstructionsYet" xml:space="preserve">
+    <value>Bisher keine Unterweisungen angelegt</value>
+  </data>
+  <data name="NoServiceReportsYet" xml:space="preserve">
+    <value>Bisher keine Wartungen angelegt</value>
+  </data>
+  <data name="QuarterYearly" xml:space="preserve">
+    <value>Vierteljährlich</value>
+  </data>
+  <data name="SelectDevice" xml:space="preserve">
+    <value>Bitte eine Anlage rechts auswählen</value>
+  </data>
+  <data name="ServiceReports" xml:space="preserve">
+    <value>Wartungen</value>
+  </data>
+  <data name="Validity" xml:space="preserve">
+    <value>Gültigkeit</value>
+  </data>
+  <data name="ValidTill" xml:space="preserve">
+    <value>Gültig bis</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>Wöchentlich</value>
+  </data>
+  <data name="Yearly" xml:space="preserve">
+    <value>Jährlich</value>
+  </data>
 </root>

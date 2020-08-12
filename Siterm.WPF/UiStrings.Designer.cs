@@ -61,6 +61,33 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zweiwöchig ähnelt.
+        /// </summary>
+        public static string Biweekly {
+            get {
+                return ResourceManager.GetString("Biweekly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zweijährig ähnelt.
+        /// </summary>
+        public static string Biyearly {
+            get {
+                return ResourceManager.GetString("Biyearly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Angelegt am ähnelt.
+        /// </summary>
+        public static string CreatedAt {
+            get {
+                return ResourceManager.GetString("CreatedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Bereich ähnelt.
         /// </summary>
         public static string Facility {
@@ -88,11 +115,47 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Vorname ähnelt.
+        /// </summary>
+        public static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Allgemein ähnelt.
         /// </summary>
         public static string GeneralTabHeader {
             get {
                 return ResourceManager.GetString("GeneralTabHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Halbjährlich ähnelt.
+        /// </summary>
+        public static string HalfYearly {
+            get {
+                return ResourceManager.GetString("HalfYearly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unterweisungen ähnelt.
+        /// </summary>
+        public static string Instructions {
+            get {
+                return ResourceManager.GetString("Instructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nachname ähnelt.
+        /// </summary>
+        public static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
             }
         }
         
@@ -115,6 +178,15 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monatlich ähnelt.
+        /// </summary>
+        public static string Monthly {
+            get {
+                return ResourceManager.GetString("Monthly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
         public static string Name {
@@ -133,11 +205,38 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bisher keine Unterweisungen angelegt ähnelt.
+        /// </summary>
+        public static string NoInstructionsYet {
+            get {
+                return ResourceManager.GetString("NoInstructionsYet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bisher keine Wartungen angelegt ähnelt.
+        /// </summary>
+        public static string NoServiceReportsYet {
+            get {
+                return ResourceManager.GetString("NoServiceReportsYet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Telefon ähnelt.
         /// </summary>
         public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Vierteljährlich ähnelt.
+        /// </summary>
+        public static string QuarterYearly {
+            get {
+                return ResourceManager.GetString("QuarterYearly", resourceCulture);
             }
         }
         
@@ -160,6 +259,24 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte eine Anlage rechts auswählen ähnelt.
+        /// </summary>
+        public static string SelectDevice {
+            get {
+                return ResourceManager.GetString("SelectDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wartungen ähnelt.
+        /// </summary>
+        public static string ServiceReports {
+            get {
+                return ResourceManager.GetString("ServiceReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Einstellungen ähnelt.
         /// </summary>
         public static string Settings {
@@ -174,6 +291,42 @@ namespace Siterm.WPF {
         public static string SubstanceTabHeader {
             get {
                 return ResourceManager.GetString("SubstanceTabHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gültigkeit ähnelt.
+        /// </summary>
+        public static string Validity {
+            get {
+                return ResourceManager.GetString("Validity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gültig bis ähnelt.
+        /// </summary>
+        public static string ValidTill {
+            get {
+                return ResourceManager.GetString("ValidTill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wöchentlich ähnelt.
+        /// </summary>
+        public static string Weekly {
+            get {
+                return ResourceManager.GetString("Weekly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Jährlich ähnelt.
+        /// </summary>
+        public static string Yearly {
+            get {
+                return ResourceManager.GetString("Yearly", resourceCulture);
             }
         }
     }

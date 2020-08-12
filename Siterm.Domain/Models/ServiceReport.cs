@@ -37,5 +37,6 @@ namespace Siterm.Domain.Models
         public DateTime CreatedAt { get; set; }
         public ValidityType Validity { get; set; }
         public virtual IEnumerable<ServiceTask> ServiceTasks { get; set; }
+        public DateTime ValidTill => CreatedAt.AddDays((int)Validity);
     }
 }

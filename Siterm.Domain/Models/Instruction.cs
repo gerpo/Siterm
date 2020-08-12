@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Siterm.Domain.Models
 {
@@ -14,5 +12,14 @@ namespace Siterm.Domain.Models
         public DateTime CreatedAt { get; set; }
         public string AllowedActivities { get; set; }
         public string ForbiddenActivities { get; set; }
+        public DateTime ValidTill => CreatedAt.AddYears(1);
+
+        public string OldInstructedFirstName => OldInstructedString?.Split(' ').Length > 1
+            ? OldInstructedString?.Split(' ')[0]
+            : string.Empty;
+
+        public string OldInstructedLastName => OldInstructedString?.Split(' ').Length > 1
+            ? OldInstructedString?.Split(' ')[1]
+            : OldInstructedString?.Split(' ')[0];
     }
 }

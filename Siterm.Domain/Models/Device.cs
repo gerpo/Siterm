@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Siterm.Domain.Models
@@ -13,5 +14,7 @@ namespace Siterm.Domain.Models
         public virtual User Chief { get; set; }
         public virtual IEnumerable<Instruction> Instructions { get; set; }
         public virtual IEnumerable<ServiceReport> ServiceReports { get; set; }
+        public bool HasInstructions => Instructions.Any();
+        public bool HasServiceReports => ServiceReports.Any();
     }
 }
