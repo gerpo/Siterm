@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Siterm.Domain.Models;
@@ -29,12 +30,15 @@ namespace Siterm.WPF.ViewModels
             _deviceDataService = deviceDataService;
             RefreshFacilitiesCommand = new RelayCommand(RefetchFacilities);
             OnItemMouseDoubleClickCommand = new RelayCommand(ItemWasDoubleClicked);
+            NewInstructionCommand = new RelayCommand(CreateNewInstruction);
+            NewServiceReportCommand = new RelayCommand(CreateNewServiceReport);
         }
 
         public RelayCommand RefreshFacilitiesCommand { get; set; }
 
         public RelayCommand OnItemMouseDoubleClickCommand { get; }
-
+        public RelayCommand NewInstructionCommand { get; }
+        public RelayCommand NewServiceReportCommand { get; }
         public bool IsLoadingFacilities
         {
             get => _isLoadingFacilities;
@@ -110,5 +114,13 @@ namespace Siterm.WPF.ViewModels
         {
             await FetchFacilities();
         }
+
+        private void CreateNewInstruction(object o)
+        {
+            MessageBox.Show($"Neue Unterweisung für {SelectedDevice.Name}.");
+        }
+
+        private void CreateNewServiceReport(object o)
+        { MessageBox.Show($"Neue Wartung für {SelectedDevice.Name}."); }    
     }
 }

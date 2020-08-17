@@ -20,10 +20,11 @@
 
         <Border
             Padding="10"
+            HorizontalAlignment="Center"
             mah:VisibilityHelper.IsCollapsed="{Binding Path=HasDevice, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}"
             BorderBrush="{StaticResource MahApps.Brushes.Accent}"
             BorderThickness="2">
-            <TextBlock Text="{x:Static resources:UiStrings.SelectDevice}" />
+            <TextBlock FontSize="24" Text="{x:Static resources:UiStrings.SelectDevice}" />
         </Border>
 
         <StackPanel mah:VisibilityHelper.IsVisible="{Binding Path=HasDevice, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}" Orientation="Vertical">
@@ -40,10 +41,11 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Margin="0,0,5,0" Content="Neue Unterweisung" />
+                <Button Margin="0,0,5,0" Content="Neue Unterweisung" Command="{Binding Path=NewInstructionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}" />
                 <Button
                     Grid.Column="1"
                     Margin="5,0,0,0"
+                    Command="{Binding Path=NewInstructionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}"
                     Content="Neue Wartung" />
             </Grid>
 
@@ -53,29 +55,27 @@
                 Header="{x:Static resources:UiStrings.Instructions}"
                 IsExpanded="True"
                 Visibility="{Binding Path=Device.HasInstructions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <ListView Height="auto" ItemsSource="{Binding Path=Device.Instructions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="{x:Static resources:UiStrings.FirstName}">
-                                <GridViewColumn.DisplayMemberBinding>
-                                    <PriorityBinding>
-                                        <Binding IsAsync="True" Path="Instructed.FirstName" />
-                                        <Binding IsAsync="True" Path="OldInstructedFirstName" />
-                                    </PriorityBinding>
-                                </GridViewColumn.DisplayMemberBinding>
-                            </GridViewColumn>
-                            <GridViewColumn Header="{x:Static resources:UiStrings.LastName}">
-                                <GridViewColumn.DisplayMemberBinding>
-                                    <PriorityBinding>
-                                        <Binding IsAsync="True" Path="Instructed.LastName" />
-                                        <Binding IsAsync="True" Path="OldInstructedLastName" />
-                                    </PriorityBinding>
-                                </GridViewColumn.DisplayMemberBinding>
-                            </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding ValidTill, StringFormat=d}" Header="{x:Static resources:UiStrings.ValidTill}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <DataGrid ItemsSource="{Binding Path=Device.Instructions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}" CanUserSortColumns="True" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{x:Static resources:UiStrings.FirstName}" SortMemberPath="OldInstructedFirstName" >
+                            <DataGridTextColumn.Binding>
+                                <PriorityBinding>
+                                    <Binding IsAsync="True" Path="Instructed.FirstName" />
+                                    <Binding IsAsync="True" Path="OldInstructedFirstName" />
+                                </PriorityBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static resources:UiStrings.LastName}">
+                            <DataGridTextColumn.Binding>
+                                <PriorityBinding>
+                                    <Binding IsAsync="True" Path="Instructed.LastName" />
+                                    <Binding IsAsync="True" Path="OldInstructedLastName" />
+                                </PriorityBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static resources:UiStrings.ValidTill}" Binding="{Binding ValidTill, StringFormat=d}" />
+                    </DataGrid.Columns>
+                </DataGrid>
             </Expander>
             <Border
                 Margin="0,5,0,0"
@@ -92,15 +92,14 @@
                 Header="{x:Static resources:UiStrings.ServiceReports}"
                 IsExpanded="True"
                 Visibility="{Binding Path=Device.HasServiceReports, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <ListView Height="auto" ItemsSource="{Binding Path=Device.ServiceReports, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Validity, Converter={StaticResource EnumToStringConverter}}" Header="{x:Static resources:UiStrings.Validity}" />
-                            <GridViewColumn DisplayMemberBinding="{Binding CreatedAt, StringFormat=d}" Header="{x:Static resources:UiStrings.CreatedAt}" />
-                            <GridViewColumn DisplayMemberBinding="{Binding ValidTill, StringFormat=d}" Header="{x:Static resources:UiStrings.ValidTill}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <DataGrid ItemsSource="{Binding Path=Device.ServiceReports, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}" CanUserSortColumns="True" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Validity, Converter={StaticResource EnumToStringConverter}}" Header="{x:Static resources:UiStrings.Validity}" />
+                        <DataGridTextColumn Binding="{Binding CreatedAt, StringFormat=d}" Header="{x:Static resources:UiStrings.CreatedAt}" />
+                        <DataGridTextColumn Binding="{Binding ValidTill, StringFormat=d}" Header="{x:Static resources:UiStrings.ValidTill}" />
+   
+                    </DataGrid.Columns>
+                </DataGrid>
             </Expander>
             <Border
                 Margin="0,5,0,0"

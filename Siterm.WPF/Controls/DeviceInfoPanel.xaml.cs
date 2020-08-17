@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Siterm.Domain.Models;
+using Siterm.Support.Misc;
 
 namespace Siterm.WPF.Controls
 {
@@ -14,6 +15,18 @@ namespace Siterm.WPF.Controls
             new FrameworkPropertyMetadata(
                 null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, DevicePropertyChanged)
         );
+        public static readonly DependencyProperty NewInstructionCommandProperty = DependencyProperty.Register(
+            "NewInstructionCommand",
+            typeof(RelayCommand),
+            typeof(DeviceInfoPanel)
+        );
+
+        public static readonly DependencyProperty NewServiceReportCommandProperty = DependencyProperty.Register(
+            "NewServiceReportCommand",
+            typeof(RelayCommand),
+            typeof(DeviceInfoPanel)
+        );
+
 
         public DeviceInfoPanel()
         {
@@ -26,6 +39,16 @@ namespace Siterm.WPF.Controls
             set => SetValue(DeviceProperty, value);
         }
 
+        public RelayCommand NewInstructionCommand
+        {
+            get => (RelayCommand)GetValue(NewInstructionCommandProperty);
+            set => SetValue(DeviceProperty, value);
+        }
+        public RelayCommand NewServiceReportCommand
+        {
+            get => (RelayCommand)GetValue(NewServiceReportCommandProperty);
+            set => SetValue(DeviceProperty, value);
+        }
         public bool HasDevice => !(Device is null);
 
         public event PropertyChangedEventHandler PropertyChanged;
