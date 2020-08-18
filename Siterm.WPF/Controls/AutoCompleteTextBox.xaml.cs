@@ -28,10 +28,9 @@ namespace Siterm.WPF.Controls
         );
 
         public static readonly DependencyProperty SuggestionListProperty = DependencyProperty.Register(
-            "SuggestionList",
+            nameof(SuggestionList),
             typeof(IEnumerable<string>),
-            typeof(AutoCompleteTextBox),
-            new FrameworkPropertyMetadata(null, null)
+            typeof(AutoCompleteTextBox)
         );
 
         public AutoCompleteTextBox()

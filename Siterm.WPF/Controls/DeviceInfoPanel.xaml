@@ -41,12 +41,15 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Margin="0,0,5,0" Content="Neue Unterweisung" Command="{Binding Path=NewInstructionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}" />
+                <Button
+                    Margin="0,0,5,0"
+                    Command="{Binding Path=NewInstructionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}"
+                    Content="{x:Static resources:UiStrings.NewInstructionBtn}" />
                 <Button
                     Grid.Column="1"
                     Margin="5,0,0,0"
-                    Command="{Binding Path=NewInstructionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}"
-                    Content="Neue Wartung" />
+                    Command="{Binding Path=NewServiceReportCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}"
+                    Content="{x:Static resources:UiStrings.NewServiceReportBtn}" />
             </Grid>
 
             <Expander
@@ -55,9 +58,12 @@
                 Header="{x:Static resources:UiStrings.Instructions}"
                 IsExpanded="True"
                 Visibility="{Binding Path=Device.HasInstructions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <DataGrid ItemsSource="{Binding Path=Device.Instructions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}" CanUserSortColumns="True" AutoGenerateColumns="False">
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    CanUserSortColumns="True"
+                    ItemsSource="{Binding Path=Device.Instructions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{x:Static resources:UiStrings.FirstName}" SortMemberPath="OldInstructedFirstName" >
+                        <DataGridTextColumn Header="{x:Static resources:UiStrings.FirstName}" SortMemberPath="OldInstructedFirstName">
                             <DataGridTextColumn.Binding>
                                 <PriorityBinding>
                                     <Binding IsAsync="True" Path="Instructed.FirstName" />
@@ -73,7 +79,7 @@
                                 </PriorityBinding>
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="{x:Static resources:UiStrings.ValidTill}" Binding="{Binding ValidTill, StringFormat=d}" />
+                        <DataGridTextColumn Binding="{Binding ValidTill, StringFormat=d}" Header="{x:Static resources:UiStrings.ValidTill}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Expander>
@@ -92,12 +98,15 @@
                 Header="{x:Static resources:UiStrings.ServiceReports}"
                 IsExpanded="True"
                 Visibility="{Binding Path=Device.HasServiceReports, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <DataGrid ItemsSource="{Binding Path=Device.ServiceReports, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}" CanUserSortColumns="True" AutoGenerateColumns="False">
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    CanUserSortColumns="True"
+                    ItemsSource="{Binding Path=Device.ServiceReports, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Validity, Converter={StaticResource EnumToStringConverter}}" Header="{x:Static resources:UiStrings.Validity}" />
                         <DataGridTextColumn Binding="{Binding CreatedAt, StringFormat=d}" Header="{x:Static resources:UiStrings.CreatedAt}" />
                         <DataGridTextColumn Binding="{Binding ValidTill, StringFormat=d}" Header="{x:Static resources:UiStrings.ValidTill}" />
-   
+
                     </DataGrid.Columns>
                 </DataGrid>
             </Expander>

@@ -88,6 +88,24 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unterweisung anlegen ähnelt.
+        /// </summary>
+        public static string CreateInstructionBtn {
+            get {
+                return ResourceManager.GetString("CreateInstructionBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Neue Unterweisung für: ähnelt.
+        /// </summary>
+        public static string CreateInstructionForLabel {
+            get {
+                return ResourceManager.GetString("CreateInstructionForLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Bereich ähnelt.
         /// </summary>
         public static string Facility {
@@ -142,11 +160,56 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ibf.rwth-aachen.de ähnelt.
+        /// </summary>
+        public static string HomeEmailEnding {
+            get {
+                return ResourceManager.GetString("HomeEmailEnding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unterwiesene ähnelt.
+        /// </summary>
+        public static string Instructed {
+            get {
+                return ResourceManager.GetString("Instructed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Außer (Tätigkeit/Maschine): ähnelt.
+        /// </summary>
+        public static string InstructionExceptForLabel {
+            get {
+                return ResourceManager.GetString("InstructionExceptForLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nur (Tätigkeit/Maschine): ähnelt.
+        /// </summary>
+        public static string InstructionOnlyForLabel {
+            get {
+                return ResourceManager.GetString("InstructionOnlyForLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Unterweisungen ähnelt.
         /// </summary>
         public static string Instructions {
             get {
                 return ResourceManager.GetString("Instructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unterweisender ähnelt.
+        /// </summary>
+        public static string Instructor {
+            get {
+                return ResourceManager.GetString("Instructor", resourceCulture);
             }
         }
         
@@ -196,6 +259,24 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Neue Unterweisung ähnelt.
+        /// </summary>
+        public static string NewInstructionBtn {
+            get {
+                return ResourceManager.GetString("NewInstructionBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Neue Wartung ähnelt.
+        /// </summary>
+        public static string NewServiceReportBtn {
+            get {
+                return ResourceManager.GetString("NewServiceReportBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Nächste Schulung ähnelt.
         /// </summary>
         public static string NextTraining {
@@ -223,6 +304,24 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Es ist kein Signaturpad angeschlossen. Bitte Verbindung überprüfen. ähnelt.
+        /// </summary>
+        public static string NoSignaturePadExceptionMessage {
+            get {
+                return ResourceManager.GetString("NoSignaturePadExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kein Signaturpad ähnelt.
+        /// </summary>
+        public static string NoSignaturePadExceptionTitle {
+            get {
+                return ResourceManager.GetString("NoSignaturePadExceptionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Telefon ähnelt.
         /// </summary>
         public static string Phone {
@@ -246,6 +345,24 @@ namespace Siterm.WPF {
         public static string Refresh {
             get {
                 return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Soll die Unterschrifteingabe nochmal wiederholt werden? Bei Abbruch wird keine Datei angelegt. Sollte die Unterschrift für mehrere Dateien nötig sein (Unterweisender) wird keine angelegt. ähnelt.
+        /// </summary>
+        public static string RetrySignatureMessage {
+            get {
+                return ResourceManager.GetString("RetrySignatureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wiederholen? ähnelt.
+        /// </summary>
+        public static string RetrySignatureTitle {
+            get {
+                return ResourceManager.GetString("RetrySignatureTitle", resourceCulture);
             }
         }
         

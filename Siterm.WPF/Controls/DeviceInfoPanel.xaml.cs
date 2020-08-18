@@ -42,12 +42,12 @@ namespace Siterm.WPF.Controls
         public RelayCommand NewInstructionCommand
         {
             get => (RelayCommand)GetValue(NewInstructionCommandProperty);
-            set => SetValue(DeviceProperty, value);
+            set => SetValue(NewInstructionCommandProperty, value);
         }
         public RelayCommand NewServiceReportCommand
         {
             get => (RelayCommand)GetValue(NewServiceReportCommandProperty);
-            set => SetValue(DeviceProperty, value);
+            set => SetValue(NewServiceReportCommandProperty, value);
         }
         public bool HasDevice => !(Device is null);
 
@@ -60,8 +60,8 @@ namespace Siterm.WPF.Controls
 
         private static void DevicePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DeviceInfoPanel) d).NotifyPropertyChanged("Device");
-            ((DeviceInfoPanel) d).NotifyPropertyChanged("HasDevice");
+            ((DeviceInfoPanel) d).NotifyPropertyChanged(nameof(Device));
+            ((DeviceInfoPanel) d).NotifyPropertyChanged(nameof(HasDevice));
         }
     }
 }

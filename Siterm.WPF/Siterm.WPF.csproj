@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,7 +12,9 @@
     <ProjectReference Include="..\Siterm.EntityFramework\Siterm.EntityFramework.csproj" />
     <ProjectReference Include="..\Siterm.Excel\Siterm.Excel.csproj" />
     <ProjectReference Include="..\Siterm.Facility\Siterm.Facility.csproj" />
+    <ProjectReference Include="..\Siterm.Instructions\Siterm.Instructions.csproj" />
     <ProjectReference Include="..\Siterm.Settings\Siterm.Settings.csproj" />
+    <ProjectReference Include="..\Siterm.Signature\Siterm.Signature.csproj" />
     <ProjectReference Include="..\Siterm.Substance\Siterm.Substance.csproj" />
     <ProjectReference Include="..\Siterm.Support\Siterm.Support.csproj" />
   </ItemGroup>

@@ -117,133 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FacilityTabHeader" xml:space="preserve">
-    <value>Bereiche / Anlagen</value>
+  <data name="CancelBtnLabel" xml:space="preserve">
+    <value>Abbrechen</value>
   </data>
-  <data name="Facility" xml:space="preserve">
-    <value>Bereich</value>
+  <data name="ConfirmBtnLabel" xml:space="preserve">
+    <value>Bestätigen</value>
   </data>
-  <data name="FirstAidTabHeader" xml:space="preserve">
-    <value>Erste Hilfe</value>
+  <data name="DeleteBtnLabel" xml:space="preserve">
+    <value>Löschen</value>
   </data>
-  <data name="GeneralTabHeader" xml:space="preserve">
-    <value>Allgemein</value>
+  <data name="InstructionCauseString" xml:space="preserve">
+    <value>Unterwiesen worden zu sein!</value>
   </data>
-  <data name="LastTraining" xml:space="preserve">
-    <value>Letzte Schulung</value>
+  <data name="InstructorCauseString" xml:space="preserve">
+    <value>die Unterweisung ordnungegnmäß durchgeführt zu haben!</value>
   </data>
-  <data name="MainWindowTitle" xml:space="preserve">
-    <value>IBF - Sicherheitsterminal</value>
+  <data name="OkBtnLabel" xml:space="preserve">
+    <value>OK</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
+  <data name="ServiceReportCauseString" xml:space="preserve">
+    <value>die Wartung ordnungsgemäß durchgeführt zu haben!</value>
   </data>
-  <data name="NextTraining" xml:space="preserve">
-    <value>Nächste Schulung</value>
+  <data name="SignatureConfirmBaseString" xml:space="preserve">
+    <value>Mit der Unterschrift bestätigen Sie</value>
   </data>
-  <data name="Phone" xml:space="preserve">
-    <value>Telefon</value>
-  </data>
-  <data name="Refresh" xml:space="preserve">
-    <value>Aktualisieren</value>
-  </data>
-  <data name="SearchPlaceholder" xml:space="preserve">
-    <value>Suche</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="SubstanceTabHeader" xml:space="preserve">
-    <value>Gefahrstoffe</value>
-  </data>
-  <data name="Biweekly" xml:space="preserve">
-    <value>Zweiwöchig</value>
-  </data>
-  <data name="Biyearly" xml:space="preserve">
-    <value>Zweijährig</value>
-  </data>
-  <data name="CreatedAt" xml:space="preserve">
-    <value>Angelegt am</value>
-  </data>
-  <data name="FirstName" xml:space="preserve">
-    <value>Vorname</value>
-  </data>
-  <data name="HalfYearly" xml:space="preserve">
-    <value>Halbjährlich</value>
-  </data>
-  <data name="Instructions" xml:space="preserve">
-    <value>Unterweisungen</value>
-  </data>
-  <data name="LastName" xml:space="preserve">
-    <value>Nachname</value>
-  </data>
-  <data name="Monthly" xml:space="preserve">
-    <value>Monatlich</value>
-  </data>
-  <data name="NoInstructionsYet" xml:space="preserve">
-    <value>Bisher keine Unterweisungen angelegt</value>
-  </data>
-  <data name="NoServiceReportsYet" xml:space="preserve">
-    <value>Bisher keine Wartungen angelegt</value>
-  </data>
-  <data name="QuarterYearly" xml:space="preserve">
-    <value>Vierteljährlich</value>
-  </data>
-  <data name="SelectDevice" xml:space="preserve">
-    <value>Bitte eine Anlage rechts auswählen</value>
-  </data>
-  <data name="ServiceReports" xml:space="preserve">
-    <value>Wartungen</value>
-  </data>
-  <data name="Validity" xml:space="preserve">
-    <value>Gültigkeit</value>
-  </data>
-  <data name="ValidTill" xml:space="preserve">
-    <value>Gültig bis</value>
-  </data>
-  <data name="Weekly" xml:space="preserve">
-    <value>Wöchentlich</value>
-  </data>
-  <data name="Yearly" xml:space="preserve">
-    <value>Jährlich</value>
-  </data>
-  <data name="CreateInstructionBtn" xml:space="preserve">
-    <value>Unterweisung anlegen</value>
-  </data>
-  <data name="CreateInstructionForLabel" xml:space="preserve">
-    <value>Neue Unterweisung für:</value>
-  </data>
-  <data name="Instructed" xml:space="preserve">
-    <value>Unterwiesene</value>
-  </data>
-  <data name="InstructionExceptForLabel" xml:space="preserve">
-    <value>Außer (Tätigkeit/Maschine):</value>
-  </data>
-  <data name="InstructionOnlyForLabel" xml:space="preserve">
-    <value>Nur (Tätigkeit/Maschine):</value>
-  </data>
-  <data name="Instructor" xml:space="preserve">
-    <value>Unterweisender</value>
-  </data>
-  <data name="NewInstructionBtn" xml:space="preserve">
-    <value>Neue Unterweisung</value>
-  </data>
-  <data name="NewServiceReportBtn" xml:space="preserve">
-    <value>Neue Wartung</value>
-  </data>
-  <data name="NoSignaturePadExceptionMessage" xml:space="preserve">
-    <value>Es ist kein Signaturpad angeschlossen. Bitte Verbindung überprüfen.</value>
-  </data>
-  <data name="NoSignaturePadExceptionTitle" xml:space="preserve">
-    <value>Kein Signaturpad</value>
-  </data>
-  <data name="HomeEmailEnding" xml:space="preserve">
-    <value>ibf.rwth-aachen.de</value>
-  </data>
-  <data name="RetrySignatureMessage" xml:space="preserve">
-    <value>Soll die Unterschrifteingabe nochmal wiederholt werden? Bei Abbruch wird keine Datei angelegt. Sollte die Unterschrift für mehrere Dateien nötig sein (Unterweisender) wird keine angelegt.</value>
-  </data>
-  <data name="RetrySignatureTitle" xml:space="preserve">
-    <value>Wiederholen?</value>
+  <data name="SignatureSignInfo" xml:space="preserve">
+    <value>Bitte Unterschreiben Sie auf dem Signaturpad und tippen auf OK</value>
   </data>
 </root>

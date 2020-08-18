@@ -12,6 +12,7 @@
     Width="800"
     Height="450"
     d:DataContext="{d:DesignInstance vm:MainViewModel}"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <mah:MetroWindow.Resources>
         <selectors:ViewTemplateSelector x:Key="TabTemplateSelector" />

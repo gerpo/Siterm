@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
+using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -13,10 +14,12 @@ using Siterm.EntityFramework;
 using Siterm.EntityFramework.Services;
 using Siterm.Settings;
 using Siterm.Settings.Models;
+using Siterm.Signature;
 using Siterm.Support.Misc;
 using Siterm.Support.Services;
 using Siterm.WPF.State.Navigators;
 using Siterm.WPF.ViewModels;
+using Siterm.WPF.Views;
 
 namespace Siterm.WPF
 {
@@ -45,9 +48,14 @@ namespace Siterm.WPF
             RegisterConfiguration(services);
             services.AddScoped<SimpleNavigationService>();
             services.AddTransient<MainWindow>();
+            services.AddTransient<IDialogCoordinator>(_ => DialogCoordinator.Instance);
 
             SettingsServiceProvider.RegisterServices(services);
             EntityServiceProvider.RegisterServices(services);
+            SignatureServiceProvider.RegisterServices(services);
+
+            services.AddTransient<CreateInstructionView>();
+            services.AddTransient<CreateInstructionViewModel>();
 
             services.AddSingleton<TabViewModelCollectionFactory>();
             services.AddTransient<RtfToFlowConverter>();

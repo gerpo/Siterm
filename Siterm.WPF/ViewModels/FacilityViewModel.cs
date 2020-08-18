@@ -11,6 +11,8 @@ using Siterm.EntityFramework.Services;
 using Siterm.Facility.Models;
 using Siterm.Support.ControlModels;
 using Siterm.Support.Misc;
+using Siterm.WPF.State.Navigators;
+using Siterm.WPF.Views;
 
 namespace Siterm.WPF.ViewModels
 {
@@ -18,16 +20,19 @@ namespace Siterm.WPF.ViewModels
     {
         private readonly DeviceDataService _deviceDataService;
         private readonly FacilityDataService _facilityDataService;
+        private readonly SimpleNavigationService _navigationService;
         private string _deviceSearchTerm;
         private List<FacilityTreeViewItem> _facilities;
         private ICollectionView _facilityCollectionView;
         private bool _isLoadingFacilities;
         private Device _selectedDevice;
 
-        public FacilityViewModel(FacilityDataService facilityDataService, DeviceDataService deviceDataService)
+        public FacilityViewModel(FacilityDataService facilityDataService, DeviceDataService deviceDataService,
+            SimpleNavigationService navigationService)
         {
             _facilityDataService = facilityDataService;
             _deviceDataService = deviceDataService;
+            _navigationService = navigationService;
             RefreshFacilitiesCommand = new RelayCommand(RefetchFacilities);
             OnItemMouseDoubleClickCommand = new RelayCommand(ItemWasDoubleClicked);
             NewInstructionCommand = new RelayCommand(CreateNewInstruction);
@@ -39,6 +44,7 @@ namespace Siterm.WPF.ViewModels
         public RelayCommand OnItemMouseDoubleClickCommand { get; }
         public RelayCommand NewInstructionCommand { get; }
         public RelayCommand NewServiceReportCommand { get; }
+
         public bool IsLoadingFacilities
         {
             get => _isLoadingFacilities;
@@ -85,6 +91,16 @@ namespace Siterm.WPF.ViewModels
             SelectedDevice = loadedDevice;
         }
 
+        private async void CreateNewInstruction(object o)
+        {
+            await _navigationService.ShowDialogAsync<CreateInstructionView>(SelectedDevice.Id);
+        }
+
+        private void CreateNewServiceReport(object o)
+        {
+            MessageBox.Show($"Neue Wartung für {SelectedDevice.Name}.");
+        }
+
         private async Task FetchFacilities()
         {
             IsLoadingFacilities = true;
@@ -114,13 +130,5 @@ namespace Siterm.WPF.ViewModels
         {
             await FetchFacilities();
         }
-
-        private void CreateNewInstruction(object o)
-        {
-            MessageBox.Show($"Neue Unterweisung für {SelectedDevice.Name}.");
-        }
-
-        private void CreateNewServiceReport(object o)
-        { MessageBox.Show($"Neue Wartung für {SelectedDevice.Name}."); }    
     }
 }
