@@ -8,6 +8,7 @@ namespace Siterm.Instructions
         public static void RegisterServices(IServiceCollection services)
         {
             services.AddTransient<InstructionService>();
+            services.AddTransient<InstructionPdfService>();
         }
     }
 }

@@ -61,6 +61,7 @@
                 <DataGrid
                     AutoGenerateColumns="False"
                     CanUserSortColumns="True"
+                    IsReadOnly="True"
                     ItemsSource="{Binding Path=Device.Instructions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{x:Static resources:UiStrings.FirstName}" SortMemberPath="OldInstructedFirstName">

@@ -88,13 +88,14 @@ namespace Siterm.EntityFramework.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Path = table.Column<string>(nullable: true),
-                    InstructorId = table.Column<int>(nullable: true),
-                    InstructedId = table.Column<int>(nullable: true),
-                    DeviceId = table.Column<int>(nullable: false),
                     OldInstructedString = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     AllowedActivities = table.Column<string>(nullable: true),
-                    ForbiddenActivities = table.Column<string>(nullable: true)
+                    ForbiddenActivities = table.Column<string>(nullable: true),
+                    IsArchived = table.Column<bool>(nullable: false),
+                    DeviceId = table.Column<int>(nullable: false),
+                    InstructorId = table.Column<int>(nullable: true),
+                    InstructedId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -110,13 +111,13 @@ namespace Siterm.EntityFramework.Migrations
                         column: x => x.InstructedId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Instructions_Users_InstructorId",
                         column: x => x.InstructorId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

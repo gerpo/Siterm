@@ -45,8 +45,7 @@ namespace Siterm.WPF.ViewModels
             _instructionService = instructionService;
             _dialogCoordinator = dialogCoordinator;
             _navigationService = navigationService;
-
-
+            
             CreateInstructionCommand = new RelayCommand(CreateInstruction);
         }
 
@@ -76,7 +75,7 @@ namespace Siterm.WPF.ViewModels
 
         public RelayCommand CreateInstructionCommand { get; set; }
 
-        public async void FetchDevices(int requestedDeviceId = -1)
+        public async Task FetchDevices(int requestedDeviceId = -1)
         {
             DeviceList = new ObservableCollection<Device>(await _deviceDataService.GetAll());
 
@@ -86,18 +85,26 @@ namespace Siterm.WPF.ViewModels
             InstructionDraft.Device = DeviceList.FirstOrDefault(d => d.Id == requestedDeviceId);
         }
 
-        public async void FetchUsers()
+        public async Task FetchUsers()
         {
             UserEmailList = await _userDataService.GetAllEmails();
         }
 
         private async void CreateInstruction(object obj)
         {
-            var signaturesCollected = await GetSignatures();
+            FullRefreshDevice();
+            //var signaturesCollected = await GetSignatures();
 
-            if (!signaturesCollected) return;
+            //if (!signaturesCollected) return;
 
             _instructionService.CreateInstruction(InstructionDraft);
+
+            SentClosingRequest();
+        }
+
+        private async  void FullRefreshDevice()
+        {
+            InstructionDraft.Device = await _deviceDataService.GetFull(InstructionDraft.Device.Id);
         }
 
         private async Task<bool> GetSignatures()

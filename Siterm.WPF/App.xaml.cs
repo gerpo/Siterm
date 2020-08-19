@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Siterm.EntityFramework;
 using Siterm.EntityFramework.Services;
+using Siterm.Instructions;
 using Siterm.Settings;
 using Siterm.Settings.Models;
 using Siterm.Signature;
@@ -53,6 +54,7 @@ namespace Siterm.WPF
             SettingsServiceProvider.RegisterServices(services);
             EntityServiceProvider.RegisterServices(services);
             SignatureServiceProvider.RegisterServices(services);
+            InstructionsServiceProvider.RegisterServices(services);
 
             services.AddTransient<CreateInstructionView>();
             services.AddTransient<CreateInstructionViewModel>();

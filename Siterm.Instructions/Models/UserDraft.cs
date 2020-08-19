@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using Siterm.Support.Misc;
 
@@ -47,6 +49,11 @@ namespace Siterm.Instructions.Models
 
         public bool IsValid => Helper.IsValidEmail(Email);
 
+        public string FileName =>
+            $"{Email.ToLower(CultureInfo.CurrentCulture)}_{DateTime.Today.ToString("d", CultureInfo.CurrentCulture)}.pdf";
+
+        public string FullName => $"{FirstName} {LastName}";
+
         private void SetInput(string value)
         {
             SetField(ref _input, value);
@@ -54,7 +61,6 @@ namespace Siterm.Instructions.Models
 
             if (!Helper.IsValidEmail(value)) return;
             Email = value;
-            OnPropertyChanged(nameof(IsValid));
 
             var mailPrefix = value.Split('@')[0];
             var nameSplit = mailPrefix.Split('.');
@@ -68,6 +74,8 @@ namespace Siterm.Instructions.Models
                 FirstName = nameSplit[0];
                 LastName = nameSplit.Last();
             }
+            OnPropertyChanged(nameof(IsValid));
+            OnPropertyChanged(nameof(FullName));
         }
     }
 }

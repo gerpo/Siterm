@@ -15,6 +15,7 @@ namespace Siterm.EntityFramework.Services
             await using var context = ContextFactory.CreateDbContext();
 
             return await context.Set<Device>()
+                .Include(d => d.Chief)
                 .Include(d => d.ServiceReports)
                 .Include(d => d.Instructions)
                 .ThenInclude(i => i.Instructed)

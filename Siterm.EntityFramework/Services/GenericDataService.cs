@@ -78,5 +78,12 @@ namespace Siterm.EntityFramework.Services
 
             return await context.Set<T>().Where(predicate).ToListAsync();
         }
+
+        public async Task<T> FirstOrDefault(Expression<Func<T, bool>> predicate)
+        {
+            await using var context = ContextFactory.CreateDbContext();
+
+            return await context.Set<T>().FirstOrDefaultAsync(predicate);
+        }
     }
 }

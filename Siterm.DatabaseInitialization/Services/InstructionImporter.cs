@@ -57,7 +57,7 @@ namespace Siterm.DatabaseInitialization.Services
                         {
                             Path = i.instructionInfo.FullName,
                             CreatedAt = DateTime.Parse(i.nameSplit[1]),
-                            Device = device
+                            DeviceId = device.Id
                         };
                         if (!Helper.IsValidEmail(i.nameSplit[0])) newInstruction.OldInstructedString = i.nameSplit[0];
 
@@ -66,10 +66,10 @@ namespace Siterm.DatabaseInitialization.Services
                     .ToList();
 
                 var filteredList = instructions.Where(s => oldInstructions.All(os => os.Path != s.Path)).ToList();
+                _instructionDataService.CreateAll(filteredList);
+                //device.Instructions = filteredList;
 
-                device.Instructions = filteredList;
-
-                await _deviceDataService.Update(device.Id, device);
+                //await _deviceDataService.Update(device.Id, device);
             }
         }
     }

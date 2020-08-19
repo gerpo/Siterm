@@ -40,7 +40,6 @@ namespace Siterm.WPF.ViewModels
         }
 
         public RelayCommand RefreshFacilitiesCommand { get; set; }
-
         public RelayCommand OnItemMouseDoubleClickCommand { get; }
         public RelayCommand NewInstructionCommand { get; }
         public RelayCommand NewServiceReportCommand { get; }
@@ -62,7 +61,6 @@ namespace Siterm.WPF.ViewModels
             private set
             {
                 SetField(ref _facilityCollectionView, value);
-                OnPropertyChanged("SubstanceNames");
             }
         }
 
@@ -94,6 +92,7 @@ namespace Siterm.WPF.ViewModels
         private async void CreateNewInstruction(object o)
         {
             await _navigationService.ShowDialogAsync<CreateInstructionView>(SelectedDevice.Id);
+            SelectedDeviceChanged(SelectedDevice);
         }
 
         private void CreateNewServiceReport(object o)

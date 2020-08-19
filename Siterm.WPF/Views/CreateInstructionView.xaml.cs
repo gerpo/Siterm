@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MahApps.Metro.Controls;
 using Siterm.Support.Misc;
 using Siterm.WPF.ViewModels;
@@ -11,14 +12,23 @@ namespace Siterm.WPF.Views
         {
             InitializeComponent();
             DataContext = viewModel;
+            
         }
 
-        public Task ActivateAsync(object parameter)
+        public async Task ActivateAsync(object parameter)
         {
             var requestedDeviceId = parameter is int i ? i : -1;
-            ((CreateInstructionViewModel) DataContext).FetchDevices(requestedDeviceId);
-            ((CreateInstructionViewModel) DataContext).FetchUsers();
-            return Task.CompletedTask;
+            await ((CreateInstructionViewModel) DataContext).FetchDevices(requestedDeviceId);
+            await ((CreateInstructionViewModel) DataContext).FetchUsers();
+
+            ((CreateInstructionViewModel)DataContext).ClosingRequest += OnClosingRequest;
+
+            return;
+        }
+
+        private void OnClosingRequest(object? sender, EventArgs e)
+        {
+            Close();
         }
     }
 }   

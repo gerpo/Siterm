@@ -9,6 +9,8 @@
         public string SubstancePath { get; set; }
         public string FacilityPath { get; set; }
         public string InstructionFolderName { get; set; }
+        public string InstructionArchiveFolderName { get; set; }
         public string ServiceReportFolderName { get; set; }
+        public string InstructionTemplateFile { get; set; }
     }
 }

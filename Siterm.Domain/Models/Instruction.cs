@@ -13,6 +13,7 @@ namespace Siterm.Domain.Models
         public string AllowedActivities { get; set; }
         public string ForbiddenActivities { get; set; }
         public DateTime ValidTill => CreatedAt.AddYears(1);
+        public bool IsArchived { get; set; }
 
         public string OldInstructedFirstName => OldInstructedString?.Split(' ').Length > 1
             ? OldInstructedString?.Split(' ')[0]
@@ -21,5 +22,9 @@ namespace Siterm.Domain.Models
         public string OldInstructedLastName => OldInstructedString?.Split(' ').Length > 1
             ? OldInstructedString?.Split(' ')[1]
             : OldInstructedString?.Split(' ')[0];
+
+        public int DeviceId { get; set; }
+        public int? InstructorId { get; set; }
+        public int? InstructedId { get; set; }
     }
 }

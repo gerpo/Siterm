@@ -53,6 +53,8 @@ namespace Siterm.Settings.Models
         SubstancePath,
         FacilityPath,
         InstructionFolderName,
-        ServiceReportFolderName
+        InstructionArchiveFolderName,
+        ServiceReportFolderName,
+        InstructionTemplateFile
     }
 }

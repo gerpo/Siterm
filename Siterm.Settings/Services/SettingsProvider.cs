@@ -20,7 +20,9 @@ namespace Siterm.Settings.Services
                 {SettingName.SubstancePath, SettingType.Folder},
                 {SettingName.FacilityPath, SettingType.Folder},
                 {SettingName.InstructionFolderName, SettingType.String},
+                {SettingName.InstructionArchiveFolderName, SettingType.String},
                 {SettingName.ServiceReportFolderName, SettingType.String},
+                {SettingName.InstructionTemplateFile, SettingType.File},
             };
 
         public SettingsProvider(IOptions<AppSettings> settings)

@@ -9,14 +9,14 @@ using Siterm.EntityFramework;
 namespace Siterm.EntityFramework.Migrations
 {
     [DbContext(typeof(SitermDbContext))]
-    [Migration("20200805190426_Initial")]
+    [Migration("20200819080759_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.5")
+                .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Siterm.Domain.Models.Device", b =>
@@ -92,6 +92,9 @@ namespace Siterm.EntityFramework.Migrations
 
                     b.Property<int?>("InstructorId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsArchived")
+                        .HasColumnType("bit");
 
                     b.Property<string>("OldInstructedString")
                         .HasColumnType("text");
@@ -225,11 +228,13 @@ namespace Siterm.EntityFramework.Migrations
 
                     b.HasOne("Siterm.Domain.Models.User", "Instructed")
                         .WithMany("Instructions")
-                        .HasForeignKey("InstructedId");
+                        .HasForeignKey("InstructedId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Siterm.Domain.Models.User", "Instructor")
                         .WithMany("PerformedInstructions")
-                        .HasForeignKey("InstructorId");
+                        .HasForeignKey("InstructorId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Siterm.Domain.Models.ServiceReport", b =>
