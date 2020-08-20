@@ -13,6 +13,7 @@ using Serilog;
 using Siterm.EntityFramework;
 using Siterm.EntityFramework.Services;
 using Siterm.Instructions;
+using Siterm.ServiceReports;
 using Siterm.Settings;
 using Siterm.Settings.Models;
 using Siterm.Signature;
@@ -55,9 +56,12 @@ namespace Siterm.WPF
             EntityServiceProvider.RegisterServices(services);
             SignatureServiceProvider.RegisterServices(services);
             InstructionsServiceProvider.RegisterServices(services);
+            ServiceReportServiceProvider.RegisterServices(services);
 
             services.AddTransient<CreateInstructionView>();
+            services.AddTransient<CreateServiceReportView>();
             services.AddTransient<CreateInstructionViewModel>();
+            services.AddTransient<CreateServiceReportViewModel>();
 
             services.AddSingleton<TabViewModelCollectionFactory>();
             services.AddTransient<RtfToFlowConverter>();

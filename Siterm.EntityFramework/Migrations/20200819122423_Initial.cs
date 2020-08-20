@@ -155,6 +155,7 @@ namespace Siterm.EntityFramework.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Area = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     IsDone = table.Column<bool>(nullable: false),
                     Comment = table.Column<string>(nullable: true),

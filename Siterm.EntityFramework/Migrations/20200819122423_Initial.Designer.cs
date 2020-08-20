@@ -9,7 +9,7 @@ using Siterm.EntityFramework;
 namespace Siterm.EntityFramework.Migrations
 {
     [DbContext(typeof(SitermDbContext))]
-    [Migration("20200819080759_Initial")]
+    [Migration("20200819122423_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -148,6 +148,9 @@ namespace Siterm.EntityFramework.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("Area")
+                        .HasColumnType("text");
 
                     b.Property<string>("Comment")
                         .HasColumnType("text");

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Siterm.Support.Misc
@@ -49,6 +50,11 @@ namespace Siterm.Support.Misc
             {
                 return false;
             }
+        }
+
+        public static bool IsExcel(FileInfo pathInfo)
+        {
+            return pathInfo.Exists && pathInfo.Extension == ".xlsx";
         }
     }
 }

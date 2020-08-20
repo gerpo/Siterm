@@ -95,9 +95,10 @@ namespace Siterm.WPF.ViewModels
             SelectedDeviceChanged(SelectedDevice);
         }
 
-        private void CreateNewServiceReport(object o)
+        private async void CreateNewServiceReport(object o)
         {
-            MessageBox.Show($"Neue Wartung für {SelectedDevice.Name}.");
+            await _navigationService.ShowDialogAsync<CreateServiceReportView>(SelectedDevice.Id);
+            SelectedDeviceChanged(SelectedDevice);
         }
 
         private async Task FetchFacilities()
