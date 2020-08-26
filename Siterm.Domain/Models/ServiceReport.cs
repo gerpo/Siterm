@@ -38,5 +38,7 @@ namespace Siterm.Domain.Models
         public ValidityType Validity { get; set; }
         public virtual IEnumerable<ServiceTask> ServiceTasks { get; set; }
         public DateTime ValidTill => CreatedAt.AddDays((int)Validity);
+        public bool HasWarning => ValidTill < DateTime.Today.AddDays(-14);
+        public bool IsInvalid => ValidTill <= DateTime.Today;
     }
 }

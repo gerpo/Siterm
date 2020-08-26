@@ -61,6 +61,15 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bereich ähnelt.
+        /// </summary>
+        public static string Area {
+            get {
+                return ResourceManager.GetString("Area", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Zweiwöchig ähnelt.
         /// </summary>
         public static string Biweekly {
@@ -75,6 +84,15 @@ namespace Siterm.WPF {
         public static string Biyearly {
             get {
                 return ResourceManager.GetString("Biyearly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kommentar ähnelt.
+        /// </summary>
+        public static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
             }
         }
         
@@ -102,6 +120,15 @@ namespace Siterm.WPF {
         public static string CreateInstructionForLabel {
             get {
                 return ResourceManager.GetString("CreateInstructionForLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Beschreibung ähnelt.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
@@ -210,6 +237,15 @@ namespace Siterm.WPF {
         public static string Instructor {
             get {
                 return ResourceManager.GetString("Instructor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Geprüft ähnelt.
+        /// </summary>
+        public static string IsDone {
+            get {
+                return ResourceManager.GetString("IsDone", resourceCulture);
             }
         }
         

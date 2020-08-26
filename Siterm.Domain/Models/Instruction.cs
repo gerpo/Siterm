@@ -26,5 +26,8 @@ namespace Siterm.Domain.Models
         public int DeviceId { get; set; }
         public int? InstructorId { get; set; }
         public int? InstructedId { get; set; }
+
+        public bool HasWarning => ValidTill < DateTime.Today.AddDays(-14);
+        public bool IsInvalid => ValidTill <= DateTime.Today;
     }
 }

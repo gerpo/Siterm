@@ -29,8 +29,7 @@
 
   <ItemGroup>
     <Reference Include="Interop.wgssSTU">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Wacom STU SDK\COM\bin\x64\Interop.wgssSTU.dll</HintPath>
-      <Private>true</Private>
+      <HintPath>D:\Dropbox (Privat)\Interop.wgssSTU.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro">
       <HintPath>..\..\..\..\.nuget\packages\mahapps.metro\2.1.1\lib\netcoreapp3.1\MahApps.Metro.dll</HintPath>

@@ -15,6 +15,7 @@ namespace Siterm.Settings.Services
             {
                 {SettingName.DatabaseConnectionString, SettingType.String},
                 {SettingName.MainPath, SettingType.Folder},
+                {SettingName.HomeInfoFile, SettingType.File},
                 {SettingName.FirstResponderExcelFile, SettingType.File},
                 {SettingName.FirstResponderInfoFile, SettingType.File},
                 {SettingName.SubstancePath, SettingType.Folder},

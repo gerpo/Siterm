@@ -246,4 +246,16 @@
   <data name="RetrySignatureTitle" xml:space="preserve">
     <value>Wiederholen?</value>
   </data>
+  <data name="Area" xml:space="preserve">
+    <value>Bereich</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Kommentar</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="IsDone" xml:space="preserve">
+    <value>Geprüft</value>
+  </data>
 </root>

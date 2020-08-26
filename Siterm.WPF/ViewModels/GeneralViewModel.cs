@@ -1,4 +1,6 @@
 ﻿using System.Windows.Documents;
+using Siterm.Settings.Models;
+using Siterm.Settings.Services;
 using Siterm.Support.Misc;
 using Siterm.Support.Services;
 
@@ -12,10 +14,10 @@ namespace Siterm.WPF.ViewModels
         public string Header => UiStrings.GeneralTabHeader;
         public int Position => 1;
 
-        public GeneralViewModel(RtfToFlowConverter rtfToFlowConverter)
+        public GeneralViewModel(SettingsProvider settingsProvider, RtfToFlowConverter rtfToFlowConverter)
         {
-            GeneralTemplateFile = rtfToFlowConverter.CreateFlowDocument(
-                @"C:\Users\Adam\Documents\Sicherheit\09_Organisation\GUI_Inhalte\home.rtf");
+            var infoFilePath = settingsProvider.GetSetting(SettingName.HomeInfoFile).Value;
+            GeneralTemplateFile = rtfToFlowConverter.CreateFlowDocument(infoFilePath);
         }
     }
 }

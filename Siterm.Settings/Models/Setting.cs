@@ -55,6 +55,7 @@ namespace Siterm.Settings.Models
         InstructionFolderName,
         InstructionArchiveFolderName,
         ServiceReportFolderName,
-        InstructionTemplateFile
+        InstructionTemplateFile,
+        HomeInfoFile
     }
 }
