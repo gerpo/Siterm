@@ -55,7 +55,7 @@ namespace Siterm.WPF.ViewModels
         {
             get
             {
-                if (_facilityCollectionView is null) FetchFacilities();
+                if (_facilityCollectionView is null) FetchFacilities().ConfigureAwait(false);
 
                 return _facilityCollectionView;
             }

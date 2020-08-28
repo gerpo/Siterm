@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,10 +9,8 @@ using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Org.BouncyCastle.Math.EC;
 using Serilog;
 using Siterm.EntityFramework;
-using Siterm.EntityFramework.Services;
 using Siterm.Instructions;
 using Siterm.Mail;
 using Siterm.ServiceReports;
@@ -28,9 +25,17 @@ using Siterm.WPF.Views;
 
 namespace Siterm.WPF
 {
-    public partial class App : Application
+    public partial class App
     {
         private IHost _host;
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            _host.StopAsync();
+            _host?.Dispose();
+
+            base.OnExit(e);
+        }
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -39,7 +44,6 @@ namespace Siterm.WPF
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(
                 XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
-            //var serviceProvider = CreateServiceProvider();
             _host = CreateHost();
             var serviceProvider = _host.Services;
             _host.RunAsync();
@@ -50,25 +54,11 @@ namespace Siterm.WPF
             base.OnStartup(e);
         }
 
-        protected override void OnExit(ExitEventArgs e)
+        private static void ConfigureServices(HostBuilderContext hostBuilderContext,
+            IServiceCollection serviceCollection)
         {
-            _host.StopAsync();
-            _host.Dispose();
-
-            base.OnExit(e);
-        }
-
-        private static IHost CreateHost()
-        {
-            return Host.CreateDefaultBuilder()
-                .UseWindowsService()
-                .ConfigureAppConfiguration(RegisterConfiguration)
-                .ConfigureServices(ConfigureServices).Build();
-        }
-
-        private static void ConfigureServices(HostBuilderContext hostBuilderContext, IServiceCollection serviceCollection)
-        {
-            serviceCollection.Configure<AppSettings>(x => hostBuilderContext.Configuration.GetSection(nameof(AppSettings)).Bind(x));
+            serviceCollection.Configure<AppSettings>(x =>
+                hostBuilderContext.Configuration.GetSection(nameof(AppSettings)).Bind(x));
 
             RegisterLogger(serviceCollection);
             serviceCollection.AddScoped<SimpleNavigationService>();
@@ -86,7 +76,7 @@ namespace Siterm.WPF
             serviceCollection.AddTransient<CreateServiceReportView>();
             serviceCollection.AddTransient<CreateInstructionViewModel>();
             serviceCollection.AddTransient<CreateServiceReportViewModel>();
-            
+
             serviceCollection.AddTransient<EditDeviceView>();
             serviceCollection.AddTransient<EditDeviceViewModel>();
 
@@ -97,14 +87,20 @@ namespace Siterm.WPF
             RegisterTabItemViewModels(serviceCollection);
         }
 
-        private static void RegisterConfiguration(HostBuilderContext hostBuilderContext, IConfigurationBuilder configurationBuilder)
+        private static IHost CreateHost()
         {
+            return Host.CreateDefaultBuilder()
+                .UseWindowsService()
+                .ConfigureAppConfiguration(RegisterConfiguration)
+                .ConfigureServices(ConfigureServices).Build();
+        }
 
+        private static void RegisterConfiguration(HostBuilderContext hostBuilderContext,
+            IConfigurationBuilder configurationBuilder)
+        {
             configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", false, true)
                 .Build();
-
-            //services.Configure<AppSettings>(x => configuration.GetSection(nameof(AppSettings)).Bind(x));
         }
 
         private static void RegisterLogger(IServiceCollection services)

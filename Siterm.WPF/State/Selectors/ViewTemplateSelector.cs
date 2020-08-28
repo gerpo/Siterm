@@ -8,8 +8,8 @@ namespace Siterm.WPF.State.Selectors
 {
     public class ViewTemplateSelector : DataTemplateSelector
     {
-        private const string VIEWMODEL = "ViewModel";
-        private const string MODEL = "Model";
+        private const string Viewmodel = "ViewModel";
+        private const string Model = "Model";
 
         private readonly Dictionary<string, DataTemplate> _dataTemplates =
             new Dictionary<string, DataTemplate>();
@@ -21,9 +21,9 @@ namespace Siterm.WPF.State.Selectors
 
             var type = item.GetType();
             var name = type.Name;
-            if (!name.EndsWith(VIEWMODEL)) return base.SelectTemplate(item, container);
+            if (!name.EndsWith(Viewmodel)) return base.SelectTemplate(item, container);
 
-            name = name.Substring(0, name.Length - MODEL.Length);
+            name = name.Substring(0, name.Length - Model.Length);
             if (_dataTemplates.ContainsKey(name))
                 return _dataTemplates[name];
 

@@ -43,6 +43,7 @@ namespace Siterm.Settings.ViewModels
             var t = await _settingsWriter.TrySavingSettings(Settings);
             ValidationErrors = t.Count > 0 ? t : null;
 
+            if (HasErrors) return;
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }

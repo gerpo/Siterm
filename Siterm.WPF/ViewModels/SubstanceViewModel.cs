@@ -39,7 +39,7 @@ namespace Siterm.WPF.ViewModels
         {
             get
             {
-                if (_substanceCollectionView is null) FetchSubstances();
+                if (_substanceCollectionView is null) FetchSubstances().ConfigureAwait(false);
 
                 return _substanceCollectionView;
             }

@@ -8,7 +8,7 @@ namespace Siterm.WPF.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is null) return value;
+            if (value is null) return null;
             try
             {
                 var enumString = Enum.GetName(value.GetType(), value);
