@@ -53,5 +53,10 @@ namespace Siterm.ServiceReports.Services
                    pathInfo.Directory.FullName.EndsWith(_serviceReportFolderName, StringComparison.CurrentCulture) &&
                    pathInfo.Name.Split('_').Length == 2 && Helper.IsExcel(pathInfo);
         }
+
+        public void CreateServiceReport(ServiceReportDraft serviceReportDraft)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

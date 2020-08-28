@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,19 +16,25 @@ namespace Siterm.WPF.ViewModels
         private readonly DeviceDataService _deviceDataService;
         private readonly ServiceReportDraftFactory _serviceReportDraftFactory;
         private readonly UserDataService _userDataService;
+        private readonly ServiceReportService _serviceReportService;
 
         private ObservableCollection<Device> _deviceList;
-        
+
         private ServiceReportDraft _serviceReportDraft;
         private IEnumerable<string> _userEmailList;
 
         public CreateServiceReportViewModel(DeviceDataService deviceDataService,
-            ServiceReportDraftFactory serviceReportDraftFactory, UserDataService userDataService)
+            ServiceReportDraftFactory serviceReportDraftFactory, UserDataService userDataService,ServiceReportService serviceReportService)
         {
             _deviceDataService = deviceDataService;
             _serviceReportDraftFactory = serviceReportDraftFactory;
             _userDataService = userDataService;
+            _serviceReportService = serviceReportService;
+
+            CreateServiceReportCommand = new RelayCommand(CreateServiceReport);
         }
+
+        public RelayCommand CreateServiceReportCommand { get; set; }
 
         public ObservableCollection<Device> DeviceList
         {
@@ -45,6 +52,11 @@ namespace Siterm.WPF.ViewModels
         {
             get => _serviceReportDraft ??= _serviceReportDraftFactory.CreateServiceReportDraft();
             set => SetField(ref _serviceReportDraft, value);
+        }
+
+        private void CreateServiceReport(object obj)
+        {
+            _serviceReportService.CreateServiceReport(ServiceReportDraft);
         }
 
         public async Task FetchDevices(int requestedDeviceId = -1)
