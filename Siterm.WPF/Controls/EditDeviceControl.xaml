@@ -60,6 +60,7 @@
         <Button
             Grid.Row="3"
             Grid.Column="1"
+            Command="{Binding ApplyChangesCommand}"
             Margin="5,2"
             Content="Anlage speichern" />
     </Grid>

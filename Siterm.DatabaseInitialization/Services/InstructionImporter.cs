@@ -67,7 +67,7 @@ namespace Siterm.DatabaseInitialization.Services
                     .ToList();
 
                 var filteredList = instructions.Where(s => oldInstructions.All(os => os.Path != s.Path)).ToList();
-                _instructionDataService.CreateAll(filteredList);
+                await _instructionDataService.CreateAll(filteredList);
                 //device.Instructions = filteredList;
 
                 //await _deviceDataService.Update(device.Id, device);

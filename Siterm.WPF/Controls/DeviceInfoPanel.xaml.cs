@@ -71,5 +71,19 @@ namespace Siterm.WPF.Controls
             ScrollViewer.ScrollToVerticalOffset(ScrollViewer.ContentVerticalOffset - e.Delta);
             e.Handled = true;
         }
+
+        private void EventSetter_OnHandler(object sender, MouseButtonEventArgs e)
+        {
+            if (!(sender is DataGridRow dataGridRow)) return;
+            switch (dataGridRow.DataContext)
+            {
+                case Instruction instruction:
+                    Helper.OpenFile(instruction.Path);
+                    break;
+                case ServiceReport serviceReport:
+                    Helper.OpenFile(serviceReport.Path);
+                    break;
+            }
+        }
     }
 }

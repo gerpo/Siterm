@@ -42,7 +42,7 @@ namespace Siterm.EntityFramework.Services
             return createdEntry.Entity;
         }
 
-        public async void CreateAll(IEnumerable<T> entities)
+        public async Task CreateAll(IEnumerable<T> entities)
         {
             await using var context = ContextFactory.CreateDbContext();
 

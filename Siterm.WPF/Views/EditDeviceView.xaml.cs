@@ -18,7 +18,7 @@ namespace Siterm.WPF.Views
         {
             var requestedDeviceId = parameter is int i ? i : -1;
             await ((EditDeviceViewModel) DataContext).FetchDevice(requestedDeviceId);
-            //await ((CreateServiceReportViewModel) DataContext).FetchUsers();
+            await ((EditDeviceViewModel) DataContext).FetchUsers();
 
             ((EditDeviceViewModel) DataContext).ClosingRequest += OnClosingRequest;
         }

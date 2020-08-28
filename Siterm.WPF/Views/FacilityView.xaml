@@ -9,8 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:Siterm.WPF"
     xmlns:viewModels="clr-namespace:Siterm.WPF.ViewModels"
-    d:DataContext="{d:DesignInstance viewModels:FacilityViewModel,
-                                     IsDesignTimeCreatable=True}"
+    d:DataContext="{d:DesignInstance viewModels:FacilityViewModel}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -37,7 +36,7 @@
             Grid.Row="0"
             Grid.Column="1"
             Placeholder="{x:Static resources:UiStrings.SearchPlaceholder}"
-            SuggestionList="{Binding DeviceNames, IsAsync=True}"
+            SuggestionList="{Binding DeviceNameList, IsAsync=True}"
             Text="{Binding DeviceSearchTerm}" />
 
         <TreeView

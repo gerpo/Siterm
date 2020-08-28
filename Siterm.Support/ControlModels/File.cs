@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using Siterm.Support.Misc;
 
 namespace Siterm.Support.ControlModels
 {
@@ -13,8 +14,7 @@ namespace Siterm.Support.ControlModels
 
         public void Open()
         {
-            if (string.IsNullOrEmpty(Path) || !System.IO.File.Exists(Path)) return;
-            Process.Start(new ProcessStartInfo(Path) { UseShellExecute = true });
+            Helper.OpenFile(Path);
         }
     }
 }

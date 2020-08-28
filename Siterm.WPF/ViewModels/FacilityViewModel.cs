@@ -20,6 +20,7 @@ namespace Siterm.WPF.ViewModels
         private readonly DeviceDataService _deviceDataService;
         private readonly FacilityDataService _facilityDataService;
         private readonly SimpleNavigationService _navigationService;
+        private IEnumerable<string> _deviceNameList;
         private string _deviceSearchTerm;
         private List<FacilityTreeViewItem> _facilities;
         private ICollectionView _facilityCollectionView;
@@ -78,6 +79,12 @@ namespace Siterm.WPF.ViewModels
             set => SetField(ref _selectedDevice, value);
         }
 
+        public IEnumerable<string> DeviceNameList
+        {
+            get => _deviceNameList;
+            set => SetField(ref _deviceNameList, value);
+        }
+
         public string Header => UiStrings.FacilityTabHeader;
         public int Position => 3;
 
@@ -111,12 +118,13 @@ namespace Siterm.WPF.ViewModels
 
             FacilityCollectionView = CollectionViewSource.GetDefaultView(_facilities);
             FacilityCollectionView.Filter = o =>
-                string.IsNullOrEmpty(DeviceSearchTerm) ||
-                ((FacilityTreeViewItem) o).Model.Name.Contains(DeviceSearchTerm,
-                    StringComparison.CurrentCultureIgnoreCase);
+                ((FacilityTreeViewItem) o).ApplyFilter(DeviceSearchTerm) || string.IsNullOrEmpty(DeviceSearchTerm);
+
+            DeviceNameList = await _deviceDataService.GetNames();
 
             IsLoadingFacilities = false;
         }
+
 
         private void ItemWasDoubleClicked(object obj)
         {

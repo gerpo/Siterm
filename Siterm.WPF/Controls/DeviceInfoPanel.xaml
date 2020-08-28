@@ -98,6 +98,7 @@
                     </DataGrid.Columns>
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow" BasedOn="{StaticResource MahApps.Styles.DataGridRow}">
+                            <EventSetter Event="MouseDoubleClick" Handler="EventSetter_OnHandler" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding HasWarning}" Value="True">
                                     <Setter Property="Background" Value="Orange" />
@@ -134,19 +135,20 @@
                         <DataGridTextColumn Binding="{Binding CreatedAt, StringFormat=d}" Header="{x:Static resources:UiStrings.CreatedAt}" />
                         <DataGridTextColumn Binding="{Binding ValidTill, StringFormat=d}" Header="{x:Static resources:UiStrings.ValidTill}" />
                     </DataGrid.Columns>
-                    <DataGrid.RowStyle>
-                        <Style TargetType="DataGridRow" BasedOn="{StaticResource MahApps.Styles.DataGridRow}">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding HasWarning}" Value="True">
-                                    <Setter Property="Background" Value="Orange" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding IsInvalid}" Value="True">
-                                    <Setter Property="Background" Value="Red" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </DataGrid.RowStyle>
-                </DataGrid>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow" BasedOn="{StaticResource MahApps.Styles.DataGridRow}">
+                                <EventSetter Event="MouseDoubleClick" Handler="EventSetter_OnHandler"></EventSetter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasWarning}" Value="True">
+                                        <Setter Property="Background" Value="Orange" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsInvalid}" Value="True">
+                                        <Setter Property="Background" Value="Red" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                    </DataGrid>
             </Expander>
             <Border
                 Margin="0,5,0,0"

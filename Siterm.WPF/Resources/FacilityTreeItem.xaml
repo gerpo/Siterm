@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:models="clr-namespace:Siterm.Facility.Models;assembly=Siterm.Facility">
-    <HierarchicalDataTemplate DataType="{x:Type models:FacilityTreeViewItem}" ItemsSource="{Binding Devices}">
+    <HierarchicalDataTemplate DataType="{x:Type models:FacilityTreeViewItem}" ItemsSource="{Binding DeviceCollectionView}">
         <StackPanel Orientation="Horizontal">
             <iconPacks:PackIconMaterial
                 x:Name="icon"

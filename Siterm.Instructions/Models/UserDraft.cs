@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using Siterm.Domain.Models;
 using Siterm.Support.Misc;
 
 namespace Siterm.Instructions.Models
@@ -16,6 +17,16 @@ namespace Siterm.Instructions.Models
         private string _lastName;
 
         private Bitmap _signature;
+
+        public UserDraft(User user)
+        {
+            Input = user.Email;
+        }
+
+        public UserDraft()
+        {
+            
+        }
 
         public string Input
         {

@@ -12,7 +12,7 @@ namespace Siterm.DatabaseInitialization.Services
             _pipelineItems = pipelineItems;
         }
 
-        public async void Run()
+        public void Run()
         {
             if (!_pipelineItems.Any()) return;
 
