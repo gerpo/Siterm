@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using Siterm.EntityFramework.Services;
 using Siterm.Substance.Models;
+using Siterm.Substance.Services;
 using Siterm.Support.ControlModels;
 using Siterm.Support.Misc;
 
@@ -15,16 +16,19 @@ namespace Siterm.WPF.ViewModels
     public class SubstanceViewModel : BaseViewModel, ITabItemViewModel
     {
         private readonly SubstanceDataService _substanceDataService;
+        private readonly SubstanceInfoService _substanceInfoService;
         private bool _isLoadingSubstances;
         private Domain.Models.Substance _selectedSubstance;
 
         private ICollectionView _substanceCollectionView;
         private IList<SubstanceTreeViewItem> _substances;
         private string _substanceSearchTerm;
+        private SubstanceInformation _selectedSubstanceInformation;
 
-        public SubstanceViewModel(SubstanceDataService substanceDataService)
+        public SubstanceViewModel(SubstanceDataService substanceDataService, SubstanceInfoService substanceInfoService)
         {
             _substanceDataService = substanceDataService;
+            _substanceInfoService = substanceInfoService;
             RefreshSubstancesCommand = new RelayCommand(RefetchSubstances);
             OnItemMouseDoubleClickCommand = new RelayCommand(ItemWasDoubleClicked);
         }
@@ -78,6 +82,13 @@ namespace Siterm.WPF.ViewModels
         public void SelectedSubstanceChanged(Domain.Models.Substance selectedSubstance)
         {
             SelectedSubstance = selectedSubstance;
+            SelectedSubstanceInformation = _substanceInfoService.GetSubstanceInformation(selectedSubstance);
+        }
+
+        public SubstanceInformation SelectedSubstanceInformation
+        {
+            get => _selectedSubstanceInformation;
+            set => SetField(ref _selectedSubstanceInformation, value);
         }
 
         private async Task FetchSubstances()

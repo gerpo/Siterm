@@ -26,6 +26,8 @@ namespace Siterm.Settings.Services
                 {SettingName.FirstResponderInfoFile, SettingType.File},
                 {SettingName.SubstancePath, SettingType.Folder},
                 {SettingName.FacilityPath, SettingType.Folder},
+                {SettingName.PFile, SettingType.File},
+                {SettingName.HFile, SettingType.File},
                 {SettingName.InstructionFolderName, SettingType.String},
                 {SettingName.InstructionArchiveFolderName, SettingType.String},
                 {SettingName.ServiceReportFolderName, SettingType.String},

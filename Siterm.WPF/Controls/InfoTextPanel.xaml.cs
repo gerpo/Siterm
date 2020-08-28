@@ -6,11 +6,11 @@ namespace Siterm.WPF.Controls
     {
         public static readonly DependencyProperty MainTextProperty =
             DependencyProperty.Register(nameof(MainText), typeof(string), typeof(InfoTextPanel),
-                new PropertyMetadata(""));
+                new PropertyMetadata(string.Empty));
 
         public static readonly DependencyProperty SubTextProperty =
             DependencyProperty.Register(nameof(SubText), typeof(string), typeof(InfoTextPanel),
-                new PropertyMetadata(""));
+                new PropertyMetadata(string.Empty));
 
         public InfoTextPanel()
         {

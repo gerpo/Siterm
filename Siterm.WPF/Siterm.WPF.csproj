@@ -8,6 +8,68 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\Icons\acid.png" />
+    <None Remove="Resources\Images\Icons\acid_attention.png" />
+    <None Remove="Resources\Images\Icons\acid_danger.png" />
+    <None Remove="Resources\Images\Icons\bottle.png" />
+    <None Remove="Resources\Images\Icons\bottle_attention.png" />
+    <None Remove="Resources\Images\Icons\bottle_danger.png" />
+    <None Remove="Resources\Images\Icons\exclam.png" />
+    <None Remove="Resources\Images\Icons\exclam_attention.png" />
+    <None Remove="Resources\Images\Icons\exclam_danger.png" />
+    <None Remove="Resources\Images\Icons\explos.png" />
+    <None Remove="Resources\Images\Icons\explos_attention.png" />
+    <None Remove="Resources\Images\Icons\explos_danger.png" />
+    <None Remove="Resources\Images\Icons\flame.png" />
+    <None Remove="Resources\Images\Icons\flame_attention.png" />
+    <None Remove="Resources\Images\Icons\flame_danger.png" />
+    <None Remove="Resources\Images\Icons\pollut.png" />
+    <None Remove="Resources\Images\Icons\pollut_attention.png" />
+    <None Remove="Resources\Images\Icons\pollut_danger.png" />
+    <None Remove="Resources\Images\Icons\roundflame.png" />
+    <None Remove="Resources\Images\Icons\roundflame_attention.png" />
+    <None Remove="Resources\Images\Icons\roundflame_danger.png" />
+    <None Remove="Resources\Images\Icons\silhouet.png" />
+    <None Remove="Resources\Images\Icons\silhouet_attention.png" />
+    <None Remove="Resources\Images\Icons\silhouet_danger.png" />
+    <None Remove="Resources\Images\Icons\skull.png" />
+    <None Remove="Resources\Images\Icons\skull_attention.png" />
+    <None Remove="Resources\Images\Icons\skull_danger.png" />
+    <None Remove="Resources\Images\logo_color.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\acid.png" />
+    <Resource Include="Resources\Images\Icons\acid_attention.png" />
+    <Resource Include="Resources\Images\Icons\acid_danger.png" />
+    <Resource Include="Resources\Images\Icons\bottle.png" />
+    <Resource Include="Resources\Images\Icons\bottle_attention.png" />
+    <Resource Include="Resources\Images\Icons\bottle_danger.png" />
+    <Resource Include="Resources\Images\Icons\exclam.png" />
+    <Resource Include="Resources\Images\Icons\exclam_attention.png" />
+    <Resource Include="Resources\Images\Icons\exclam_danger.png" />
+    <Resource Include="Resources\Images\Icons\explos.png" />
+    <Resource Include="Resources\Images\Icons\explos_attention.png" />
+    <Resource Include="Resources\Images\Icons\explos_danger.png" />
+    <Resource Include="Resources\Images\Icons\flame.png" />
+    <Resource Include="Resources\Images\Icons\flame_attention.png" />
+    <Resource Include="Resources\Images\Icons\flame_danger.png" />
+    <Resource Include="Resources\Images\Icons\pollut.png" />
+    <Resource Include="Resources\Images\Icons\pollut_attention.png" />
+    <Resource Include="Resources\Images\Icons\pollut_danger.png" />
+    <Resource Include="Resources\Images\Icons\roundflame.png" />
+    <Resource Include="Resources\Images\Icons\roundflame_attention.png" />
+    <Resource Include="Resources\Images\Icons\roundflame_danger.png" />
+    <Resource Include="Resources\Images\Icons\silhouet.png" />
+    <Resource Include="Resources\Images\Icons\silhouet_attention.png" />
+    <Resource Include="Resources\Images\Icons\silhouet_danger.png" />
+    <Resource Include="Resources\Images\Icons\skull.png" />
+    <Resource Include="Resources\Images\Icons\skull_attention.png" />
+    <Resource Include="Resources\Images\Icons\skull_danger.png" />
+    <EmbeddedResource Include="Resources\Images\logo_color.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Siterm.Domain\Siterm.Domain.csproj" />
     <ProjectReference Include="..\Siterm.EntityFramework\Siterm.EntityFramework.csproj" />
     <ProjectReference Include="..\Siterm.Excel\Siterm.Excel.csproj" />

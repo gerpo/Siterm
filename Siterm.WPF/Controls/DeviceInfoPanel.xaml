@@ -17,18 +17,13 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converters1:TitleCaseConverter x:Key="TitleCaseConverter" />
     </UserControl.Resources>
-    <ScrollViewer x:Name="ScrollViewer">
+    <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto">
         <StackPanel>
-            <Border
-            Padding="10"
-            HorizontalAlignment="Center"
-            mah:VisibilityHelper.IsCollapsed="{Binding Path=HasDevice, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}"
-            BorderBrush="{StaticResource MahApps.Brushes.Accent}"
-            BorderThickness="2">
-            <TextBlock FontSize="24" Text="{x:Static resources:UiStrings.SelectDevice}" />
-        </Border>
+            <local:InfoTextPanel mah:VisibilityHelper.IsCollapsed="{Binding Path=HasDevice, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}"
+                                 MainText="{x:Static resources:UiStrings.SelectDeviceMainText}"
+                                 SubText="{x:Static resources:UiStrings.SelectDeviceSubText}"/>
 
-        <StackPanel mah:VisibilityHelper.IsVisible="{Binding Path=HasDevice, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}" Orientation="Vertical">
+            <StackPanel mah:VisibilityHelper.IsVisible="{Binding Path=HasDevice, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}" Orientation="Vertical">
             <TextBlock
                 Padding="10,5"
                 Background="{StaticResource MahApps.Brushes.Accent}"
@@ -60,7 +55,7 @@
                 IsExpanded="True"
                 Visibility="{Binding Path=Device.HasInstructions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <DataGrid
-                    PreviewMouseWheel="UIElement_OnPreviewMouseWheel"
+                    PreviewMouseWheel="GridView_OnPreviewMouseWheel"
                     AutoGenerateColumns="False"
                     CanUserSortColumns="True"
                     IsReadOnly="True"
@@ -127,8 +122,10 @@
                 IsExpanded="True"
                 Visibility="{Binding Path=Device.HasServiceReports, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <DataGrid
+                    PreviewMouseWheel="GridView_OnPreviewMouseWheel"
                     AutoGenerateColumns="False"
                     CanUserSortColumns="True"
+                    IsReadOnly="True"
                     ItemsSource="{Binding Path=Device.ServiceReports, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Validity, Converter={StaticResource EnumToStringConverter}}" Header="{x:Static resources:UiStrings.Validity}" />

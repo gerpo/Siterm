@@ -61,6 +61,24 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zusätzliche Informationen ähnelt.
+        /// </summary>
+        public static string AdditionalInformation {
+            get {
+                return ResourceManager.GetString("AdditionalInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Alternative Name ähnelt.
+        /// </summary>
+        public static string AlternativeNames {
+            get {
+                return ResourceManager.GetString("AlternativeNames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Bereich ähnelt.
         /// </summary>
         public static string Area {
@@ -210,6 +228,15 @@ namespace Siterm.WPF {
         public static string HomeEmailEnding {
             get {
                 return ResourceManager.GetString("HomeEmailEnding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die H-Sätze ähnelt.
+        /// </summary>
+        public static string HSentences {
+            get {
+                return ResourceManager.GetString("HSentences", resourceCulture);
             }
         }
         
@@ -394,6 +421,15 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die P-Sätze ähnelt.
+        /// </summary>
+        public static string PSentences {
+            get {
+                return ResourceManager.GetString("PSentences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Vierteljährlich ähnelt.
         /// </summary>
         public static string QuarterYearly {
@@ -439,11 +475,38 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte eine Anlage rechts auswählen ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wählen Sie eine Maschine aus. ähnelt.
         /// </summary>
-        public static string SelectDevice {
+        public static string SelectDeviceMainText {
             get {
-                return ResourceManager.GetString("SelectDevice", resourceCulture);
+                return ResourceManager.GetString("SelectDeviceMainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Durch die Auswahl einer Maschine in der Baumstruktur werden weitere Informationen bereitgestellt. ähnelt.
+        /// </summary>
+        public static string SelectDeviceSubText {
+            get {
+                return ResourceManager.GetString("SelectDeviceSubText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wählen Sie einen Gefahrstoff aus. ähnelt.
+        /// </summary>
+        public static string SelectSubstanceMainText {
+            get {
+                return ResourceManager.GetString("SelectSubstanceMainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Durch die Auswahl eines Gefahrstoffes in der Baumstruktur werden weitere Informationen bereitgestellt. ähnelt.
+        /// </summary>
+        public static string SelectSubstanceSubText {
+            get {
+                return ResourceManager.GetString("SelectSubstanceSubText", resourceCulture);
             }
         }
         

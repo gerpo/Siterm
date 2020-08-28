@@ -5,6 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Siterm.WPF.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    BorderBrush="{StaticResource MahApps.Brushes.Gray3}" BorderThickness="2"
+    Background="{StaticResource MahApps.Brushes.ThemeBackground}" Padding="10" 
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">

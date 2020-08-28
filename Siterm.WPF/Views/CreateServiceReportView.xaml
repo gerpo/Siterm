@@ -14,6 +14,6 @@
     SizeToContent="WidthAndHeight"
     mc:Ignorable="d">
     <Grid>
-        <controls:CreateServiceReportControl DeviceList="{Binding DeviceList}" ServiceReportDraft="{Binding ServiceReportDraft}" />
+        <controls:CreateServiceReportControl DeviceList="{Binding DeviceList}" ServiceReportDraft="{Binding ServiceReportDraft}" UserEmailList="{Binding UserEmailList}" />
     </Grid>
 </mah:MetroWindow>

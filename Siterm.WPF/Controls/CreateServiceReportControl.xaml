@@ -75,11 +75,13 @@
             Text="Durchführender"
             TextAlignment="Right"
             Visibility="{Binding Path=ServiceReportDraft.SelectedServiceTemplate, Converter={StaticResource NullToCollapsedConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CreateServiceReportControl}}}" />
-        <TextBox
+        <local:UserInputBox
             x:Name="ServiceWorker"
             Grid.Row="2"
             Grid.Column="1"
             Margin="5,2"
+            UserDraft="{Binding ServiceReportDraft.ServiceWorker , RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CreateServiceReportControl}}}"
+            UserEmailList="{Binding UserEmailList, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CreateServiceReportControl}}}"
             Visibility="{Binding Path=ServiceReportDraft.SelectedServiceTemplate, Converter={StaticResource NullToCollapsedConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CreateServiceReportControl}}}" />
         <DataGrid
             Grid.Row="3"
@@ -89,11 +91,13 @@
             AutoGenerateColumns="False"
             ItemsSource="{Binding Path=ServiceReportDraft.SelectedServiceTemplate.ServiceTasks, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CreateServiceReportControl}}}"
             VerticalScrollBarVisibility="Auto"
+            PreviewKeyDown="DataGrid_PreviewKeyDown"
+            SelectionChanged="DataGrid_SelectionChanged"
             Visibility="{Binding Path=ServiceReportDraft.SelectedServiceTemplate, Converter={StaticResource NullToCollapsedConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CreateServiceReportControl}}}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Area}" Width="Auto" Header="{x:Static wpf:UiStrings.Area}" />
                 <DataGridTextColumn Binding="{Binding Description}" Width="Auto" Header="{x:Static wpf:UiStrings.Description}" />
-                <DataGridTextColumn Binding="{Binding Comment}" Width="*" Header="{x:Static wpf:UiStrings.Comment}" />
+                <DataGridTextColumn Binding="{Binding Comment}" Width="*" MaxWidth="500" Header="{x:Static wpf:UiStrings.Comment}" />
                 <DataGridCheckBoxColumn Binding="{Binding IsDone}" Width="Auto" Header="{x:Static wpf:UiStrings.IsDone}" />
             </DataGrid.Columns>
         </DataGrid>

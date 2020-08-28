@@ -11,12 +11,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Siterm.EntityFramework;
+using Siterm.Excel;
 using Siterm.Instructions;
 using Siterm.Mail;
 using Siterm.ServiceReports;
 using Siterm.Settings;
 using Siterm.Settings.Models;
 using Siterm.Signature;
+using Siterm.Substance;
 using Siterm.Support.Misc;
 using Siterm.Support.Services;
 using Siterm.WPF.State.Navigators;
@@ -67,7 +69,9 @@ namespace Siterm.WPF
 
             SettingsServiceProvider.RegisterServices(serviceCollection);
             EntityServiceProvider.RegisterServices(serviceCollection);
+            ExcelServiceProvider.RegisterServices(serviceCollection);
             SignatureServiceProvider.RegisterServices(serviceCollection);
+            SubstanceServiceProvider.RegisterServices(serviceCollection);
             InstructionsServiceProvider.RegisterServices(serviceCollection);
             ServiceReportServiceProvider.RegisterServices(serviceCollection);
             MailServiceProvider.RegisterServices(serviceCollection);

@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using Siterm.Domain.Models;
 using Siterm.Support.Misc;
@@ -11,20 +10,21 @@ namespace Siterm.WPF.Controls
     public partial class DeviceInfoPanel : INotifyPropertyChanged
     {
         public static readonly DependencyProperty DeviceProperty = DependencyProperty.Register(
-            "Device",
+            nameof(Device),
             typeof(Device),
             typeof(DeviceInfoPanel),
             new FrameworkPropertyMetadata(
                 null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, DevicePropertyChanged)
         );
+
         public static readonly DependencyProperty NewInstructionCommandProperty = DependencyProperty.Register(
-            "NewInstructionCommand",
+            nameof(NewInstructionCommand),
             typeof(RelayCommand),
             typeof(DeviceInfoPanel)
         );
 
         public static readonly DependencyProperty NewServiceReportCommandProperty = DependencyProperty.Register(
-            "NewServiceReportCommand",
+            nameof(NewServiceReportCommand),
             typeof(RelayCommand),
             typeof(DeviceInfoPanel)
         );
@@ -43,14 +43,16 @@ namespace Siterm.WPF.Controls
 
         public RelayCommand NewInstructionCommand
         {
-            get => (RelayCommand)GetValue(NewInstructionCommandProperty);
+            get => (RelayCommand) GetValue(NewInstructionCommandProperty);
             set => SetValue(NewInstructionCommandProperty, value);
         }
+
         public RelayCommand NewServiceReportCommand
         {
-            get => (RelayCommand)GetValue(NewServiceReportCommandProperty);
+            get => (RelayCommand) GetValue(NewServiceReportCommandProperty);
             set => SetValue(NewServiceReportCommandProperty, value);
         }
+
         public bool HasDevice => !(Device is null);
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -66,7 +68,7 @@ namespace Siterm.WPF.Controls
             ((DeviceInfoPanel) d).NotifyPropertyChanged(nameof(HasDevice));
         }
 
-        private void UIElement_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        private void GridView_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             ScrollViewer.ScrollToVerticalOffset(ScrollViewer.ContentVerticalOffset - e.Delta);
             e.Handled = true;

@@ -189,8 +189,8 @@
   <data name="QuarterYearly" xml:space="preserve">
     <value>Vierteljährlich</value>
   </data>
-  <data name="SelectDevice" xml:space="preserve">
-    <value>Bitte eine Anlage rechts auswählen</value>
+  <data name="SelectDeviceMainText" xml:space="preserve">
+    <value>Wählen Sie eine Maschine aus.</value>
   </data>
   <data name="ServiceReports" xml:space="preserve">
     <value>Wartungen</value>
@@ -266,5 +266,26 @@
   </data>
   <data name="EditDeviceLabel" xml:space="preserve">
     <value>Anlage bearbeiten</value>
+  </data>
+  <data name="SelectDeviceSubText" xml:space="preserve">
+    <value>Durch die Auswahl einer Maschine in der Baumstruktur werden weitere Informationen bereitgestellt.</value>
+  </data>
+  <data name="AdditionalInformation" xml:space="preserve">
+    <value>Zusätzliche Informationen</value>
+  </data>
+  <data name="AlternativeNames" xml:space="preserve">
+    <value>Alternative Name</value>
+  </data>
+  <data name="HSentences" xml:space="preserve">
+    <value>H-Sätze</value>
+  </data>
+  <data name="PSentences" xml:space="preserve">
+    <value>P-Sätze</value>
+  </data>
+  <data name="SelectSubstanceMainText" xml:space="preserve">
+    <value>Wählen Sie einen Gefahrstoff aus.</value>
+  </data>
+  <data name="SelectSubstanceSubText" xml:space="preserve">
+    <value>Durch die Auswahl eines Gefahrstoffes in der Baumstruktur werden weitere Informationen bereitgestellt.</value>
   </data>
 </root>

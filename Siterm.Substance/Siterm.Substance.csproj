@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Siterm.Domain\Siterm.Domain.csproj" />
+    <ProjectReference Include="..\Siterm.EntityFramework\Siterm.EntityFramework.csproj" />
+    <ProjectReference Include="..\Siterm.Excel\Siterm.Excel.csproj" />
     <ProjectReference Include="..\Siterm.Support\Siterm.Support.csproj" />
   </ItemGroup>
 

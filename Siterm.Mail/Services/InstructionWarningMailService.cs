@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Hosting;
 using MimeKit;
 using Serilog;
@@ -59,7 +60,8 @@ namespace Siterm.Mail.Services
                         try
                         {
                             var message = ComposeMessage(instruction, sender, ccRecipients);
-                            await _smtpClient.SendAsync(message, stoppingToken);
+                            if (message.To.Any() || message.Cc.Any())
+                                await _smtpClient.SendAsync(message, stoppingToken);
                         }
                         catch (Exception e)
                         {
@@ -114,6 +116,7 @@ namespace Siterm.Mail.Services
 
         private async Task ConfigureClient()
         {
+            if (_smtpClient.IsConnected) return;
             var smtpServer = _settingsProvider.GetSetting(SettingName.SmtpServer).Value;
             var smtpPort = int.Parse(_settingsProvider.GetSetting(SettingName.SmtpServerPort).Value);
             var userName = _settingsProvider.GetSetting(SettingName.MailUserName).Value;

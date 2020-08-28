@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Data;
+using Castle.Core.Internal;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Siterm.WPF.Converters
 {
@@ -8,7 +12,7 @@ namespace Siterm.WPF.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is null ? "Collapsed" : "Visible";
+            return (value is null || (value is IEnumerable o && o.IsNullOrEmpty())) ? "Collapsed" : "Visible";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

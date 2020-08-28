@@ -60,6 +60,8 @@ namespace Siterm.Settings.Models
         FirstResponderInfoFile,
         SubstancePath,
         FacilityPath,
+        PFile,
+        HFile,
         InstructionFolderName,
         InstructionArchiveFolderName,
         ServiceReportFolderName,

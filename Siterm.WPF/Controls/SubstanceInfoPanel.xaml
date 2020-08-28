@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="Siterm.WPF.Controls.SubstanceInfoPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Siterm.WPF.Controls"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:wpf="clr-namespace:Siterm.WPF"
+             xmlns:converters="clr-namespace:Siterm.WPF.Converters"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:NullToCollapsedConverter x:Key="NullToCollapsedConverter" />
+        <converters:ArrayToCommaStringConverter x:Key="ArrayToCommaStringConverter" />
+    </UserControl.Resources>
+    <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <local:InfoTextPanel VerticalAlignment="Top"
+                                 mah:VisibilityHelper.IsCollapsed="{Binding Path=HasSubstance, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}}"
+                                 MainText="{x:Static wpf:UiStrings.SelectSubstanceMainText}"
+                                 SubText="{x:Static wpf:UiStrings.SelectSubstanceSubText}" />
+
+            <StackPanel Grid.IsSharedSizeScope="True"
+                        mah:VisibilityHelper.IsVisible="{Binding Path=HasSubstance, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}}">
+                <local:InfoTextBlock
+                    Visibility="{Binding  SubstanceInfo.HSentences, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}, Converter={StaticResource NullToCollapsedConverter}}"
+                    Text="{Binding Substance.Name, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}}" />
+                <ItemsControl
+                    ItemsSource="{Binding  SubstanceInfo.IconPaths, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}}"
+                    Visibility="{Binding  SubstanceInfo.IconPaths, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}, Converter={StaticResource NullToCollapsedConverter}}"
+                    Margin="10">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Image
+                                Source="{Binding .}"
+                                MaxWidth="100" MinWidth="30" Margin="2.5" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <local:InfoTextBlock Text="{x:Static wpf:UiStrings.HSentences}"
+                                     Visibility="{Binding  SubstanceInfo.HSentences, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}, Converter={StaticResource NullToCollapsedConverter}}" />
+                <ItemsControl
+                    ItemsSource="{Binding  SubstanceInfo.HSentences, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}}"
+                    Visibility="{Binding  SubstanceInfo.HSentences, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}, Converter={StaticResource NullToCollapsedConverter}}"
+                    Margin="10" FontSize="14">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="CodeCol" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Name}" Padding="0,0,30,0" />
+                                <TextBlock Grid.Column="1" Text="{Binding Sentence}" FontWeight="SemiBold"
+                                           TextWrapping="Wrap" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <local:InfoTextBlock Text="{x:Static wpf:UiStrings.PSentences}"
+                                     Visibility="{Binding  SubstanceInfo.PSentences, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}, Converter={StaticResource NullToCollapsedConverter}}" />
+                <ItemsControl
+                    ItemsSource="{Binding  SubstanceInfo.PSentences, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}}"
+                    Visibility="{Binding  SubstanceInfo.PSentences, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}, Converter={StaticResource NullToCollapsedConverter}}"
+                    Margin="10" FontSize="14">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="CodeCol" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Name}" Padding="0,0,30,0" />
+                                <TextBlock Grid.Column="1" Text="{Binding Sentence}" FontWeight="SemiBold"
+                                           TextWrapping="Wrap" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <local:InfoTextBlock Text="{x:Static wpf:UiStrings.AdditionalInformation}"
+                                     Visibility="{Binding  SubstanceInfo.AdditionalInfos, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}, Converter={StaticResource NullToCollapsedConverter}}" />
+                <Grid Margin="10" Visibility="{Binding  SubstanceInfo.AlternativeNames, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}, Converter={StaticResource NullToCollapsedConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="InfoCol" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{x:Static wpf:UiStrings.AlternativeNames}" Padding="0,0,30,0" FontSize="14" />
+                    <TextBlock Grid.Column="1"
+                       Text="{Binding SubstanceInfo.AlternativeNames, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}, Converter={StaticResource ArrayToCommaStringConverter}}"
+                       FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" />
+                </Grid>
+                <ItemsControl
+                    ItemsSource="{Binding  SubstanceInfo.AdditionalInfos, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SubstanceInfoPanel}}}"
+                    Margin="10" FontSize="14">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="InfoCol" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Key}" Padding="0,0,30,0" />
+                                <TextBlock Grid.Column="1" Text="{Binding Value}" FontWeight="SemiBold"
+                                           TextWrapping="Wrap" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

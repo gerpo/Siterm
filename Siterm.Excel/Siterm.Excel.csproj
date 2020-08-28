@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Siterm.Domain\Siterm.Domain.csproj" />
+    <ProjectReference Include="..\Siterm.Settings\Siterm.Settings.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Siterm.Domain.Models;
@@ -13,16 +14,19 @@ namespace Siterm.WPF.ViewModels
     {
         private readonly DeviceDataService _deviceDataService;
         private readonly ServiceReportDraftFactory _serviceReportDraftFactory;
+        private readonly UserDataService _userDataService;
 
         private ObservableCollection<Device> _deviceList;
         
         private ServiceReportDraft _serviceReportDraft;
+        private IEnumerable<string> _userEmailList;
 
         public CreateServiceReportViewModel(DeviceDataService deviceDataService,
-            ServiceReportDraftFactory serviceReportDraftFactory)
+            ServiceReportDraftFactory serviceReportDraftFactory, UserDataService userDataService)
         {
             _deviceDataService = deviceDataService;
             _serviceReportDraftFactory = serviceReportDraftFactory;
+            _userDataService = userDataService;
         }
 
         public ObservableCollection<Device> DeviceList
@@ -30,7 +34,13 @@ namespace Siterm.WPF.ViewModels
             get => _deviceList;
             set => SetField(ref _deviceList, value);
         }
-        
+
+        public IEnumerable<string> UserEmailList
+        {
+            get => _userEmailList;
+            set => SetField(ref _userEmailList, value);
+        }
+
         public ServiceReportDraft ServiceReportDraft
         {
             get => _serviceReportDraft ??= _serviceReportDraftFactory.CreateServiceReportDraft();
@@ -45,6 +55,11 @@ namespace Siterm.WPF.ViewModels
                 return;
 
             ServiceReportDraft.Device = DeviceList.FirstOrDefault(d => d.Id == requestedDeviceId);
+        }
+
+        public async Task FetchUsers()
+        {
+            UserEmailList = await _userDataService.GetAllEmails();
         }
     }
 }
