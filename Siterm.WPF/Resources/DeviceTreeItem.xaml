@@ -1,13 +1,15 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:converters="clr-namespace:Siterm.Support.Converters;assembly=Siterm.Support"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:models="clr-namespace:Siterm.Facility.Models;assembly=Siterm.Facility"
     xmlns:resources="clr-namespace:Siterm.WPF"
-    xmlns:viewModels="clr-namespace:Siterm.WPF.ViewModels"
-    xmlns:views="clr-namespace:Siterm.WPF.Views">
+    xmlns:system="clr-namespace:System;assembly=System.Runtime">
     <HierarchicalDataTemplate DataType="{x:Type models:DeviceTreeViewItem}" ItemsSource="{Binding Children}">
+        <HierarchicalDataTemplate.Resources>
+            <converters:DebugDataBindingConverter x:Key="DebugDataBindingConverter" />
+        </HierarchicalDataTemplate.Resources>
         <StackPanel
             x:Name="DeviceTreeItem"
             Orientation="Horizontal"
@@ -19,10 +21,10 @@
                 Kind="Wrench" />
             <TextBlock Text="{Binding Model.Name}" />
             <StackPanel.ContextMenu>
-                <ContextMenu DataContext="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                <ContextMenu>
                     <MenuItem
-                        Command="{Binding EditDeviceCommand}"
-                        CommandParameter="{Binding Path=DataContext.Model.Id, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}}"
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.Tag.EditDeviceCommand}"
+                        CommandParameter="{Binding Model.Id}"
                         Header="{x:Static resources:UiStrings.EditDeviceLabel}" />
                 </ContextMenu>
             </StackPanel.ContextMenu>

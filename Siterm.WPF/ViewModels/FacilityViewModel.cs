@@ -55,7 +55,7 @@ namespace Siterm.WPF.ViewModels
         {
             get
             {
-                if (_facilityCollectionView is null) FetchFacilities().ConfigureAwait(false);
+                if (_facilityCollectionView is null) FetchFacilities();
 
                 return _facilityCollectionView;
             }
@@ -126,7 +126,7 @@ namespace Siterm.WPF.ViewModels
 
         private async void OpenEditDeviceWindow(object o)
         {
-            await _navigationService.ShowDialogAsync<EditDeviceView>();
+            await _navigationService.ShowDialogAsync<EditDeviceView>(o);
         }
 
         private async void RefetchFacilities(object o)

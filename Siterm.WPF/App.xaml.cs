@@ -31,7 +31,7 @@ namespace Siterm.WPF
 
         protected override void OnExit(ExitEventArgs e)
         {
-            _host.StopAsync();
+            _host?.StopAsync();
             _host?.Dispose();
 
             base.OnExit(e);

@@ -7,6 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:Siterm.WPF.ViewModels"
     xmlns:wpf="clr-namespace:Siterm.WPF"
+    xmlns:controlModels="clr-namespace:Siterm.Support.ControlModels;assembly=Siterm.Support"
+    xmlns:controls="clr-namespace:Siterm.Settings.Controls;assembly=Siterm.Settings"
     d:DataContext="{d:DesignInstance viewModels:EditDeviceViewModel}"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -38,11 +40,10 @@
             Margin="0,0,10,0"
             VerticalAlignment="Center"
             Text="{x:Static wpf:UiStrings.Path}" />
-        <TextBox
+        <controls:FolderSelector
             Grid.Row="1"
             Grid.Column="1"
-            Margin="5,2"
-            Text="{Binding Device.Path}" />
+            Margin="5,2" Path="{Binding Device.Path}" />
 
         <TextBlock
             Grid.Row="2"

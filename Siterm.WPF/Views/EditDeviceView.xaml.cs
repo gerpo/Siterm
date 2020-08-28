@@ -17,7 +17,7 @@ namespace Siterm.WPF.Views
         public async Task ActivateAsync(object parameter)
         {
             var requestedDeviceId = parameter is int i ? i : -1;
-            //await ((EditDeviceViewModel) DataContext).FetchDevices(requestedDeviceId);
+            await ((EditDeviceViewModel) DataContext).FetchDevice(requestedDeviceId);
             //await ((CreateServiceReportViewModel) DataContext).FetchUsers();
 
             ((EditDeviceViewModel) DataContext).ClosingRequest += OnClosingRequest;
