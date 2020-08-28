@@ -1,12 +1,10 @@
 ﻿using System.Threading.Tasks;
-using MahApps.Metro.Controls;
 using Siterm.Support.Misc;
-using Siterm.WPF.State.Navigators;
 using Siterm.WPF.ViewModels;
 
 namespace Siterm.WPF
 {
-    public partial class MainWindow : MetroWindow, IActivable
+    public partial class MainWindow : IActivable
     {
         public MainWindow(MainViewModel viewModel)
         {

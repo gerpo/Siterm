@@ -2,9 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Accessibility;
 using MahApps.Metro.Controls.Dialogs;
-using Org.BouncyCastle.Cms;
 using Siterm.Domain.Models;
 using Siterm.EntityFramework.Services;
 using Siterm.Instructions.Models;
@@ -23,9 +21,9 @@ namespace Siterm.WPF.ViewModels
     {
         private readonly DeviceDataService _deviceDataService;
         private readonly IDialogCoordinator _dialogCoordinator;
+        private readonly InstructionService _instructionService;
         private readonly SimpleNavigationService _navigationService;
         private readonly SignatureService _signatureService;
-        private readonly InstructionService _instructionService;
         private readonly UserDataService _userDataService;
         private ObservableCollection<Device> _deviceList;
 
@@ -45,7 +43,7 @@ namespace Siterm.WPF.ViewModels
             _instructionService = instructionService;
             _dialogCoordinator = dialogCoordinator;
             _navigationService = navigationService;
-            
+
             CreateInstructionCommand = new RelayCommand(CreateInstruction);
         }
 
@@ -102,7 +100,7 @@ namespace Siterm.WPF.ViewModels
             SentClosingRequest();
         }
 
-        private async  void FullRefreshDevice()
+        private async void FullRefreshDevice()
         {
             InstructionDraft.Device = await _deviceDataService.GetFull(InstructionDraft.Device.Id);
         }

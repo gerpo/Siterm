@@ -1,12 +1,12 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Threading.Tasks;
-using MahApps.Metro.Controls;
 using Siterm.Support.Misc;
 using Siterm.WPF.ViewModels;
 
 namespace Siterm.WPF.Views
 {
-    public partial class CreateServiceReportView : MetroWindow, IActivable
+    public partial class CreateServiceReportView : IActivable
     {
         public CreateServiceReportView(CreateServiceReportViewModel viewModel)
         {

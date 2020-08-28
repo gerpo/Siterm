@@ -1,18 +1,17 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Threading.Tasks;
-using MahApps.Metro.Controls;
 using Siterm.Support.Misc;
 using Siterm.WPF.ViewModels;
 
 namespace Siterm.WPF.Views
 {
-    public partial class CreateInstructionView : MetroWindow, IActivable
+    public partial class CreateInstructionView : IActivable
     {
         public CreateInstructionView(CreateInstructionViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
-            
         }
 
         public async Task ActivateAsync(object parameter)
@@ -21,9 +20,7 @@ namespace Siterm.WPF.Views
             await ((CreateInstructionViewModel) DataContext).FetchDevices(requestedDeviceId);
             await ((CreateInstructionViewModel) DataContext).FetchUsers();
 
-            ((CreateInstructionViewModel)DataContext).ClosingRequest += OnClosingRequest;
-
-            return;
+            ((CreateInstructionViewModel) DataContext).ClosingRequest += OnClosingRequest;
         }
 
         private void OnClosingRequest(object? sender, EventArgs e)
@@ -31,4 +28,4 @@ namespace Siterm.WPF.Views
             Close();
         }
     }
-}   
+}

@@ -7,10 +7,7 @@ using System.Windows.Controls;
 
 namespace Siterm.WPF.Controls
 {
-    /// <summary>
-    ///     Interaktionslogik für AutoCompleteTextBox.xaml
-    /// </summary>
-    public partial class AutoCompleteTextBox : UserControl, INotifyPropertyChanged
+    public partial class AutoCompleteTextBox : INotifyPropertyChanged
     {
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
             "Text",
@@ -43,15 +40,16 @@ namespace Siterm.WPF.Controls
             get => (string) GetValue(TextProperty);
             set => SetValue(TextProperty, value);
         }
+
         public string Placeholder
         {
-            get => (string)GetValue(PlaceholderProperty);
+            get => (string) GetValue(PlaceholderProperty);
             set => SetValue(PlaceholderProperty, value);
         }
 
         public IEnumerable<string> SuggestionList
         {
-            get => (IEnumerable<string>)GetValue(SuggestionListProperty);
+            get => (IEnumerable<string>) GetValue(SuggestionListProperty);
             set => SetValue(SuggestionListProperty, value);
         }
 

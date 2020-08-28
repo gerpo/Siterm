@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
 using Siterm.Domain.Models;
 using Siterm.Support.Misc;
 
 namespace Siterm.WPF.Controls
 {
-    public partial class DeviceInfoPanel : UserControl, INotifyPropertyChanged
+    public partial class DeviceInfoPanel : INotifyPropertyChanged
     {
         public static readonly DependencyProperty DeviceProperty = DependencyProperty.Register(
             "Device",

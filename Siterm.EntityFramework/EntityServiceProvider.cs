@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Siterm.Domain.Models;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Siterm.EntityFramework.Services;
 
 namespace Siterm.EntityFramework

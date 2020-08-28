@@ -94,6 +94,9 @@ namespace Siterm.EntityFramework.Migrations
                     b.Property<bool>("IsArchived")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("NotificationSent")
+                        .HasColumnType("bit");
+
                     b.Property<string>("OldInstructedString")
                         .HasColumnType("text");
 
@@ -122,6 +125,9 @@ namespace Siterm.EntityFramework.Migrations
 
                     b.Property<int>("DeviceId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("NotificationSent")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Path")
                         .HasColumnType("text");

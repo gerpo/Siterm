@@ -1,11 +1,10 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using Siterm.Facility.Models;
 using Siterm.WPF.ViewModels;
 
 namespace Siterm.WPF.Views
 {
-    public partial class FacilityView : UserControl
+    public partial class FacilityView
     {
         public FacilityView()
         {
@@ -17,7 +16,7 @@ namespace Siterm.WPF.Views
             var selectedItem = FacilityTreeView.SelectedItem;
 
             if (selectedItem is DeviceTreeViewItem deviceTreeViewItem)
-                ((FacilityViewModel)DataContext).SelectedDeviceChanged(deviceTreeViewItem.Model);
+                ((FacilityViewModel) DataContext).SelectedDeviceChanged(deviceTreeViewItem.Model);
         }
     }
 }

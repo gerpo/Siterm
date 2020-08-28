@@ -41,12 +41,20 @@ namespace Siterm.Settings.Models
         MultiFolder,
         FolderFilter,
         String,
+        StringOptional,
         Int,
+        Password,
     }
 
     public enum SettingName
     {
         DatabaseConnectionString,
+        SmtpServer,
+        SmtpServerPort,
+        MailUserName,
+        MailPassword,
+        MailSenderAddress,
+        CCEmailAddresses,
         MainPath,
         FirstResponderExcelFile,
         FirstResponderInfoFile,

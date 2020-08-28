@@ -8,16 +8,15 @@ using Siterm.ServiceReports.Models;
 using Siterm.Settings.Models;
 using Siterm.Settings.Services;
 using Siterm.Support.Misc;
+
 namespace Siterm.ServiceReports.Services
 {
     public class ServiceReportService
     {
-        private readonly SettingsProvider _settingsProvider;
-        private string _serviceReportFolderName;
+        private readonly string _serviceReportFolderName;
 
         public ServiceReportService(SettingsProvider settingsProvider)
         {
-            _settingsProvider = settingsProvider;
             _serviceReportFolderName = settingsProvider.GetSetting(SettingName.ServiceReportFolderName).Value;
         }
 
@@ -28,7 +27,7 @@ namespace Siterm.ServiceReports.Services
             if (!serviceReportFolderInfo.Exists) return null;
 
             var possibleServiceTemplates = serviceReportFolderInfo.GetFiles();
-            
+
             return possibleServiceTemplates.Where(IsServiceTemplate).Select(CreateServiceReportTemplate);
         }
 
@@ -47,9 +46,11 @@ namespace Siterm.ServiceReports.Services
             var validity = fileInfo.Name.Split('_')[1].Split('.')[0];
             return ServiceReport.StringValidityMap[validity];
         }
+
         private bool IsServiceTemplate(FileInfo pathInfo)
         {
-            return pathInfo.Exists && pathInfo.Directory != null && pathInfo.Directory.FullName.EndsWith(_serviceReportFolderName, StringComparison.CurrentCulture) &&
+            return pathInfo.Exists && pathInfo.Directory != null &&
+                   pathInfo.Directory.FullName.EndsWith(_serviceReportFolderName, StringComparison.CurrentCulture) &&
                    pathInfo.Name.Split('_').Length == 2 && Helper.IsExcel(pathInfo);
         }
     }

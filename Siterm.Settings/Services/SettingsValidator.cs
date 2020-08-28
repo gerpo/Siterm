@@ -63,12 +63,24 @@ namespace Siterm.Settings.Services
                     ValueMustBeNotNullOrEmpty(setting);
                     break;
                 case SettingType.Int:
+                    ValueMustBeInt(setting);
+                    break;
+                case SettingType.Password:
+                    ValueMustBeNotNullOrEmpty(setting);
+                    break;
+                case SettingType.StringOptional:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
             return IsValid();
+        }
+
+        private void ValueMustBeInt(Setting setting)
+        {
+            if (!int.TryParse(setting.Value, out _))
+                _validationErrors.Add(new SettingValidationError(setting, ValidationMessages.ValueMustBeInt));
         }
 
         private void ValueMustBeNotNullOrEmpty(Setting setting)

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MailKit.Net.Smtp;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Siterm.Mail.Services;
 
 namespace Siterm.Mail
 {
@@ -10,10 +8,9 @@ namespace Siterm.Mail
     {
         public static void RegisterServices(IServiceCollection services)
         {
-            Host.CreateDefaultBuilder().UseWindowsService().ConfigureServices((hostContext, services) =>
-            {
-                services.AddHostedService<MailBackgroundTask>();
-            });
+            services.AddTransient<SmtpClient>();
+            services.AddHostedService<InstructionWarningMailService>();
+            services.AddHostedService<ServiceReportWarningMailService>();
         }
     }
 }

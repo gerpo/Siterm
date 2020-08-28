@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -99,11 +97,6 @@ namespace Siterm.WPF.ViewModels
             IsLoadingSubstances = false;
         }
 
-        private async void RefetchSubstances(object o)
-        {
-            await FetchSubstances();
-        }
-
         private void ItemWasDoubleClicked(object obj)
         {
             if (!(obj is TreeView substanceTreeView)) return;
@@ -112,5 +105,9 @@ namespace Siterm.WPF.ViewModels
             file.Open();
         }
 
+        private async void RefetchSubstances(object o)
+        {
+            await FetchSubstances();
+        }
     }
 }

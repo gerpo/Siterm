@@ -13,6 +13,7 @@
     <ProjectReference Include="..\Siterm.Excel\Siterm.Excel.csproj" />
     <ProjectReference Include="..\Siterm.Facility\Siterm.Facility.csproj" />
     <ProjectReference Include="..\Siterm.Instructions\Siterm.Instructions.csproj" />
+    <ProjectReference Include="..\Siterm.Mail\Siterm.Mail.csproj" />
     <ProjectReference Include="..\Siterm.ServiceReports\Siterm.ServiceReports.csproj" />
     <ProjectReference Include="..\Siterm.Settings\Siterm.Settings.csproj" />
     <ProjectReference Include="..\Siterm.Signature\Siterm.Signature.csproj" />
@@ -24,6 +25,8 @@
     <PackageReference Include="MahApps.Metro" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.7" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="3.1.7" />
   </ItemGroup>
 
   <ItemGroup>

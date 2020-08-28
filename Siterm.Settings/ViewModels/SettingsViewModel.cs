@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using Siterm.Settings.Models;
 using Siterm.Settings.Resources;
 using Siterm.Settings.Services;
@@ -41,6 +42,9 @@ namespace Siterm.Settings.ViewModels
         {
             var t = await _settingsWriter.TrySavingSettings(Settings);
             ValidationErrors = t.Count > 0 ? t : null;
+
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
         }
     }
 }

@@ -258,4 +258,13 @@
   <data name="IsDone" xml:space="preserve">
     <value>Geprüft</value>
   </data>
+  <data name="Chief" xml:space="preserve">
+    <value>Verantwortlicher</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Pfad</value>
+  </data>
+  <data name="EditDeviceLabel" xml:space="preserve">
+    <value>Anlage bearbeiten</value>
+  </data>
 </root>

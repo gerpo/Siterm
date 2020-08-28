@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Text;
 using OfficeOpenXml;
 using Siterm.Domain.Models;
 
@@ -37,14 +35,13 @@ namespace Siterm.Excel.Services
                 var nextTraining = worksheet.Cells[row, 5].Text;
 
                 collection.Add(new FirstResponder(name, facility, phone, lastTraining, nextTraining));
-                
+
                 row++;
                 if (string.IsNullOrEmpty(worksheet.Cells[row, 1].Text)) break;
             }
 
             return collection;
         }
-
     }
 
     public class ExcelFileDoesNotExist : Exception

@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
-using UserControl = System.Windows.Controls.UserControl;
 
 namespace Siterm.Settings.Controls
 {
-    public partial class FileSelector : UserControl, INotifyPropertyChanged
+    public partial class FileSelector : INotifyPropertyChanged
     {
         public static DependencyProperty PlaceholderProperty =
             DependencyProperty.Register("Placeholder", typeof(string), typeof(FileSelector),

@@ -88,6 +88,15 @@ namespace Siterm.WPF {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Verantwortlicher ähnelt.
+        /// </summary>
+        public static string Chief {
+            get {
+                return ResourceManager.GetString("Chief", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Kommentar ähnelt.
         /// </summary>
         public static string Comment {
@@ -129,6 +138,15 @@ namespace Siterm.WPF {
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Anlage bearbeiten ähnelt.
+        /// </summary>
+        public static string EditDeviceLabel {
+            get {
+                return ResourceManager.GetString("EditDeviceLabel", resourceCulture);
             }
         }
         
@@ -354,6 +372,15 @@ namespace Siterm.WPF {
         public static string NoSignaturePadExceptionTitle {
             get {
                 return ResourceManager.GetString("NoSignaturePadExceptionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pfad ähnelt.
+        /// </summary>
+        public static string Path {
+            get {
+                return ResourceManager.GetString("Path", resourceCulture);
             }
         }
         

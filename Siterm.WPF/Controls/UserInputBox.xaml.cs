@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Siterm.Domain.Models;
 using Siterm.Instructions.Models;
 using Siterm.Support.Misc;
 
 namespace Siterm.WPF.Controls
 {
-    public partial class UserInputBox : UserControl
+    public partial class UserInputBox
     {
         public static readonly DependencyProperty UserDraftProperty = DependencyProperty.Register(
             nameof(UserDraft),
@@ -36,8 +35,38 @@ namespace Siterm.WPF.Controls
 
         public IEnumerable<string> UserEmailList
         {
-            get => (IEnumerable<string>)GetValue(UserEmailListProperty);
+            get => (IEnumerable<string>) GetValue(UserEmailListProperty);
             set => SetValue(UserEmailListProperty, value);
+        }
+
+        private void ActivateUserInput()
+        {
+            UserFirstName.IsEnabled = true;
+            UserLastName.IsEnabled = true;
+        }
+
+        private void ClearUser()
+        {
+            UserFirstName.Text = string.Empty;
+            UserLastName.Text = string.Empty;
+        }
+
+        private void DeactivateUserInput()
+        {
+            UserFirstName.IsEnabled = false;
+            UserLastName.IsEnabled = false;
+        }
+
+        private void FillUserForHome(string inputText)
+        {
+            var cleanText = inputText.Trim().Split(new[] {"@", "@"}, StringSplitOptions.RemoveEmptyEntries)[0];
+            var nameSplit = cleanText.Split('.');
+
+            UserDraft.Email = $"{cleanText}@{UiStrings.HomeEmailEnding}";
+
+            if (nameSplit.Length < 2) return;
+            UserDraft.FirstName = nameSplit[0];
+            UserDraft.LastName = nameSplit[1];
         }
 
         private void OnTextChanged(object sender, TextChangedEventArgs e)
@@ -64,24 +93,6 @@ namespace Siterm.WPF.Controls
             }
         }
 
-        private void DeactivateUserInput()
-        {
-            UserFirstName.IsEnabled = false;
-            UserLastName.IsEnabled = false;
-        }
-
-        private void ActivateUserInput()
-        {
-            UserFirstName.IsEnabled = true;
-            UserLastName.IsEnabled = true;
-        }
-
-        private void ClearUser()
-        {
-            UserFirstName.Text = string.Empty;
-            UserLastName.Text = string.Empty;
-        }
-
         private void TryFillUser(string inputText)
         {
             ActivateUserInput();
@@ -98,18 +109,6 @@ namespace Siterm.WPF.Controls
                     UserLastName.Text = nameSplit[1];
                     break;
             }
-        }
-
-        private void FillUserForHome(string inputText)
-        {
-            var cleanText = inputText.Trim().Split(new[] { "@", "@" }, StringSplitOptions.RemoveEmptyEntries)[0];
-            var nameSplit = cleanText.Split('.');
-
-            UserDraft.Email = $"{cleanText}@{UiStrings.HomeEmailEnding}";
-
-            if (nameSplit.Length < 2) return;
-            UserDraft.FirstName = nameSplit[0];
-            UserDraft.LastName = nameSplit[1];
         }
     }
 }

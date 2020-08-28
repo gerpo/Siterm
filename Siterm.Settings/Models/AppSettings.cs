@@ -3,6 +3,12 @@
     public class AppSettings
     {
         public string DatabaseConnectionString { get; set; }
+        public string SmtpServer { get; set; }
+        public string SmtpServerPort { get; set; }
+        public string MailUserName { get; set; }
+        public string MailPassword { get; set; }
+        public string MailSenderAddress { get; set; }
+        public string CCEmailAddresses { get; set; }
         public string MainPath { get; set; }
         public string HomeInfoFile { get; set; }
         public string FirstResponderExcelFile { get; set; }

@@ -126,4 +126,7 @@
   <data name="IsNullOrEmpty" xml:space="preserve">
     <value>Der Wert ist nicht gesetzt. Eingabe darf nicht leer sein oder die Länge 0 haben.</value>
   </data>
+  <data name="ValueMustBeInt" xml:space="preserve">
+    <value>Der Wert muss ganzahlig sein.</value>
+  </data>
 </root>

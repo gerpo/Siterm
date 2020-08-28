@@ -1,0 +1,26 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:models="clr-namespace:Siterm.Facility.Models;assembly=Siterm.Facility"
+    xmlns:resources="clr-namespace:Siterm.WPF"
+    xmlns:views="clr-namespace:Siterm.WPF.Views">
+    <HierarchicalDataTemplate DataType="{x:Type models:DeviceTreeViewItem}" ItemsSource="{Binding Children}">
+        <StackPanel Orientation="Horizontal">
+            <iconPacks:PackIconMaterial
+                x:Name="icon"
+                Margin="0,0,5,0"
+                VerticalAlignment="Center"
+                Kind="Wrench" />
+            <TextBlock Text="{Binding Model.Name}" />
+            <StackPanel.ContextMenu>
+                <ContextMenu>
+                    <MenuItem
+                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type views:FacilityView}}, Path=DataContext.EditDeviceCommand}"
+                        CommandParameter="{Binding Model.Id}"
+                        Header="{x:Static resources:UiStrings.EditDeviceLabel}" />
+                </ContextMenu>
+            </StackPanel.ContextMenu>
+        </StackPanel>
+    </HierarchicalDataTemplate>
+</ResourceDictionary>

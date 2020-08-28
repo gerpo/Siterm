@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Siterm.DatabaseInitialization.Services
 {
@@ -20,10 +18,7 @@ namespace Siterm.DatabaseInitialization.Services
 
             var orderedItems = _pipelineItems.OrderBy(i => i.Order);
 
-            foreach (var pipelineItem in orderedItems)
-            {
-                pipelineItem.Execute();
-            }
+            foreach (var pipelineItem in orderedItems) pipelineItem.Execute();
         }
     }
 }

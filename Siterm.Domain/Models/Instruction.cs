@@ -14,19 +14,18 @@ namespace Siterm.Domain.Models
         public string ForbiddenActivities { get; set; }
         public DateTime ValidTill => CreatedAt.AddYears(1);
         public bool IsArchived { get; set; }
-
-        public string OldInstructedFirstName => OldInstructedString?.Split(' ').Length > 1
-            ? OldInstructedString?.Split(' ')[0]
-            : string.Empty;
-
-        public string OldInstructedLastName => OldInstructedString?.Split(' ').Length > 1
-            ? OldInstructedString?.Split(' ')[1]
-            : OldInstructedString?.Split(' ')[0];
-
+        public bool NotificationSent { get; set; }
         public int DeviceId { get; set; }
         public int? InstructorId { get; set; }
         public int? InstructedId { get; set; }
 
+
+        public string OldInstructedFirstName => OldInstructedString?.Split(' ').Length > 1
+            ? OldInstructedString?.Split(' ')[0]
+            : string.Empty;
+        public string OldInstructedLastName => OldInstructedString?.Split(' ').Length > 1
+            ? OldInstructedString?.Split(' ')[1]
+            : OldInstructedString?.Split(' ')[0];
         public bool HasWarning => ValidTill < DateTime.Today.AddDays(-14);
         public bool IsInvalid => ValidTill <= DateTime.Today;
     }

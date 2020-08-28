@@ -1,9 +1,8 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 
 namespace Siterm.WPF.Controls
 {
-    public partial class InfoTextPanel : UserControl
+    public partial class InfoTextPanel
     {
         public static readonly DependencyProperty MainTextProperty =
             DependencyProperty.Register(nameof(MainText), typeof(string), typeof(InfoTextPanel),

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Controls;
@@ -6,7 +7,7 @@ using Siterm.Domain.Models;
 
 namespace Siterm.WPF.Views
 {
-    public partial class FirstAidView : UserControl
+    public partial class FirstAidView
     {
         public FirstAidView()
         {
@@ -16,7 +17,8 @@ namespace Siterm.WPF.Views
         private void DataGrid_OnAutoGeneratingColumn(object? sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.PropertyType == typeof(DateTime))
-                ((DataGridTextColumn) e.Column).Binding.StringFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
+                ((DataGridTextColumn) e.Column).Binding.StringFormat =
+                    CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
 
             switch (e.PropertyName)
             {

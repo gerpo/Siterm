@@ -14,6 +14,12 @@ namespace Siterm.Settings.Services
             new Dictionary<SettingName, SettingType>
             {
                 {SettingName.DatabaseConnectionString, SettingType.String},
+                {SettingName.SmtpServer, SettingType.String},
+                {SettingName.SmtpServerPort, SettingType.Int},
+                {SettingName.MailUserName, SettingType.String},
+                {SettingName.MailPassword, SettingType.Password},
+                {SettingName.MailSenderAddress, SettingType.String},
+                {SettingName.CCEmailAddresses, SettingType.StringOptional},
                 {SettingName.MainPath, SettingType.Folder},
                 {SettingName.HomeInfoFile, SettingType.File},
                 {SettingName.FirstResponderExcelFile, SettingType.File},

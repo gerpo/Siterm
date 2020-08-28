@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
-using Siterm.Support.Misc;
-using Siterm.WPF.ViewModels;
+﻿using Siterm.Support.Misc;
 
 namespace Siterm.WPF.State.Navigators
 {
@@ -13,6 +8,7 @@ namespace Siterm.WPF.State.Navigators
         FirstAid,
         Device
     }
+
     public interface INavigator
     {
         BaseViewModel CurrentViewModel { get; set; }

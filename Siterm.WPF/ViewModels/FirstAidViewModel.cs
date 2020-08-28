@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Documents;
 using Siterm.Domain.Models;
 using Siterm.Excel.Services;
@@ -12,12 +11,8 @@ namespace Siterm.WPF.ViewModels
 {
     public class FirstAidViewModel : BaseViewModel, ITabItemViewModel
     {
-        private IReadOnlyList<Setting> _settings;
-
         public FirstAidViewModel(SettingsProvider settingsProvider, RtfToFlowConverter rtfToFlowConverter)
         {
-            _settings = settingsProvider.GetAllSettings();
-
             FirstAidInfoFile =
                 rtfToFlowConverter.CreateFlowDocument(settingsProvider.GetSetting(SettingName.FirstResponderInfoFile)
                     .Value);
@@ -29,9 +24,9 @@ namespace Siterm.WPF.ViewModels
 
         public ObservableCollection<FirstResponder> FirstResponders { get; set; }
 
+        public FlowDocument FirstAidInfoFile { get; set; }
+
         public string Header => UiStrings.FirstAidTabHeader;
         public int Position => 2;
-
-        public FlowDocument FirstAidInfoFile { get; set; }
     }
 }

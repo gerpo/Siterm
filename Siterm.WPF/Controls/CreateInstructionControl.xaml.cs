@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using Siterm.Domain.Models;
 using Siterm.Instructions.Models;
 using Siterm.Support.Misc;
 
 namespace Siterm.WPF.Controls
 {
-    public partial class CreateInstructionControl : UserControl
+    public partial class CreateInstructionControl
     {
         public static readonly DependencyProperty DeviceListProperty = DependencyProperty.Register(
             nameof(DeviceList),
@@ -72,7 +71,7 @@ namespace Siterm.WPF.Controls
 
         public IEnumerable<string> UserEmailList
         {
-            get => (IEnumerable<string>)GetValue(UserEmailListProperty);
+            get => (IEnumerable<string>) GetValue(UserEmailListProperty);
             set => SetValue(UserEmailListProperty, value);
         }
 
@@ -102,18 +101,14 @@ namespace Siterm.WPF.Controls
 
         public InstructionDraft InstructionDraft
         {
-            get => (InstructionDraft)GetValue(InstructionDraftProperty);
+            get => (InstructionDraft) GetValue(InstructionDraftProperty);
             set => SetValue(InstructionDraftProperty, value);
         }
 
         public RelayCommand CreateInstructionCommand
         {
-            get => (RelayCommand)GetValue(CreateInstructionCommandProperty);
+            get => (RelayCommand) GetValue(CreateInstructionCommandProperty);
             set => SetValue(CreateInstructionCommandProperty, value);
-        }
-
-        private static void SelectedDevicePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
         }
 
         private void AddInstructedBtn_OnClick(object sender, RoutedEventArgs e)
@@ -126,6 +121,10 @@ namespace Siterm.WPF.Controls
         {
             if (InstructionDraft.Instructed is null || InstructionDraft.Instructed.Count <= 1) return;
             InstructionDraft.Instructed.RemoveAt(InstructionDraft.Instructed.Count - 1);
+        }
+
+        private static void SelectedDevicePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
         }
     }
 }

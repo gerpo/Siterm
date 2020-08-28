@@ -9,10 +9,13 @@ using System.Windows.Markup;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Org.BouncyCastle.Math.EC;
 using Serilog;
 using Siterm.EntityFramework;
 using Siterm.EntityFramework.Services;
 using Siterm.Instructions;
+using Siterm.Mail;
 using Siterm.ServiceReports;
 using Siterm.Settings;
 using Siterm.Settings.Models;
@@ -27,6 +30,8 @@ namespace Siterm.WPF
 {
     public partial class App : Application
     {
+        private IHost _host;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
@@ -34,7 +39,10 @@ namespace Siterm.WPF
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(
                 XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
-            var serviceProvider = CreateServiceProvider();
+            //var serviceProvider = CreateServiceProvider();
+            _host = CreateHost();
+            var serviceProvider = _host.Services;
+            _host.RunAsync();
 
             var window = serviceProvider.GetRequiredService<MainWindow>();
             window.Show();
@@ -42,44 +50,61 @@ namespace Siterm.WPF
             base.OnStartup(e);
         }
 
-        private static IServiceProvider CreateServiceProvider()
+        protected override void OnExit(ExitEventArgs e)
         {
-            var services = new ServiceCollection();
+            _host.StopAsync();
+            _host.Dispose();
 
-            RegisterLogger(services);
-            RegisterConfiguration(services);
-            services.AddScoped<SimpleNavigationService>();
-            services.AddTransient<MainWindow>();
-            services.AddTransient<IDialogCoordinator>(_ => DialogCoordinator.Instance);
-
-            SettingsServiceProvider.RegisterServices(services);
-            EntityServiceProvider.RegisterServices(services);
-            SignatureServiceProvider.RegisterServices(services);
-            InstructionsServiceProvider.RegisterServices(services);
-            ServiceReportServiceProvider.RegisterServices(services);
-
-            services.AddTransient<CreateInstructionView>();
-            services.AddTransient<CreateServiceReportView>();
-            services.AddTransient<CreateInstructionViewModel>();
-            services.AddTransient<CreateServiceReportViewModel>();
-
-            services.AddSingleton<TabViewModelCollectionFactory>();
-            services.AddTransient<RtfToFlowConverter>();
-
-            RegisterViewModels(services);
-            RegisterTabItemViewModels(services);
-
-            return services.BuildServiceProvider();
+            base.OnExit(e);
         }
 
-        private static void RegisterConfiguration(IServiceCollection services)
+        private static IHost CreateHost()
         {
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+            return Host.CreateDefaultBuilder()
+                .UseWindowsService()
+                .ConfigureAppConfiguration(RegisterConfiguration)
+                .ConfigureServices(ConfigureServices).Build();
+        }
+
+        private static void ConfigureServices(HostBuilderContext hostBuilderContext, IServiceCollection serviceCollection)
+        {
+            serviceCollection.Configure<AppSettings>(x => hostBuilderContext.Configuration.GetSection(nameof(AppSettings)).Bind(x));
+
+            RegisterLogger(serviceCollection);
+            serviceCollection.AddScoped<SimpleNavigationService>();
+            serviceCollection.AddTransient<MainWindow>();
+            serviceCollection.AddTransient(_ => DialogCoordinator.Instance);
+
+            SettingsServiceProvider.RegisterServices(serviceCollection);
+            EntityServiceProvider.RegisterServices(serviceCollection);
+            SignatureServiceProvider.RegisterServices(serviceCollection);
+            InstructionsServiceProvider.RegisterServices(serviceCollection);
+            ServiceReportServiceProvider.RegisterServices(serviceCollection);
+            MailServiceProvider.RegisterServices(serviceCollection);
+
+            serviceCollection.AddTransient<CreateInstructionView>();
+            serviceCollection.AddTransient<CreateServiceReportView>();
+            serviceCollection.AddTransient<CreateInstructionViewModel>();
+            serviceCollection.AddTransient<CreateServiceReportViewModel>();
+            
+            serviceCollection.AddTransient<EditDeviceView>();
+            serviceCollection.AddTransient<EditDeviceViewModel>();
+
+            serviceCollection.AddSingleton<TabViewModelCollectionFactory>();
+            serviceCollection.AddTransient<RtfToFlowConverter>();
+
+            RegisterViewModels(serviceCollection);
+            RegisterTabItemViewModels(serviceCollection);
+        }
+
+        private static void RegisterConfiguration(HostBuilderContext hostBuilderContext, IConfigurationBuilder configurationBuilder)
+        {
+
+            configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", false, true)
                 .Build();
 
-            services.Configure<AppSettings>(x => configuration.GetSection(nameof(AppSettings)).Bind(x));
+            //services.Configure<AppSettings>(x => configuration.GetSection(nameof(AppSettings)).Bind(x));
         }
 
         private static void RegisterLogger(IServiceCollection services)

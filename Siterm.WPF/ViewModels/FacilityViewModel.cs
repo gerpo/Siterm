@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Siterm.Domain.Models;
@@ -37,8 +36,10 @@ namespace Siterm.WPF.ViewModels
             OnItemMouseDoubleClickCommand = new RelayCommand(ItemWasDoubleClicked);
             NewInstructionCommand = new RelayCommand(CreateNewInstruction);
             NewServiceReportCommand = new RelayCommand(CreateNewServiceReport);
+            EditDeviceCommand = new RelayCommand(OpenEditDeviceWindow);
         }
 
+        public RelayCommand EditDeviceCommand { get; }
         public RelayCommand RefreshFacilitiesCommand { get; set; }
         public RelayCommand OnItemMouseDoubleClickCommand { get; }
         public RelayCommand NewInstructionCommand { get; }
@@ -58,10 +59,7 @@ namespace Siterm.WPF.ViewModels
 
                 return _facilityCollectionView;
             }
-            private set
-            {
-                SetField(ref _facilityCollectionView, value);
-            }
+            private set => SetField(ref _facilityCollectionView, value);
         }
 
         public string DeviceSearchTerm
@@ -124,6 +122,11 @@ namespace Siterm.WPF.ViewModels
             if (!(facilityTreeView.SelectedItem is File file)) return;
 
             file.Open();
+        }
+
+        private async void OpenEditDeviceWindow(object o)
+        {
+            await _navigationService.ShowDialogAsync<EditDeviceView>();
         }
 
         private async void RefetchFacilities(object o)

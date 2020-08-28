@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Siterm.ServiceReports.Models;
+﻿using Siterm.ServiceReports.Models;
 
 namespace Siterm.ServiceReports.Services
 {
@@ -13,6 +10,7 @@ namespace Siterm.ServiceReports.Services
         {
             _serviceReportService = serviceReportService;
         }
+
         public ServiceReportDraft CreateServiceReportDraft()
         {
             return new ServiceReportDraft(_serviceReportService);

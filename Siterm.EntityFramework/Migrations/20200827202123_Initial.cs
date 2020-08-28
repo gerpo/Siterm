@@ -93,6 +93,7 @@ namespace Siterm.EntityFramework.Migrations
                     AllowedActivities = table.Column<string>(nullable: true),
                     ForbiddenActivities = table.Column<string>(nullable: true),
                     IsArchived = table.Column<bool>(nullable: false),
+                    NotificationSent = table.Column<bool>(nullable: false),
                     DeviceId = table.Column<int>(nullable: false),
                     InstructorId = table.Column<int>(nullable: true),
                     InstructedId = table.Column<int>(nullable: true)
@@ -130,7 +131,8 @@ namespace Siterm.EntityFramework.Migrations
                     PerformingUserId = table.Column<int>(nullable: true),
                     DeviceId = table.Column<int>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    Validity = table.Column<int>(nullable: false)
+                    Validity = table.Column<int>(nullable: false),
+                    NotificationSent = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

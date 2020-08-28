@@ -1,39 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Drawing;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using iText.Forms;
 using iText.IO.Image;
 using iText.Kernel.Pdf;
 using iText.Layout;
+using iText.Layout.Element;
 using Serilog;
 using Siterm.Domain.Models;
 using Siterm.Instructions.Models;
-using Siterm.Settings.Annotations;
 using Siterm.Settings.Models;
 using Siterm.Settings.Services;
-using Image = iText.Layout.Element.Image;
 
 namespace Siterm.Instructions.Services
 {
     public class InstructionPdfService
     {
+        private readonly string _instructionsArchiveFolder;
         private readonly string _instructionsFolder;
         private readonly ILogger _logger;
-        private readonly SettingsProvider _settingsProvider;
         private readonly string _templateFilePath;
-        private string _instructionsArchiveFolder;
 
         public InstructionPdfService(SettingsProvider settingsProvider, ILogger logger)
         {
-            _settingsProvider = settingsProvider;
             _logger = logger;
             _templateFilePath = settingsProvider.GetSetting(SettingName.InstructionTemplateFile).Value;
             _instructionsFolder = settingsProvider.GetSetting(SettingName.InstructionFolderName).Value;
             _instructionsArchiveFolder = settingsProvider.GetSetting(SettingName.InstructionArchiveFolderName).Value;
+        }
+
+        public void ArchiveOlderInstructions(IEnumerable<Instruction> oldInstructions)
+        {
+            foreach (var oldInstruction in oldInstructions)
+            {
+                var oldFileInfo = new FileInfo(oldInstruction.Path);
+                var archivePath = Path.Combine(oldFileInfo.DirectoryName ?? string.Empty, _instructionsArchiveFolder);
+
+                if (!oldFileInfo.Exists) continue;
+                if (!Directory.Exists(archivePath)) Directory.CreateDirectory(archivePath);
+
+                oldFileInfo.MoveTo(Path.Combine(archivePath, oldFileInfo.Name), true);
+            }
         }
 
         public IList<string> CreateInstructionPdf(InstructionDraft instructionDraft)
@@ -46,7 +56,6 @@ namespace Siterm.Instructions.Services
                 select FillAndSavePdf(userDraft, instructionDraft, instructionPath)).ToList();
         }
 
-        [CanBeNull]
         private string FillAndSavePdf(UserDraft userDraft, InstructionDraft instructionDraft, string instructionPath)
         {
             try
@@ -113,20 +122,6 @@ namespace Siterm.Instructions.Services
                 .ScaleToFit(width, height).SetFixedPosition(fieldRect.GetAsNumber(0).FloatValue(),
                     fieldRect.GetAsNumber(1).FloatValue());
             return signatureImage;
-        }
-
-        public void ArchiveOlderInstructions(IEnumerable<Instruction> oldInstructions)
-        {
-            foreach (var oldInstruction in oldInstructions)
-            {
-                var oldFileInfo = new FileInfo(oldInstruction.Path);
-                var archivePath = Path.Combine(oldFileInfo.DirectoryName ?? string.Empty, _instructionsArchiveFolder);
-
-                if (!oldFileInfo.Exists) continue;
-                if (!Directory.Exists(archivePath)) Directory.CreateDirectory(archivePath);
-                
-                oldFileInfo.MoveTo(Path.Combine(archivePath, oldFileInfo.Name), true);
-            }
         }
     }
 }

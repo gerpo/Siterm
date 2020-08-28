@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using Siterm.Domain.Models;
 using Siterm.ServiceReports.Models;
 
 namespace Siterm.WPF.Controls
 {
-    public partial class CreateServiceReportControl : UserControl
+    public partial class CreateServiceReportControl
     {
         public static readonly DependencyProperty DeviceListProperty = DependencyProperty.Register(
             nameof(DeviceList),
@@ -19,6 +18,7 @@ namespace Siterm.WPF.Controls
             typeof(ServiceReportDraft),
             typeof(CreateServiceReportControl)
         );
+
         public CreateServiceReportControl()
         {
             InitializeComponent();
@@ -26,13 +26,13 @@ namespace Siterm.WPF.Controls
 
         public IEnumerable<Device> DeviceList
         {
-            get => (IEnumerable<Device>)GetValue(DeviceListProperty);
+            get => (IEnumerable<Device>) GetValue(DeviceListProperty);
             set => SetValue(DeviceListProperty, value);
         }
 
         public ServiceReportDraft ServiceReportDraft
         {
-            get => (ServiceReportDraft)GetValue(ServiceReportDraftProperty);
+            get => (ServiceReportDraft) GetValue(ServiceReportDraftProperty);
             set => SetValue(ServiceReportDraftProperty, value);
         }
     }

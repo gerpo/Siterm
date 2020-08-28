@@ -9,7 +9,7 @@ using Siterm.EntityFramework;
 namespace Siterm.EntityFramework.Migrations
 {
     [DbContext(typeof(SitermDbContext))]
-    [Migration("20200819122423_Initial")]
+    [Migration("20200827202123_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,6 +96,9 @@ namespace Siterm.EntityFramework.Migrations
                     b.Property<bool>("IsArchived")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("NotificationSent")
+                        .HasColumnType("bit");
+
                     b.Property<string>("OldInstructedString")
                         .HasColumnType("text");
 
@@ -124,6 +127,9 @@ namespace Siterm.EntityFramework.Migrations
 
                     b.Property<int>("DeviceId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("NotificationSent")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Path")
                         .HasColumnType("text");

@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using MahApps.Metro.Controls;
 using Siterm.Settings.ViewModels;
 using Siterm.Support.Misc;

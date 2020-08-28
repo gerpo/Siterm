@@ -86,5 +86,14 @@ namespace Siterm.Settings.Resources {
                 return ResourceManager.GetString("IsNullOrEmpty", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Der Wert muss ganzahlig sein. ähnelt.
+        /// </summary>
+        public static string ValueMustBeInt {
+            get {
+                return ResourceManager.GetString("ValueMustBeInt", resourceCulture);
+            }
+        }
     }
 }
