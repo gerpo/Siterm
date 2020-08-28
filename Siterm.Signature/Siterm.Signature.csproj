@@ -6,10 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Interop.wgssSTU.dll" />
     <None Remove="wgssSTU.dll" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Interop.wgssSTU.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="wgssSTU.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -29,7 +33,7 @@
 
   <ItemGroup>
     <Reference Include="Interop.wgssSTU">
-      <HintPath>D:\Dropbox (Privat)\Interop.wgssSTU.dll</HintPath>
+      <HintPath>Interop.wgssSTU.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro">
       <HintPath>..\..\..\..\.nuget\packages\mahapps.metro\2.1.1\lib\netcoreapp3.1\MahApps.Metro.dll</HintPath>
