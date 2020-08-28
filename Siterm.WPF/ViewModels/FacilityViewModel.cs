@@ -84,6 +84,8 @@ namespace Siterm.WPF.ViewModels
         public async void SelectedDeviceChanged(Device selectedDevice)
         {
             var loadedDevice = await _deviceDataService.GetFull(selectedDevice.Id);
+            loadedDevice.Instructions = loadedDevice.Instructions.OrderBy(i => i.ValidTill);
+            loadedDevice.ServiceReports = loadedDevice.ServiceReports.OrderBy(s => s.ValidTill);
             SelectedDevice = loadedDevice;
         }
 

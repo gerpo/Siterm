@@ -17,9 +17,9 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converters1:TitleCaseConverter x:Key="TitleCaseConverter" />
     </UserControl.Resources>
-    <StackPanel>
-
-        <Border
+    <ScrollViewer x:Name="ScrollViewer">
+        <StackPanel>
+            <Border
             Padding="10"
             HorizontalAlignment="Center"
             mah:VisibilityHelper.IsCollapsed="{Binding Path=HasDevice, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}}"
@@ -60,6 +60,7 @@
                 IsExpanded="True"
                 Visibility="{Binding Path=Device.HasInstructions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DeviceInfoPanel}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <DataGrid
+                    PreviewMouseWheel="UIElement_OnPreviewMouseWheel"
                     AutoGenerateColumns="False"
                     CanUserSortColumns="True"
                     IsReadOnly="True"
@@ -93,7 +94,7 @@
                                 </PriorityBinding>
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding ValidTill, StringFormat=d}" Header="{x:Static resources:UiStrings.ValidTill}" />
+                        <DataGridTextColumn Binding="{Binding ValidTill, StringFormat=d}" SortDirection="Ascending" Header="{x:Static resources:UiStrings.ValidTill}" />
                     </DataGrid.Columns>
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow" BasedOn="{StaticResource MahApps.Styles.DataGridRow}">
@@ -157,4 +158,5 @@
             </Border>
         </StackPanel>
     </StackPanel>
+    </ScrollViewer>
 </UserControl>

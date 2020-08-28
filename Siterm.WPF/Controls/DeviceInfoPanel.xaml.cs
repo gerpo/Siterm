@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
 using Siterm.Domain.Models;
 using Siterm.Support.Misc;
 
@@ -61,6 +64,12 @@ namespace Siterm.WPF.Controls
         {
             ((DeviceInfoPanel) d).NotifyPropertyChanged(nameof(Device));
             ((DeviceInfoPanel) d).NotifyPropertyChanged(nameof(HasDevice));
+        }
+
+        private void UIElement_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer.ScrollToVerticalOffset(ScrollViewer.ContentVerticalOffset - e.Delta);
+            e.Handled = true;
         }
     }
 }

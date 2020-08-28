@@ -37,6 +37,7 @@ namespace Siterm.DatabaseInitialization
             serviceProvider.GetRequiredService<SitermDbContextFactory>().CreateDbContext().Database.Migrate();
             var importerService = serviceProvider.GetRequiredService<ImporterPipeline>();
             importerService.Run();
+            Console.ReadLine();
         }
 
         private static void RegisterConfiguration(IServiceCollection services)

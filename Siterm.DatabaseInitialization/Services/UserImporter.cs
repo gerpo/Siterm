@@ -3,6 +3,7 @@ using System.Linq;
 using Siterm.Domain.Models;
 using Siterm.EntityFramework.Services;
 using Siterm.Support.Misc;
+using System.Threading.Tasks;
 
 namespace Siterm.DatabaseInitialization.Services
 {
@@ -20,7 +21,7 @@ namespace Siterm.DatabaseInitialization.Services
 
         public int Order => 5;
 
-        public async void Execute()
+        public async Task Execute()
         {
             var instructions = await _instructionDataService.Where(i => string.IsNullOrEmpty(i.OldInstructedString));
             var users = (await _userDataService.GetAll()).ToList();

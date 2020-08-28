@@ -5,6 +5,7 @@ using Siterm.Domain.Models;
 using Siterm.EntityFramework.Services;
 using Siterm.Settings.Models;
 using Siterm.Settings.Services;
+using System.Threading.Tasks;
 
 namespace Siterm.DatabaseInitialization.Services
 {
@@ -22,7 +23,7 @@ namespace Siterm.DatabaseInitialization.Services
 
         public int Order => 2;
 
-        public async void Execute()
+        public async Task Execute()
         {
             var pathInfo = new DirectoryInfo(_facilityPath);
             if (!pathInfo.Exists) return;

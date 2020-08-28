@@ -12,13 +12,13 @@ namespace Siterm.DatabaseInitialization.Services
             _pipelineItems = pipelineItems;
         }
 
-        public void Run()
+        public async void Run()
         {
             if (!_pipelineItems.Any()) return;
 
             var orderedItems = _pipelineItems.OrderBy(i => i.Order);
 
-            foreach (var pipelineItem in orderedItems) pipelineItem.Execute();
+            foreach (var pipelineItem in orderedItems) pipelineItem.Execute().Wait();
         }
     }
 }

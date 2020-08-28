@@ -7,6 +7,7 @@ using Siterm.EntityFramework.Services;
 using Siterm.Settings.Models;
 using Siterm.Settings.Services;
 using Siterm.Support.Misc;
+using System.Threading.Tasks;
 
 namespace Siterm.DatabaseInitialization.Services
 {
@@ -29,7 +30,7 @@ namespace Siterm.DatabaseInitialization.Services
 
         public int Order => 4;
 
-        public async void Execute()
+        public async Task Execute()
         {
             if (string.IsNullOrEmpty(_instructionFolderName)) return;
 

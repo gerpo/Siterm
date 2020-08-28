@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Siterm.Domain.Models;
 using Siterm.EntityFramework.Services;
+using System.Threading.Tasks;
 
 namespace Siterm.DatabaseInitialization.Services
 {
@@ -21,7 +22,7 @@ namespace Siterm.DatabaseInitialization.Services
 
         public int Order => 3;
 
-        public async void Execute()
+        public async Task Execute()
         {
             var allFacilities = await _facilityDataService.GetAll();
             var oldDevices = await _deviceDataService.GetAll();
