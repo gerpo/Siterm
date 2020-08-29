@@ -42,7 +42,7 @@ namespace Siterm.DatabaseInitialization.Services
 
             var filteredList = facilityList.Where(s => oldFacilities.All(os => os.Path != s.Path)).ToList();
 
-            _dataService.CreateAll(filteredList);
+            await _dataService.CreateAll(filteredList);
         }
     }
 }

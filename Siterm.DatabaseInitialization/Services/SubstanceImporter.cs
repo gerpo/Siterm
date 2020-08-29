@@ -38,7 +38,7 @@ namespace Siterm.DatabaseInitialization.Services
 
             var filteredList = substanceList.Where(s => oldSubstance.All(os => os.Path != s.Path)).ToList();
 
-            _dataService.CreateAll(filteredList);
+            await _dataService.CreateAll(filteredList);
 
             Report(substanceList.Count, filteredList.Count());
         }

@@ -1,23 +1,22 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
-using UserControl = System.Windows.Controls.UserControl;
 
 namespace Siterm.Settings.Controls
 {
-    public partial class FolderSelector : UserControl, INotifyPropertyChanged
+    public partial class FolderSelector : INotifyPropertyChanged
     {
         public static DependencyProperty PlaceholderProperty =
-            DependencyProperty.Register("Placeholder", typeof(string), typeof(FolderSelector),
+            DependencyProperty.Register(nameof(Placeholder), typeof(string), typeof(FolderSelector),
                 new PropertyMetadata("Folder Selector"));
 
         public static DependencyProperty PathProperty =
-            DependencyProperty.Register("Path", typeof(string), typeof(FolderSelector),
+            DependencyProperty.Register(nameof(Path), typeof(string), typeof(FolderSelector),
                 new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     PathPropertyChanged));
 
         public static DependencyProperty ButtonTextProperty =
-            DependencyProperty.Register("ButtonText", typeof(string), typeof(FolderSelector),
+            DependencyProperty.Register(nameof(ButtonText), typeof(string), typeof(FolderSelector),
                 new PropertyMetadata("..."));
 
         public FolderSelector()

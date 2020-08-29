@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Siterm.Substance.Models
+﻿namespace Siterm.Substance.Models
 {
     public class HSentence : ISentence
     {

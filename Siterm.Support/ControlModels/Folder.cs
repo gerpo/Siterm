@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Siterm.Support.Misc;
 
 namespace Siterm.Support.ControlModels
 {
@@ -28,8 +27,9 @@ namespace Siterm.Support.ControlModels
 
         private IList<FileSystemObject> GetChildren()
         {
-            var childrenList = _pathInfo.GetDirectories().Select(directoryInfo => new Folder(directoryInfo)).Cast<FileSystemObject>().ToList();
-            childrenList.AddRange(_pathInfo.GetFiles().Select(fileInfo => new File(fileInfo)).Cast<FileSystemObject>());
+            var childrenList = _pathInfo.GetDirectories().Select(directoryInfo => new Folder(directoryInfo))
+                .Cast<FileSystemObject>().ToList();
+            childrenList.AddRange(_pathInfo.GetFiles().Select(fileInfo => new File(fileInfo)));
 
             return childrenList;
         }

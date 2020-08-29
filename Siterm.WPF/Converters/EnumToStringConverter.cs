@@ -12,7 +12,7 @@ namespace Siterm.WPF.Converters
             try
             {
                 var enumString = Enum.GetName(value.GetType(), value);
-                if (enumString is null) return enumString;
+                if (enumString is null) return null;
                 return UiStrings.ResourceManager.GetString(enumString, CultureInfo.CurrentUICulture) ?? enumString;
             }
             catch

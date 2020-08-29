@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,8 +14,8 @@ namespace Siterm.WPF.ViewModels
     {
         private readonly DeviceDataService _deviceDataService;
         private readonly ServiceReportDraftFactory _serviceReportDraftFactory;
-        private readonly UserDataService _userDataService;
         private readonly ServiceReportService _serviceReportService;
+        private readonly UserDataService _userDataService;
 
         private ObservableCollection<Device> _deviceList;
 
@@ -24,7 +23,8 @@ namespace Siterm.WPF.ViewModels
         private IEnumerable<string> _userEmailList;
 
         public CreateServiceReportViewModel(DeviceDataService deviceDataService,
-            ServiceReportDraftFactory serviceReportDraftFactory, UserDataService userDataService,ServiceReportService serviceReportService)
+            ServiceReportDraftFactory serviceReportDraftFactory, UserDataService userDataService,
+            ServiceReportService serviceReportService)
         {
             _deviceDataService = deviceDataService;
             _serviceReportDraftFactory = serviceReportDraftFactory;
@@ -54,11 +54,6 @@ namespace Siterm.WPF.ViewModels
             set => SetField(ref _serviceReportDraft, value);
         }
 
-        private void CreateServiceReport(object obj)
-        {
-            _serviceReportService.CreateServiceReport(ServiceReportDraft);
-        }
-
         public async Task FetchDevices(int requestedDeviceId = -1)
         {
             DeviceList = new ObservableCollection<Device>(await _deviceDataService.GetAll());
@@ -72,6 +67,11 @@ namespace Siterm.WPF.ViewModels
         public async Task FetchUsers()
         {
             UserEmailList = await _userDataService.GetAllEmails();
+        }
+
+        private void CreateServiceReport(object obj)
+        {
+            _serviceReportService.CreateServiceReport(ServiceReportDraft);
         }
     }
 }

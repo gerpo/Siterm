@@ -4,8 +4,7 @@
     xmlns:converters="clr-namespace:Siterm.Support.Converters;assembly=Siterm.Support"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:models="clr-namespace:Siterm.Facility.Models;assembly=Siterm.Facility"
-    xmlns:resources="clr-namespace:Siterm.WPF"
-    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    xmlns:resources="clr-namespace:Siterm.WPF">
     <HierarchicalDataTemplate DataType="{x:Type models:DeviceTreeViewItem}" ItemsSource="{Binding Children}">
         <HierarchicalDataTemplate.Resources>
             <converters:DebugDataBindingConverter x:Key="DebugDataBindingConverter" />

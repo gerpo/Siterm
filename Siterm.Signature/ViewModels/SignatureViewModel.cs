@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using Siterm.Instructions.Models;
 using Siterm.Signature.Resources;
 using Siterm.Support.Misc;

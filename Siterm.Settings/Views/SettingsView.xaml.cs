@@ -1,13 +1,10 @@
-﻿using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using MahApps.Metro.Controls;
+﻿using System.Threading.Tasks;
 using Siterm.Settings.ViewModels;
 using Siterm.Support.Misc;
 
 namespace Siterm.Settings.Views
 {
-    public partial class SettingsView : MetroWindow, IActivable
+    public partial class SettingsView : IActivable
     {
         public SettingsView(SettingsViewModel viewModel)
         {

@@ -2,13 +2,17 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Reflection.Metadata.Ecma335;
 using System.Text.RegularExpressions;
 
 namespace Siterm.Support.Misc
 {
     public static class Helper
     {
+        public static bool IsExcel(FileInfo pathInfo)
+        {
+            return pathInfo.Exists && pathInfo.Extension == ".xlsx";
+        }
+
         public static bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
@@ -54,15 +58,10 @@ namespace Siterm.Support.Misc
             }
         }
 
-        public static bool IsExcel(FileInfo pathInfo)
-        {
-            return pathInfo.Exists && pathInfo.Extension == ".xlsx";
-        }
-
         public static void OpenFile(string path)
         {
-            if (string.IsNullOrEmpty(path) || !System.IO.File.Exists(path)) return;
-            Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+            if (string.IsNullOrEmpty(path) || !File.Exists(path)) return;
+            Process.Start(new ProcessStartInfo(path) {UseShellExecute = true});
         }
     }
 }

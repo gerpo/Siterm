@@ -16,11 +16,7 @@ namespace Siterm.WPF.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((string) value)?.Split(',').All(el =>
-            {
-                el.Trim();
-                return true;
-            });
+            return ((string) value)?.Split(',').All(el => !string.IsNullOrEmpty(el.Trim()));
         }
     }
 }
