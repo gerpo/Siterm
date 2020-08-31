@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
 using OfficeOpenXml;
 using Siterm.Domain.Models;
@@ -20,7 +19,7 @@ namespace Siterm.Excel.Services
 
             var fileInfo = new FileInfo(path);
 
-            if (!fileInfo.Exists) throw new ExcelFileDoesNotExist();
+            if (!fileInfo.Exists) return collection;
             using var excel = new ExcelPackage(fileInfo);
 
             var worksheet = excel.Workbook.Worksheets[0];
@@ -42,9 +41,5 @@ namespace Siterm.Excel.Services
 
             return collection;
         }
-    }
-
-    public class ExcelFileDoesNotExist : Exception
-    {
     }
 }

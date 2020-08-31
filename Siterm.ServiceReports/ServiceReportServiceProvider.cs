@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Siterm.ServiceReports.Services;
+using Siterm.Support.Misc;
 
-namespace Siterm.ServiceReports
+namespace Siterm.ServiceReports 
 {
     public static class ServiceReportServiceProvider
     {

@@ -24,7 +24,7 @@ namespace Siterm.Excel.Services
 
             var fileInfo = new FileInfo(_pSentenceFile);
 
-            if (!fileInfo.Exists) throw new ExcelFileDoesNotExist();
+            if (!fileInfo.Exists) return collection;
             using var excel = new ExcelPackage(fileInfo);
 
             var worksheet = excel.Workbook.Worksheets[0];

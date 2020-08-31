@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿#nullable enable
+using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -89,6 +91,8 @@ namespace Siterm.WPF
 
             RegisterViewModels(serviceCollection);
             RegisterTabItemViewModels(serviceCollection);
+
+            //DetectServices(serviceCollection);
         }
 
         private static IHost CreateHost()
@@ -139,6 +143,19 @@ namespace Siterm.WPF
             if (viewModels is null) return;
 
             foreach (var viewModel in viewModels) services.AddScoped(viewModel);
+        }
+
+        private static void DetectServices(IServiceCollection services)
+        {
+            var a = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a =>
+                a.GetTypes().Where(t => t.IsClass && t.IsAbstract && t.IsSealed && t.Name.EndsWith("ServiceProvider")));
+
+            foreach (var type in a)
+            {
+                var method = type.GetMethod("RegisterServices", BindingFlags.Public | BindingFlags.Static);
+                var par = method.GetParameters();
+                method.Invoke(null, new object?[] {services});
+            }
         }
     }
 }
